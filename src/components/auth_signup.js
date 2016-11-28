@@ -92,9 +92,6 @@ export default reduxForm({
 
 
 
-
-
-
 /* user types something in, record it in store
 state === {
   form: {

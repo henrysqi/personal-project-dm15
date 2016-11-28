@@ -20,6 +20,8 @@ var db = massive.connect({connectionString: config.connString},
   }
 )
 
+/* auth page ==========================================================================*/
+
 app.post('/api/users', function(req, res, next){
   db.sign_up_user([req.body.firstname, req.body.lastname, req.body.email, req.body.password], function(err, result){
     if (err){
@@ -31,27 +33,37 @@ app.post('/api/users', function(req, res, next){
 })
 
 app.post('/auth', function(req,res,next){
-  if (req.body.email === "johndoe@email.com" && req.body.password === "password123"){
-    var payload = {email: req.body.email, password: req.body.password}
-    jwt.sign(payload, secret, {}, (err,token) => {
-      if (err) throw err;
-      else {
-        console.log('Returning to client')
-        res.send({
-          token: token,
-          msg: 'ok',
-          user: 1
+  var accounts;
+  var flag = true;
+  db.return_all_accounts(function(err,result){
+    accounts = result;
+    for (var i = 0; i < accounts.length; i++){
+      if (req.body.email === accounts[i].email && req.body.password === accounts[i].password){
+        var payload = {email: req.body.email, password: req.body.password}
+        jwt.sign(payload, secret, {}, (err,token) => {
+          if (err) throw err;
+          else {
+            console.log('Returning to client')
+            res.send({
+              token: token,
+              msg: 'ok',
+              user: 1
+            })
+          }
         })
+        flag = false;
       }
-    })
-    console.log(req.session)
-  } else {
-    console.log("wrong input")
-  }
-
-
+    }
+     if (flag) {
+      console.log("wrong input")
+    }
+  })
 })
 
+/* ========================================================================*/
+
+
+/* ========================================================================*/
 
 
 app.listen(port, function(){
