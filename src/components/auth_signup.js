@@ -13,11 +13,10 @@ class SignUp extends React.Component {
   }
 
   // props from the form
-  onSubmit(props) {
-    this.props.signUpUser(props)
-      .then(() => {
-      // push method provided by the router
-      this.context.router.push('/');
+  onSubmit(formprops) {
+    // push method provided by the router
+    this.props.signUpUser(formprops).then(() => {
+      this.context.router.push('feed')
     })
   }
 
@@ -86,7 +85,7 @@ function mapDispatchToProps(dispatch){
 //has same behavior has {connect} from react-redux
 export default reduxForm({
   //config for reduxForm
-  form: 'SignUpUser',
+  form: 'signUpUser',
   fields: ['firstname', 'lastname', 'email', 'password'],
   validate
 }, null, mapDispatchToProps)(SignUp);
