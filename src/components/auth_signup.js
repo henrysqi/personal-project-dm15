@@ -1,50 +1,87 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
 import {reduxForm} from 'redux-form';
 import {signUpUser} from '../actions/index';
 
 class SignUp extends React.Component {
+  static contextTypes = {
+    // will search all parents till find property router (index.js)
+    // access by this.context.router
+    router: PropTypes.object
+  }
+
+  // props from the form
+  onSubmit(props) {
+    this.props.signUpUser(props)
+      .then(() => {
+      // push method provided by the router
+      this.context.router.push('/');
+    })
+  }
+
   render() {
-    const {fields: {firstName, lastName, email, reEmail, password}, handleSubmit} = this.props; //got this from reduxForm wire at bottom
+    const {fields: {firstname, lastname, email, password}, handleSubmit} = this.props; //got this from reduxForm wire at bottom
     return (
       <div>
         <div>hello from auth_signup.js</div>
-        <form onSubmit={handleSubmit(this.props.signUpUser)}>
+        {/*let redux form handle submits. call action creator if form is valid. object with fields as keys, passed as props to action creator */}
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <h3>Sign Up</h3>
 
           <div>
             <label>first name</label>
-            <input type="text" {...firstName} /> {/* pass all props of firstName object onto input, such as event handlers */}
+            {/* pass all props of firstname object onto input, such as event handlers */}
+            <input className={`${firstname.touched && firstname.invalid ? 'bad-input' : ''}`} type="text" {...firstname} />
           </div>
           <div>
             <label>last name</label>
-            <input type="text" {...lastName} />
+            <input className={`${lastname.touched && lastname.invalid ? 'bad-input' : ''}`} type="text" {...lastname} />
           </div>
           <div>
             <label>email</label>
-            <input type="text" {...email} />
-          </div>
-          <div>
-            <label>enter email again</label>
-            <input type="text" {...reEmail} />
+            <input className={`${email.touched && email.invalid ? 'bad-input' : ''}`} type="text" {...email} />
           </div>
           <div>
             <label>new password</label>
-            <input type="text" {...password} />
+            <input className={`${password.touched && password.invalid ? 'bad-input' : ''}`} type="text" {...password} />
           </div>
 
-          <Link to="/feed"><button type="submit">Sign Up</button></Link>
+          <button type="submit">Sign Up</button>
         </form>
       </div>
     )
   }
 }
 
+function validate(values){
+  const errors = {};
+
+  if (!values.firstname){
+    errors.firstname = 'Enter a first name';
+  }
+
+  if (!values.lastname){
+    errors.lastname = 'Enter a lastname';
+  }
+
+  if (!values.email){
+    errors.email = 'Enter a email';
+  }
+
+  if (!values.password){
+    errors.password = 'Enter a password';
+  }
+
+  // if a key in errors matches a field and has falsy value, form is invalid
+  return errors;
+}
+
 //has same behavior has {connect} from react-redux
 export default reduxForm({
   //config for reduxForm
   form: 'SignUpUser',
-  fields: ['firstName', 'lastName', 'email', 'reEmail', 'password']
+  fields: ['firstname', 'lastname', 'email', 'password'],
+  validate
 }, null, {signUpUser})(SignUp);
 
 
