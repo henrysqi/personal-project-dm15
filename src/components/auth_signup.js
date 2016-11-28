@@ -1,6 +1,8 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
 import {reduxForm} from 'redux-form';
+import {bindActionCreators} from 'redux';
+
 import {signUpUser} from '../actions/index';
 
 class SignUp extends React.Component {
@@ -76,13 +78,18 @@ function validate(values){
   return errors;
 }
 
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({signUpUser}, dispatch);
+}
+
+
 //has same behavior has {connect} from react-redux
 export default reduxForm({
   //config for reduxForm
   form: 'SignUpUser',
   fields: ['firstname', 'lastname', 'email', 'password'],
   validate
-}, null, {signUpUser})(SignUp);
+}, null, mapDispatchToProps)(SignUp);
 
 
 
