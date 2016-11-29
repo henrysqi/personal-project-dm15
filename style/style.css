@@ -1,10 +1,20 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: hsr;
+}
 
 .bad-input {
   border: 1px solid red;
 }
 
-/* auth page ============================================= */
+@font-face {
+  font-family: hsr;
+  src: url("/assets/fonts/HelvSR.woff");
+}
 
+/* auth page ============================================= */
 @font-face {
   font-family: facebooklogo;
   src: url("/assets/fonts/FACEBOLF.otf");
@@ -12,5 +22,66 @@
 
 #auth-logo {
   font-family: facebooklogo;
-  font-size: 3em;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+#auth-header {
+  background-color: cyan;
+  position: relative;
+  height: 85px;
+}
+
+.auth-content-container {
+  background-color: orange;
+  width: 1000px;
+  height: 85px;
+  margin: 0 auto;
+  position: relative;
+}
+
+#auth-logo {
+  position: absolute;
+  bottom: 0px;
+  color: white;
+}
+
+#auth-signup-form {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  background-color: violet;
+  width: 40%;
+
+  font-size: 12px;
+  color: white;
+  padding-bottom: 18px;
+}
+
+#auth-login-email {
+  float: left;
+  background-color: red;
+  width: 45%
+}
+
+#auth-login-password {
+  float: left;
+  background-color: purple;
+  width: 45%
+}
+
+#auth-login-button {
+  float: left;
+  background-color: salmon;
+  width: 10%;
+}
+
+#auth-login-button button {
+  width: 40px;
+  position: absolute;
+  bottom: 18px;
+  color: white;
+  font-weight: bold;
+  background-color: #4267B2;
+  border: 2px solid #29487D;
 }

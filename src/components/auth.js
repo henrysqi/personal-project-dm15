@@ -6,7 +6,6 @@ class Auth extends React.Component {
   render() {
     return (
       <div>
-        <div>hello from auth.js</div>
         <Login />
         <Signup />
       </div>
