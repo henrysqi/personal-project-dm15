@@ -46,7 +46,7 @@
   color: white;
 }
 
-#auth-signup-form {
+#auth-login-form {
   position: absolute;
   right: 0px;
   bottom: 0px;
@@ -84,4 +84,33 @@
   font-weight: bold;
   background-color: #4267B2;
   border: 2px solid #29487D;
+}
+
+#auth-main {
+  background-color: brown;
+  height: 600px;
+}
+
+#auth-main-content {
+  background-color: aqua;
+  height: 600px;
+}
+
+#auth-main-image-container {
+  background-color: #234234;
+  width: 55%;
+  height: 100%;
+  float: left;
+  padding-top: 50px;
+  text-align: center;
+}
+
+#auth-main-signup-form {
+  background-color: #058309;
+  width: 45%;
+  float: left;
+}
+
+#auth-signup-firstname {
+
 }

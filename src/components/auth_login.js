@@ -26,7 +26,7 @@ class Login extends React.Component {
           <div id="auth-logo">
             facebook
           </div>
-          <div id="auth-signup-form">
+          <div id="auth-login-form">
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
               <div id="auth-login-email">
                 <p>Email</p>

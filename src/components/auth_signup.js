@@ -23,32 +23,43 @@ class SignUp extends React.Component {
   render() {
     const {fields: {firstname, lastname, email, password}, handleSubmit} = this.props; //got this from reduxForm wire at bottom
     return (
-      <div>
-        <div>hello from auth_signup.js</div>
-        {/*let redux form handle submits. call action creator if form is valid. object with fields as keys, passed as props to action creator */}
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <h3>Sign Up</h3>
+      <div id="auth-main">
+        <div className="auth-content-container" id="auth-main-content">
 
-          <div>
-            <label>first name</label>
-            {/* pass all props of firstname object onto input, such as event handlers */}
-            <input className={`${firstname.touched && firstname.invalid ? 'bad-input' : ''}`} type="text" {...firstname} />
-          </div>
-          <div>
-            <label>last name</label>
-            <input className={`${lastname.touched && lastname.invalid ? 'bad-input' : ''}`} type="text" {...lastname} />
-          </div>
-          <div>
-            <label>email</label>
-            <input className={`${email.touched && email.invalid ? 'bad-input' : ''}`} type="text" {...email} />
-          </div>
-          <div>
-            <label>new password</label>
-            <input className={`${password.touched && password.invalid ? 'bad-input' : ''}`} type="text" {...password} />
+          <div id="auth-main-image-container">
+              <img src="/assets/images/auth-page.png" />
+              <h2>Thanks for stopping by!</h2>
+              <h3>This is Henry's attempt at cloning Facebook.</h3>
           </div>
 
-          <button type="submit">Sign Up</button>
-        </form>
+          <div id="auth-main-signup-form">
+            {/*let redux form handle submits. call action creator if form is valid. object with fields as keys, passed as props to action creator */}
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+              <h1>Sign Up</h1>
+              <h3>It's free and always will be</h3>
+              <div id="auth-signup-firstname">
+                <label>first name</label>
+                {/* pass all props of firstname object onto input, such as event handlers */}
+                <input className={`${firstname.touched && firstname.invalid ? 'bad-input' : ''}`} type="text" {...firstname} />
+              </div>
+              <div>
+                <label>last name</label>
+                <input className={`${lastname.touched && lastname.invalid ? 'bad-input' : ''}`} type="text" {...lastname} />
+              </div>
+              <div>
+                <label>email</label>
+                <input className={`${email.touched && email.invalid ? 'bad-input' : ''}`} type="text" {...email} />
+              </div>
+              <div>
+                <label>new password</label>
+                <input className={`${password.touched && password.invalid ? 'bad-input' : ''}`} type="text" {...password} />
+              </div>
+
+              <button type="submit">Sign Up</button>
+            </form>
+          </div>
+
+        </div>
       </div>
     )
   }
