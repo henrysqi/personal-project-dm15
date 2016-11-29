@@ -21,7 +21,7 @@ class Login extends React.Component {
   render() {
     const {fields: {email, password}, handleSubmit} = this.props;
     return (
-      <div id="auth-header">
+      <div id="auth-header" className="header-gradient">
         <div className="auth-content-container">
           <div id="auth-logo">
             facebook
