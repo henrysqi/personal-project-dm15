@@ -16,8 +16,9 @@ export function signUpUser(props){
   }
 }
 
-export function loginUser(props){
-  const request = axios.post(`${ROOT_URL}auth`, props).then((res) => {
+export function loginUser(creds){
+  console.log(creds)
+  const request = axios.post(`${ROOT_URL}auth`, creds).then((res) => {
     console.log(res)
     sessionStorage.setItem('myToken', res.data.token);
     console.log(sessionStorage)

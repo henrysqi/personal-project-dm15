@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
 import {Link} from 'react-router';
-import {reduxForm} from 'redux-form';
 import {bindActionCreators} from 'redux';
 
 import {signUpUser} from '../actions/index';
@@ -35,7 +35,6 @@ class SignUp extends React.Component {
   }
 
   render() {
-    const {fields: {firstname, lastname, email, password}, handleSubmit} = this.props; //got this from reduxForm wire at bottom
     return (
       <div id="auth-main" className="main-gradient">
         <div className="auth-content-container" id="auth-main-content">
@@ -48,15 +47,15 @@ class SignUp extends React.Component {
 
           <div id="auth-main-signup-form">
             {/*let redux form handle submits. call action creator if form is valid. object with fields as keys, passed as props to action creator */}
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <form>
               <h1>Sign Up</h1>
               <h2>It's free and always will be</h2>
                 {/* pass all props of firstname object onto input, such as event handlers */}
-                <input id="auth-signup-firstname" placeholder="First name" className={`${firstname.touched && firstname.invalid ? 'bad-input' : ''}`} type="text" {...firstname} />
-                <input id="auth-signup-lastname" placeholder="Last name" className={`${lastname.touched && lastname.invalid ? 'bad-input' : ''}`} type="text" {...lastname} />
-                <input id="auth-signup-email" placeholder="Email" className={`${email.touched && email.invalid ? 'bad-input' : ''}`} type="text" {...email} />
+                <input id="auth-signup-firstname" placeholder="First name" type="text" />
+                <input id="auth-signup-lastname" placeholder="Last name" type="text" />
+                <input id="auth-signup-email" placeholder="Email" type="text" />
                 <input id="auth-signup-reenter-email" placeholder="Re-enter email" />
-                <input id="auth-signup-password" placeholder="New Password" className={`${password.touched && password.invalid ? 'bad-input' : ''}`} type="text" {...password} />
+                <input id="auth-signup-password" placeholder="New Password" type="text" />
                 <h3>Birthday</h3>
                 <select>
                   <option defaultvalue disabled="disabled">Month</option>
@@ -95,52 +94,9 @@ class SignUp extends React.Component {
   }
 }
 
-function validate(values){
-  const errors = {};
-
-  if (!values.firstname){
-    errors.firstname = 'Enter a first name';
-  }
-
-  if (!values.lastname){
-    errors.lastname = 'Enter a lastname';
-  }
-
-  if (!values.email){
-    errors.email = 'Enter a email';
-  }
-
-  if (!values.password){
-    errors.password = 'Enter a password';
-  }
-
-  // if a key in errors matches a field and has falsy value, form is invalid
-  return errors;
-}
-
 function mapDispatchToProps(dispatch){
   return bindActionCreators({signUpUser}, dispatch);
 }
 
 
-//has same behavior has {connect} from react-redux
-export default reduxForm({
-  //config for reduxForm
-  form: 'signUpUser',
-  fields: ['firstname', 'lastname', 'email', 'password'],
-  validate
-}, null, mapDispatchToProps)(SignUp);
-
-
-
-/* user types something in, record it in store
-state === {
-  form: {
-    SignUpUser: {
-      title: '...',
-      categories: '...',
-      content: '...'
-    }
-  }
-}
-*/
+export default connect(null, mapDispatchToProps)(SignUp);
