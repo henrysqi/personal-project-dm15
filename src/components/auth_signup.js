@@ -34,13 +34,13 @@ class SignUp extends React.Component {
     this.onFemaleChange = this.onFemaleChange.bind(this);
     this.onMaleChange = this.onMaleChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.onBadInput = this.onBadInput.bind(this);
   }
 
   onFirstnameChange(event){
     this.setState({
       firstname: event.target.value
     })
-    console.log(this.state)
   }
   onLastnameChange(event){
     this.setState({
@@ -121,6 +121,10 @@ class SignUp extends React.Component {
     return options;
   }
 
+  onBadInput(){
+    console.log("awiohdj");
+  }
+
   static contextTypes = {
     // will search all parents till find property router (index.js)
     // access by this.context.router
@@ -130,9 +134,18 @@ class SignUp extends React.Component {
   // props from the form
   onFormSubmit(event) {
     event.preventDefault();
+    console.log(this.state);
+    for (let key in this.state){
+      if (this.state[key] === ''){
+        return;
+      }
+    }
+    if (this.state.email !== this.state.reenter){
+      return;
+    }
     // push method provided by the router
     this.props.signUpUser(this.state).then(() => {
-      this.context.router.push('feed')
+      // this.context.router.push('feed')
     })
   }
 
@@ -149,17 +162,17 @@ class SignUp extends React.Component {
 
           <div id="auth-main-signup-form">
             {/*let redux form handle submits. call action creator if form is valid. object with fields as keys, passed as props to action creator */}
-            <form onSubmit={this.signUpUser}>
+            <form onSubmit={this.onFormSubmit}>
               <h1>Sign Up</h1>
               <h2>It's free and always will be</h2>
                 {/* pass all props of firstname object onto input, such as event handlers */}
-                <input value={this.state.firstname} onChange={this.onFirstnameChange} id="auth-signup-firstname" placeholder="First name" type="text" />
-                <input value={this.state.lastname} onChange={this.onLastnameChange} id="auth-signup-lastname" placeholder="Last name" type="text" />
-                <input value={this.state.email} onChange={this.onEmailChange} id="auth-signup-email" placeholder="Email" type="text" />
-                <input value={this.state.reenter} onChange={this.onReenterChange} id="auth-signup-reenter-email" placeholder="Re-enter email" />
-                <input value={this.state.passwordstar} onChange={this.onPasswordChange} id="auth-signup-password" placeholder="New Password" type="text" />
+                <input className={this.state.firstname === '' ? 'bad-input' : ''} value={this.state.firstname} onChange={this.onFirstnameChange} id="auth-signup-firstname" placeholder="First name" type="text" />
+                <input className={this.state.lastname === '' ? 'bad-input' : ''} value={this.state.lastname} onChange={this.onLastnameChange} id="auth-signup-lastname" placeholder="Last name" type="text" />
+                <input className={this.state.email === '' ? 'bad-input' : ''} value={this.state.email} onChange={this.onEmailChange} id="auth-signup-email" placeholder="Email" type="text" />
+                <input className={this.state.reenter !== this.state.email ? 'bad-input' : ''} value={this.state.reenter} onChange={this.onReenterChange} id="auth-signup-reenter-email" placeholder="Re-enter email" />
+                <input className={this.state.password === '' ? 'bad-input' : ''} value={this.state.passwordstar} onChange={this.onPasswordChange} id="auth-signup-password" placeholder="New Password" type="text" />
                 <h3>Birthday</h3>
-                <select value={this.state.bdaymonth} onChange={this.onMonthChange}>
+                <select className={this.state.bdaymonth === '' ? 'bad-input' : ''} value={this.state.bdaymonth} onChange={this.onMonthChange}>
                   <option selected disabled="disabled">Month</option>
                   <option>Jan</option>
                   <option>Fed</option>
@@ -174,17 +187,17 @@ class SignUp extends React.Component {
                   <option>Nov</option>
                   <option>Dec</option>
                 </select>
-                <select value={this.state.bdayday} onChange={this.onDayChange}>
+                <select className={this.state.bdayday === '' ? 'bad-input' : ''} value={this.state.bdayday} onChange={this.onDayChange}>
                   <option selected="selected" disabled="disabled">Day</option>
                   {this.renderRange(1,31)}
                 </select>
-                <select value={this.state.bdayyear} onChange={this.onYearChange}>
+                <select className={this.state.bdayyear === '' ? 'bad-input' : ''} value={this.state.bdayyear} onChange={this.onYearChange}>
                   <option selected="selected" disabled="disabled">Year</option>
                   {this.renderRange(2016,31)}
                 </select>
                 <br></br>
-                <input value={this.state.gender} onChange={this.onFemaleChange} className="auth-signup-radio" type="radio" name="gender" /><span>Female</span>
-                <input value={this.state.gender} onChange={this.onMaleChange} className="auth-signup-radio" type="radio" name="gender" /><span>Male</span>
+                <input className={this.state.gender === '' ? 'bad-input' : ''} value={this.state.gender} onChange={this.onFemaleChange} className="auth-signup-radio" type="radio" name="gender" /><span>Female</span>
+                <input className={this.state.gender === '' ? 'bad-input' : ''} value={this.state.gender} onChange={this.onMaleChange} className="auth-signup-radio" type="radio" name="gender" /><span>Male</span>
                 <br></br>
               <button id="auth-signup-button" type="submit">Sign Up</button>
             </form>
