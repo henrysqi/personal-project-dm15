@@ -1,3 +1,16 @@
+
 .bad-input {
   border: 1px solid red;
+}
+
+/* auth page ============================================= */
+
+@font-face {
+  font-family: facebooklogo;
+  src: url("/assets/fonts/FACEBOLF.otf");
+}
+
+#auth-logo {
+  font-family: facebooklogo;
+  font-size: 3em;
 }

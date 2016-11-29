@@ -21,19 +21,23 @@ class Login extends React.Component {
   render() {
     const {fields: {email, password}, handleSubmit} = this.props;
     return (
-      <div>
-        <div>hello from auth_login.js</div>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <div>
-            <label>email</label>
-            <input className={`${email.touched && email.invalid ? 'bad-input' : ''}`} type="text" {...email} />
-          </div>
-          <div>
-            <label>new password</label>
-            <input className={`${password.touched && password.invalid ? 'bad-input' : ''}`} type="text" {...password} />
-          </div>
-          <button type="submit">Login</button>
-        </form>
+      <div id="auth-footer">
+        <div id="auth-logo">
+          Facebook
+        </div>
+        <div id="signup-form">
+          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <div>
+              <label>email</label>
+              <input type="text" {...email} />
+            </div>
+            <div>
+              <label>new password</label>
+              <input type="text" {...password} />
+            </div>
+            <button type="submit">Login</button>
+          </form>
+        </div>
       </div>
     )
   }
