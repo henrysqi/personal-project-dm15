@@ -18,6 +18,7 @@ class Login extends React.Component {
   }
 
   onEmailChange(event){
+    console.log(event.currentTarget)
     this.setState({
       email: event.target.value
     })
@@ -53,11 +54,11 @@ class Login extends React.Component {
             <form onSubmit={this.onFormSubmit}>
               <div id="auth-login-email">
                 <p>Email</p>
-                <input size="20" type="text" value={this.state.email} onChange={this.onEmailChange} />
+                <input value={this.state.email} onChange={this.onEmailChange} size="20" type="text" />
               </div>
               <div id="auth-login-password">
                 <p>Password</p>
-                <input size="20" type="text" value={this.state.password} onChange={this.onPasswordChange}/>
+                <input value={this.state.password} onChange={this.onPasswordChange} size="20" type="text" />
               </div>
               <div id="auth-login-button">
                 <button type="submit">Log In</button>

@@ -5,7 +5,103 @@ import {bindActionCreators} from 'redux';
 
 import {signUpUser} from '../actions/index';
 
+let passvar = "";
+
 class SignUp extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      firstname: '',
+      lastname: '',
+      email: '',
+      reenter: '',
+      password: '',
+      passwordstar: '',
+      birthday: '',
+      gender: '',
+      bdaymonth: '',
+      bdayday: '',
+      bdayyear: ''
+    }
+
+    this.onFirstnameChange = this.onFirstnameChange.bind(this);
+    this.onLastnameChange = this.onLastnameChange.bind(this);
+    this.onEmailChange = this.onEmailChange.bind(this);
+    this.onReenterChange = this.onReenterChange.bind(this);
+    this.onPasswordChange = this.onPasswordChange.bind(this);
+    this.onMonthChange = this.onMonthChange.bind(this);
+  }
+
+  onFirstnameChange(event){
+    this.setState({
+      firstname: event.target.value
+    })
+    console.log(this.state)
+  }
+  onLastnameChange(event){
+    this.setState({
+      lastname: event.target.value
+    })
+  }
+  onEmailChange(event){
+    this.setState({
+      email: event.target.value
+    })
+  }
+  onReenterChange(event){
+    this.setState({
+      reenter: event.target.value
+    })
+  }
+  getStars(num) {
+    let stars = "";
+    for (let i = 0; i < num; i++){
+      stars += "*";
+    }
+    return stars;
+  }
+
+  onPasswordChange(event){
+    passvar += event.target.value[event.target.value.length-1]
+    this.setState({
+      password: passvar,
+      passwordstar: this.getStars(event.target.value.length)
+    })
+  }
+
+  // test(){
+  //   function test1(){
+  //     console.log("1");
+  //   }
+  //   function test2(){
+  //     console.log("2")
+  //   }
+  //   test1();
+  //   test2();
+  // }
+
+  onMonthChange(event){
+    console.log(event.target.value)
+    this.setState({
+      bdaymonth: event.target.value
+    })
+  }
+
+  onDayChange(event){
+    console.log(event.target.value)
+    this.setState({
+      bdayday: event.target.value
+    })
+  }
+
+  onYearChange(event){
+    console.log(event.target.value)
+    this.setState({
+      bdayyear: event.target.value
+    })
+  }
+
+
   static contextTypes = {
     // will search all parents till find property router (index.js)
     // access by this.context.router
@@ -51,14 +147,14 @@ class SignUp extends React.Component {
               <h1>Sign Up</h1>
               <h2>It's free and always will be</h2>
                 {/* pass all props of firstname object onto input, such as event handlers */}
-                <input id="auth-signup-firstname" placeholder="First name" type="text" />
-                <input id="auth-signup-lastname" placeholder="Last name" type="text" />
-                <input id="auth-signup-email" placeholder="Email" type="text" />
-                <input id="auth-signup-reenter-email" placeholder="Re-enter email" />
-                <input id="auth-signup-password" placeholder="New Password" type="text" />
+                <input value={this.state.firstname} onChange={this.onFirstnameChange} id="auth-signup-firstname" placeholder="First name" type="text" />
+                <input value={this.state.lastname} onChange={this.onLastnameChange} id="auth-signup-lastname" placeholder="Last name" type="text" />
+                <input value={this.state.email} onChange={this.onEmailChange} id="auth-signup-email" placeholder="Email" type="text" />
+                <input value={this.state.reenter} onChange={this.onReenterChange} id="auth-signup-reenter-email" placeholder="Re-enter email" />
+                <input value={this.state.passwordstar} onChange={this.onPasswordChange} id="auth-signup-password" placeholder="New Password" type="text" />
                 <h3>Birthday</h3>
-                <select>
-                  <option defaultvalue disabled="disabled">Month</option>
+                <select value={this.state.bdaymonth} onChange={this.onMonthChange}>
+                  <option selected disabled="disabled">Month</option>
                   <option>Jan</option>
                   <option>Fed</option>
                   <option>Mar</option>
@@ -72,11 +168,11 @@ class SignUp extends React.Component {
                   <option>Nov</option>
                   <option>Dec</option>
                 </select>
-                <select>
+                <select value={this.state.bdayday} onChange={this.onDayChange}>
                   <option selected="selected" disabled="disabled">Day</option>
                   {this.renderRange(1,31)}
                 </select>
-                <select>
+                <select value={this.state.bdayyear} onChange={this.onYearChange}>
                   <option selected="selected" disabled="disabled">Year</option>
                   {this.renderRange(2016,31)}
                 </select>
