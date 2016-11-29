@@ -23,7 +23,8 @@ var db = massive.connect({connectionString: config.connString},
 /* auth page ==========================================================================*/
 
 app.post('/api/users', function(req, res, next){
-  db.sign_up_user([req.body.firstname, req.body.lastname, req.body.email, req.body.password], function(err, result){
+  var rb = req.body;
+  db.sign_up_user([rb.firstname, rb.lastname, rb.email, rb.password, rb.gender, rb.bdaymonth, rb.bdayday, rb.bdayyear], function(err, result){
     if (err){
 			res.status(500).send(err);
 		} else {

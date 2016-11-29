@@ -16,8 +16,7 @@ class SignUp extends React.Component {
       email: '',
       reenter: '',
       password: '',
-      passwordstar: '',
-      birthday: '',
+      // passwordstar: '',
       gender: '',
       bdaymonth: '',
       bdayday: '',
@@ -30,6 +29,11 @@ class SignUp extends React.Component {
     this.onReenterChange = this.onReenterChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
     this.onMonthChange = this.onMonthChange.bind(this);
+    this.onDayChange = this.onDayChange.bind(this);
+    this.onYearChange = this.onYearChange.bind(this);
+    this.onFemaleChange = this.onFemaleChange.bind(this);
+    this.onMaleChange = this.onMaleChange.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   onFirstnameChange(event){
@@ -53,22 +57,20 @@ class SignUp extends React.Component {
       reenter: event.target.value
     })
   }
-  getStars(num) {
-    let stars = "";
-    for (let i = 0; i < num; i++){
-      stars += "*";
-    }
-    return stars;
-  }
-
+  // getStars(num) {
+  //   let stars = "";
+  //   for (let i = 0; i < num; i++){
+  //     stars += "*";
+  //   }
+  //   return stars;
+  // }
   onPasswordChange(event){
-    passvar += event.target.value[event.target.value.length-1]
+    // passvar += event.target.value[event.target.value.length-1]
     this.setState({
-      password: passvar,
-      passwordstar: this.getStars(event.target.value.length)
+      password: event.target.value
+      // passwordstar: this.getStars(event.target.value.length)
     })
   }
-
   // test(){
   //   function test1(){
   //     console.log("1");
@@ -79,40 +81,29 @@ class SignUp extends React.Component {
   //   test1();
   //   test2();
   // }
-
   onMonthChange(event){
-    console.log(event.target.value)
     this.setState({
       bdaymonth: event.target.value
     })
   }
-
   onDayChange(event){
-    console.log(event.target.value)
     this.setState({
       bdayday: event.target.value
     })
   }
-
   onYearChange(event){
-    console.log(event.target.value)
     this.setState({
       bdayyear: event.target.value
     })
   }
-
-
-  static contextTypes = {
-    // will search all parents till find property router (index.js)
-    // access by this.context.router
-    router: PropTypes.object
+  onFemaleChange(event) {
+    this.setState({
+      gender: "female"
+    })
   }
-
-  // props from the form
-  onSubmit(formprops) {
-    // push method provided by the router
-    this.props.signUpUser(formprops).then(() => {
-      this.context.router.push('feed')
+  onMaleChange(event){
+    this.setState({
+      gender: "male"
     })
   }
 
@@ -130,6 +121,21 @@ class SignUp extends React.Component {
     return options;
   }
 
+  static contextTypes = {
+    // will search all parents till find property router (index.js)
+    // access by this.context.router
+    router: PropTypes.object
+  }
+
+  // props from the form
+  onFormSubmit(event) {
+    event.preventDefault();
+    // push method provided by the router
+    this.props.signUpUser(this.state).then(() => {
+      this.context.router.push('feed')
+    })
+  }
+
   render() {
     return (
       <div id="auth-main" className="main-gradient">
@@ -143,7 +149,7 @@ class SignUp extends React.Component {
 
           <div id="auth-main-signup-form">
             {/*let redux form handle submits. call action creator if form is valid. object with fields as keys, passed as props to action creator */}
-            <form>
+            <form onSubmit={this.signUpUser}>
               <h1>Sign Up</h1>
               <h2>It's free and always will be</h2>
                 {/* pass all props of firstname object onto input, such as event handlers */}
@@ -177,8 +183,8 @@ class SignUp extends React.Component {
                   {this.renderRange(2016,31)}
                 </select>
                 <br></br>
-                <input className="auth-signup-radio" type="radio" /><span>Female</span>
-                <input className="auth-signup-radio" type="radio" /><span>Male</span>
+                <input value={this.state.gender} onChange={this.onFemaleChange} className="auth-signup-radio" type="radio" name="gender" /><span>Female</span>
+                <input value={this.state.gender} onChange={this.onMaleChange} className="auth-signup-radio" type="radio" name="gender" /><span>Male</span>
                 <br></br>
               <button id="auth-signup-button" type="submit">Sign Up</button>
             </form>
