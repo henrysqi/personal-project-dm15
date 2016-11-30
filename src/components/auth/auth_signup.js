@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {bindActionCreators} from 'redux';
 
-import {signUpUser} from '../actions/index';
+import {signUpUser} from '../../actions/index';
 
 let passvar = "";
 
@@ -122,7 +122,7 @@ class SignUp extends React.Component {
   }
 
   onBadInput(){
-    console.log("awiohdj");
+    console.log("testing");
   }
 
   static contextTypes = {
@@ -134,7 +134,6 @@ class SignUp extends React.Component {
   // props from the form
   onFormSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
     for (let key in this.state){
       if (this.state[key] === ''){
         alert(key + "is not filled")
@@ -146,7 +145,6 @@ class SignUp extends React.Component {
     }
     // push method provided by the router
     this.props.signUpUser(this.state).then((res) => {
-      console.log(res)
       this.context.router.push(`${res.payload.data.userid}/feed`)
     })
   }

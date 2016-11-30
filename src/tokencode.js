@@ -1,4 +1,4 @@
-server.js
+// server.js
 // app.post('/auth', function(req,res,next){
 //   var accounts;
 //   var flag = true;
@@ -28,7 +28,7 @@ server.js
 //   })
 // })
 
-index.js actions
+// index.js actions
 // export function signUpUser(props){
 //   const request = axios.post(`${ROOT_URL}api/users`, props).then((res) => {
 //     sessionStorage.setItem('myToken', res.data.token);

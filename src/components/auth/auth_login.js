@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {bindActionCreators} from 'redux';
 
-import {loginUser} from '../actions/index';
+import {loginUser} from '../../actions/index';
 
 class Login extends React.Component {
   constructor() {
