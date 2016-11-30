@@ -28,7 +28,20 @@ app.post('/api/users', function(req, res, next){
     if (err){
 			res.status(500).send(err);
 		} else {
-			res.send(result);
+
+      db.return_all_accounts(function(err, result){
+        if (err){
+          res.status(500).send(err);
+        } else {
+          for (var i = 0; i < result.length; i++){
+            if (req.body.email === result[i].email && req.body.password === result[i].password){
+              var payload = {"email": req.body.email, "password": req.body.password, "userid": result[i].id}
+              res.send(payload)
+            }
+          }
+        }
+      })
+
 		}
   })
 })
