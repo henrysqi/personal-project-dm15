@@ -8,7 +8,7 @@ const ROOT_URL = 'http://localhost:3000/';
 
 
 export function signUpUser(props){
-  const request = axios.post(`${ROOT_URL}api/users`, props)
+  const request = axios.post(`${ROOT_URL}api/users`, props);
 
   return {
     type: SIGN_UP_USER,
@@ -17,12 +17,7 @@ export function signUpUser(props){
 }
 
 export function loginUser(creds){
-  console.log(creds)
-  const request = axios.post(`${ROOT_URL}auth`, creds).then((res) => {
-    console.log(res)
-    sessionStorage.setItem('myToken', res.data.token);
-    console.log(sessionStorage)
-  })
+  const request = axios.post(`${ROOT_URL}auth`, creds);
 
   return {
     type: LOGIN_USER,

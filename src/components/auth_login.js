@@ -18,7 +18,6 @@ class Login extends React.Component {
   }
 
   onEmailChange(event){
-    console.log(event.currentTarget)
     this.setState({
       email: event.target.value
     })
@@ -38,8 +37,7 @@ class Login extends React.Component {
     event.preventDefault();
 
     this.props.loginUser(this.state).then((res) => {
-      console.log(res)
-      this.context.router.push('feed')
+      this.context.router.push(`${res.payload.data.userid}/feed`)
     })
   }
 

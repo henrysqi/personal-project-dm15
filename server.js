@@ -34,29 +34,20 @@ app.post('/api/users', function(req, res, next){
 })
 
 app.post('/auth', function(req,res,next){
-  var accounts;
   var flag = true;
   db.return_all_accounts(function(err,result){
-    accounts = result;
-    for (var i = 0; i < accounts.length; i++){
-      if (req.body.email === accounts[i].email && req.body.password === accounts[i].password){
-        var payload = {email: req.body.email, password: req.body.password}
-        jwt.sign(payload, secret, {}, (err,token) => {
-          if (err) throw err;
-          else {
-            console.log('Returning to client')
-            res.send({
-              token: token,
-              msg: 'ok',
-              user: 1
-            })
-          }
-        })
-        flag = false;
+    if (err){
+      res.status(500).send(err);
+    } else {
+      for (var i = 0; i < result.length; i++){
+        if (req.body.email === result[i].email && req.body.password === result[i].password){
+          var payload = {"email": req.body.email, "password": req.body.password, "userid": result[i].id}
+          res.send(payload)
+        }
       }
-    }
-     if (flag) {
-      console.log("wrong input")
+      if (flag) {
+        console.log("wrong input")
+      }
     }
   })
 })

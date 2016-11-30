@@ -137,6 +137,7 @@ class SignUp extends React.Component {
     console.log(this.state);
     for (let key in this.state){
       if (this.state[key] === ''){
+        alert(key + "is not filled")
         return;
       }
     }
@@ -144,7 +145,8 @@ class SignUp extends React.Component {
       return;
     }
     // push method provided by the router
-    this.props.signUpUser(this.state).then(() => {
+    this.props.signUpUser(this.state).then((res) => {
+      console.log(res)
       // this.context.router.push('feed')
     })
   }
