@@ -54,8 +54,25 @@ app.post('/auth', function(req,res,next){
     } else {
       for (var i = 0; i < result.length; i++){
         if (req.body.email === result[i].email && req.body.password === result[i].password){
-          var payload = {"email": req.body.email, "password": req.body.password, "userid": result[i].id}
-          res.send(payload)
+          flag = false;
+          var payload = {"email": req.body.email, "password": req.body.email, "userid": result[i].id}
+          var currentUser = result[i];
+
+          jwt.sign(payload, secret, {}, (err,token) => {
+            if (err){
+              res.status(500).send(err)
+            }
+            else {
+              console.log('Returning to client')
+              console.log(currentUser)
+              res.send({
+                token: token,
+                msg: 'ok',
+                user: currentUser
+              })
+            }
+          })
+
         }
       }
       if (flag) {

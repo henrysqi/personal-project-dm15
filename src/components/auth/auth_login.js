@@ -37,6 +37,7 @@ class Login extends React.Component {
     event.preventDefault();
 
     this.props.loginUser(this.state).then((res) => {
+      // console.log(res);
       this.context.router.push("feed")
     })
   }
@@ -69,6 +70,7 @@ class Login extends React.Component {
   }
 }
 
+//dispatch funnels actions thru reducer
 function mapDispatchToProps(dispatch){
   return bindActionCreators({loginUser}, dispatch);
 }

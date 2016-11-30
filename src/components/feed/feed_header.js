@@ -4,8 +4,8 @@ class FeedHeader extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          hi from feed header
+        <div id="feed-header">
+          sdfsdfsdf
         </div>
       </div>
     )
