@@ -64,7 +64,6 @@ app.post('/auth', function(req,res,next){
             }
             else {
               console.log('Returning to client')
-              console.log(currentUser)
               res.send({
                 token: token,
                 msg: 'ok',
