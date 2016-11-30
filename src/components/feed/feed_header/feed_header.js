@@ -7,7 +7,7 @@ class FeedHeader extends React.Component {
     return (
       <div>
         <div id="feed-header">
-          <div className="feed-content-container">
+          <div className="feed-header-content-container">
               <FeedHeaderSearchbar />
               <FeedHeaderMenu />
           </div>

@@ -36,7 +36,22 @@ app.post('/api/users', function(req, res, next){
           for (var i = 0; i < result.length; i++){
             if (req.body.email === result[i].email && req.body.password === result[i].password){
               var payload = {"email": req.body.email, "password": req.body.password, "userid": result[i].id}
-              res.send(payload)
+              var currentUser = result[i];
+
+              jwt.sign(payload, secret, {}, (err,token) => {
+                if (err){
+                  res.status(500).send(err)
+                }
+                else {
+                  console.log('Returning to client')
+                  res.send({
+                    token: token,
+                    msg: 'ok',
+                    user: currentUser
+                  })
+                }
+              })
+
             }
           }
         }

@@ -3,17 +3,15 @@ import {connect} from 'react-redux';
 
 
 class FeedHeaderMenu extends React.Component {
-  componentDidMount(){
-    console.log(this.currentUser)
-  }
-  //this.currentUser.user.firstname
 
   render() {
+    // console.log(this.props)
     return (
       <div id="feed-header-menu">
         <div id="feed-header-menu-pic-name">
           <img src="https://cuteoverload.files.wordpress.com/2015/08/042815-fb-gudetama1.jpg" />
-          <h3>First Name</h3>
+          {/* <h3>{this.props.currentUser.user.firstname}</h3> */}
+          <h3>Testing</h3>
         </div>
         <div id="divider"></div>
         <div id="feed-header-menu-home">
@@ -23,10 +21,10 @@ class FeedHeaderMenu extends React.Component {
           <img src="assets/images/users-1.png" />
         </div>
         <div className="feed-header-menu-icon-container">
-          <img src="assets/images/users-1.png" />
+          <img src="assets/images/speech-bubble-2-xxl.png" />
         </div>
         <div className="feed-header-menu-icon-container">
-          <img src="assets/images/users-1.png" />
+          <img src="assets/images/globe.png" />
         </div>
         <div id="second-divider"></div>
         <div className="feed-header-menu-lock">

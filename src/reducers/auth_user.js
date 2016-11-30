@@ -5,8 +5,8 @@ export default function(state = {}, action){
     case SIGN_UP_USER:
       return action.payload.data;
     case LOGIN_USER:
-      // console.log(action)
-      // console.log(state)
+      console.log(action)
+      console.log(state)
       return action.payload.data;
   }
   return state;
