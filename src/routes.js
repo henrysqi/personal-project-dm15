@@ -8,7 +8,7 @@ import Feed from './components/feed/feed';
 export default (
   <Route path='/' component={App}>
     <IndexRoute component={Auth} />
-    <Route path=':id/feed' component={Feed}>
+    <Route path='feed' component={Feed}>
 
     </Route>
   </Route>

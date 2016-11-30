@@ -145,7 +145,7 @@ class SignUp extends React.Component {
     }
     // push method provided by the router
     this.props.signUpUser(this.state).then((res) => {
-      this.context.router.push(`${res.payload.data.userid}/feed`)
+      this.context.router.push("feed")
     })
   }
 

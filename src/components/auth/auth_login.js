@@ -37,7 +37,7 @@ class Login extends React.Component {
     event.preventDefault();
 
     this.props.loginUser(this.state).then((res) => {
-      this.context.router.push(`${res.payload.data.userid}/feed`)
+      this.context.router.push("feed")
     })
   }
 

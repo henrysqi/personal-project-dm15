@@ -1,10 +1,13 @@
 import React from 'react';
 
+import FeedHeader from './feed_header';
+
 class Feed extends React.Component {
   render() {
     return (
       <div>
-        <div>hello from feed.js</div>
+        <FeedHeader />
+        hi from feed.js
       </div>
     )
   }

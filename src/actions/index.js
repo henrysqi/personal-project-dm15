@@ -8,7 +8,11 @@ const ROOT_URL = 'http://localhost:3000/';
 
 
 export function signUpUser(props){
-  const request = axios.post(`${ROOT_URL}api/users`, props);
+  const request = axios({
+    url: `${ROOT_URL}api/users`,
+    method: 'post',
+    data: props
+  });
 
   return {
     type: SIGN_UP_USER,
@@ -17,7 +21,11 @@ export function signUpUser(props){
 }
 
 export function loginUser(creds){
-  const request = axios.post(`${ROOT_URL}auth`, creds);
+  const request = axios({
+    url: `${ROOT_URL}auth`,
+    method: 'post',
+    data: creds
+  });
 
   return {
     type: LOGIN_USER,
