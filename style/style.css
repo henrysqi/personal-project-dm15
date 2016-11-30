@@ -451,6 +451,7 @@ ul li {
   margin-left: 18%;
   position: relative;
   background-color: pink;
+  padding-top: 15px;
 }
 
 #feed-menu {
@@ -458,10 +459,23 @@ ul li {
   float: left;
   background-color: cyan;
   margin-right: 2%;
+
+  font-size: 12px;
+  color: #1d2129;
 }
 
 .feed-menu-item-container {
   background-color: orchid;
+  width: 185px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.feed-menu-icon {
+   height: 20px;
+   width: 20px;
+   margin-right: 5px;
 }
 
 #feed-news {
@@ -490,4 +504,11 @@ ul li {
   float: left;
   background-color: brown;
   margin-right: 2%;
+}
+
+#feed-menu h2 {
+  font-size: 11px;
+  color: #666666;
+  font-weight: 700;
+  margin-top: 10px;
 }

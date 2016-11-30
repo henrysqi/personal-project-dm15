@@ -1,17 +1,52 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {fetchSearchResults} from '../../../actions/index';
 
 class FeedHeaderSearchbar extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      term: ''
+    }
+    this.onInputChange = this.onInputChange.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
+  }
+
+  onInputChange(event) {
+    this.setState({
+      term: event.target.value
+    });
+  };
+
+  static contextTypes = {
+    router: PropTypes.object
+  }
+
+  onFormSubmit(event){
+    event.preventDefault();
+
+    this.props.fetchSearchResults(this.state.term);
+    this.context.router.push("search");
+  }
+
   render() {
     return (
       <div id="feed-header-searchbar">
-        <i className="fa fa-facebook-official" aria-hidden="true"></i>
-        <input placeholder="Search Facebook" type="text"></input>
-        <button>
-          <img src="assets/images/magnify.png" />
-        </button>
+        <form onSubmit={this.onFormSubmit}>
+          <i className="fa fa-facebook-official" aria-hidden="true"></i>
+          <input value={this.state.term} onChange={this.onInputChange} placeholder="Search Facebook" type="text"></input>
+          <button>
+            <img src="assets/images/magnify.png" />
+          </button>
+        </form>
       </div>
     )
   }
 }
 
-export default FeedHeaderSearchbar;
+function  mapDispatchToProps(dispatch){
+  return bindActionCreators({fetchSearchResults}, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(FeedHeaderSearchbar);

@@ -20,6 +20,16 @@ var db = massive.connect({connectionString: config.connString},
   }
 )
 
+function verify(req, res, next) {
+  const token = req.get('Authorization');
+  jwt.verify(token, secret, (err, decoded) => {
+    if (err) return res.status(401).send();
+    else {
+      next();
+    }
+  })
+}
+
 /* auth page ==========================================================================*/
 
 app.post('/api/users', function(req, res, next){
@@ -96,7 +106,31 @@ app.post('/auth', function(req,res,next){
   })
 })
 
-/* ========================================================================*/
+/* feed page ========================================================================*/
+
+
+
+/* search page ========================================================================*/
+app.get('/api/search', function(req,res){
+  if(req.query.search){
+    db.get_search_results([req.query.search], function(err, result){
+      if (err){
+        res.status(500).send(err);
+      } else {
+        res.send(result);
+      }
+    })
+  } else {
+    db.get_search_results([""], function(err, result){
+      if (err){
+        res.status(500).send(err);
+      } else {
+        res.send(result);
+      }
+    })
+  }
+})
+
 
 
 /* ========================================================================*/
