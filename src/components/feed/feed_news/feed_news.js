@@ -10,48 +10,7 @@ class FeedNews extends React.Component {
         <div className="feed-news-post-container">
           some post
         </div>
-        <div className="feed-news-post-container">
-          some post
-        </div>
-        <div className="feed-news-post-container">
-          some post
-        </div>
-        <div className="feed-news-post-container">
-          some post
-        </div>
-        <div className="feed-news-post-container">
-          some post
-        </div>
-        <div className="feed-news-post-container">
-          some post
-        </div>
-        <div className="feed-news-post-container">
-          some post
-        </div>
-        <div className="feed-news-post-container">
-          some post
-        </div>
-        <div className="feed-news-post-container">
-          some post
-        </div>
-        <div className="feed-news-post-container">
-          some post
-        </div>
-        <div className="feed-news-post-container">
-          some post
-        </div>
-        <div className="feed-news-post-container">
-          some post
-        </div>
-        <div className="feed-news-post-container">
-          some post
-        </div>
-        <div className="feed-news-post-container">
-          some post
-        </div>
-        <div className="feed-news-post-container">
-          some post
-        </div>
+
       </div>
     )
   }

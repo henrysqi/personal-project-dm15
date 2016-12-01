@@ -10,6 +10,10 @@
   border: 1.5px solid #8B0300 !important;
 }
 
+a {
+  color: inherit;
+}
+
 ul li {
   list-style: none;
 }
@@ -298,6 +302,7 @@ ul li {
 /* feed page header ======================================================================= */
 #feed-main {
   padding-top: 42px;
+  background-color: #E9EBEE;
 }
 
 #feed-header {
@@ -457,7 +462,6 @@ ul li {
 #feed-menu {
   width: 17%;
   float: left;
-  background-color: cyan;
   margin-right: 2%;
 
   font-size: 12px;
@@ -465,7 +469,6 @@ ul li {
 }
 
 .feed-menu-item-container {
-  background-color: orchid;
   width: 185px;
   height: 25px;
   display: flex;
@@ -485,8 +488,59 @@ ul li {
   margin-right: 2%;
 }
 
-#feed-news-post-container {
-  background-color: skyblue;
+.feed-search-post-container {
+  background-color: white;
+  width: 100%;
+  height: 120px;
+  border-bottom: 1px solid #E3E6E9;
+  position: relative;
+}
+
+.feed-search-post-container img{
+  width: 100px;
+  height: 100px;
+  float: left;
+  margin: 10px;
+}
+
+.feed-search-post-container h1 {
+  float: left;
+  font-weight: bolder;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.feed-search-post-buttons {
+  background-color: yellow;
+  position: absolute;
+  right: 10px;
+  top: 15px;
+}
+
+.feed-search-post-buttons button {
+  width: 95px;
+  height: 25px;
+  border: 1px solid #E3E6E9;
+  background-color: #F6F7F9;
+}
+
+.feed-search-post-buttons button img{
+  width: 15px;
+  height: 15px;
+  margin: 1px 0 0 4px;
+}
+
+.feed-search-post-buttons button span{
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.feed-search-post-buttons select {
+  width: 45px;
+  height: 25px;
+  border: 1px solid #E3E6E9;
+  background-color: #F6F7F9;
 }
 
 #feed-ads {

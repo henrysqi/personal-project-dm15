@@ -9,9 +9,19 @@ class SearchMid extends React.Component {
       )
     }
     return (
-      <div key={elem.id} className="feed-news-post-container">
-        {elem.firstname}
-        {elem.lastname}
+      <div key={elem.id} className="feed-search-post-container">
+        <img src="assets\images\defprofpic.jpg" />
+        <h1>{elem.firstname} {elem.lastname}</h1>
+        <div className="feed-search-post-buttons">
+          <button><img src="assets\images\add-user3-512.png" /><span>Add Friend</span></button>
+          <select>
+            <option selected disabled="disabled">...</option>
+            <option>Send Message</option>
+            <option>Photos</option>
+            <option>Friends</option>
+            <option>Interests</option>
+          </select>
+        </div>
       </div>
     )
   }

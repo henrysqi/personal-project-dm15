@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {fetchSearchResults} from '../../../actions/index';
+import {Link} from 'react-router';
 
 class FeedHeaderSearchbar extends React.Component {
   constructor() {
@@ -34,7 +35,7 @@ class FeedHeaderSearchbar extends React.Component {
     return (
       <div id="feed-header-searchbar">
         <form onSubmit={this.onFormSubmit}>
-          <i className="fa fa-facebook-official" aria-hidden="true"></i>
+          <Link to={'/feed'}><i style={{color: 'white'}} className="fa fa-facebook-official" aria-hidden="true"></i></Link>
           <input value={this.state.term} onChange={this.onInputChange} placeholder="Search Facebook" type="text"></input>
           <button>
             <img src="assets/images/magnify.png" />
