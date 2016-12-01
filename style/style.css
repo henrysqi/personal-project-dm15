@@ -6,6 +6,10 @@
   font-weight: 400;
 }
 
+body {
+  background-color: #E9EBEE;
+}
+
 .bad-input {
   border: 1.5px solid #8B0300 !important;
 }
@@ -641,4 +645,123 @@ ul li {
   color: white;
   font-weight: bolder;
   background-color: #3B5998;
+}
+
+.post-container {
+  width: 100%;
+  margin-bottom: 10px;
+  border: 1px solid #DFE0E4;
+  margin-bottom: 7px;
+}
+
+#post-user {
+  height: 50px;
+  background-color: white;
+  padding: 7px;
+
+}
+
+#post-user-pic {
+  float: left;
+  margin-right: 5px;
+}
+
+#post-user-pic img {
+  height: 40px;
+  width: 40px;
+}
+
+#post-user-info {
+  float: left;
+}
+
+#post-user-info h1 {
+  font-weight: bold;
+  font-size: 14px;
+  color: #365899;
+}
+
+#post-user-info h3 {
+  font-size: 12px;
+  color: #90949c;
+}
+
+#post-content {
+  border-bottom: 1px solid #E9EBEE;
+  background-color: white;
+  padding: 7px;
+
+}
+
+#post-content p {
+  font-size: 14px;
+  color: #1d2129;
+}
+
+#post-num-likes {
+  background-color: #F6F7F9;
+  height: 39px;
+}
+
+#post-num-likes img {
+  height: 16px;
+  width: 16px;
+  margin-right: 3px;
+}
+
+#post-num-likes span {
+  font-size: 12px;
+  color: #375899;
+}
+
+#post-like-comment {
+  display: flex;
+  align-items: center;
+  height: 31px;
+  background-color: white;
+  border-bottom: 1px solid #E9EBEE;
+  padding: 7px;
+
+}
+
+#post-like-comment img {
+  height: 14px;
+  width: 14px;
+  margin-right: 5px;
+}
+
+#post-like-comment span {
+  font-size: 12px;
+  color: #7f7f7f;
+  font-weight: bold;
+  margin-right: 40px;
+}
+
+#post-num-likes {
+  border-bottom: 1px solid #E9EBEE;
+  display: flex;
+  align-items: center;
+  padding: 7px;
+
+}
+
+#post-write-comment {
+  height: 42px;
+  background-color: #F6F7F9;
+  padding: 7px;
+
+}
+
+#post-write-comment img {
+  height: 32px;
+  width: 32px;
+  margin-right: 5px;
+}
+
+#post-write-comment textarea {
+  width: 85%;
+  height: 30px;
+  background-color: white;
+  resize: none;
+  border: 1px solid #BDC7D8;
 }

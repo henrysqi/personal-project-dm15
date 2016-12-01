@@ -22,18 +22,17 @@ class Posts extends React.Component {
   }
 
   renderPost(){
-    if (this.state.posts === undefined){
+    if (!this.state.posts){
       return;
     }
-    this.state.posts.payload.data.map((elem) => {
+    return this.state.posts.payload.data.map((elem) => {
       return (
-        <Post postinfo={elem} />
+        <Post key={elem.id} postinfo={elem} />
       )
     })
   }
 
   render() {
-    console.log(this.state.posts);
     return (
       <div>
         {this.renderPost()}

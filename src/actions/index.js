@@ -90,6 +90,6 @@ export function fetchNameById(id){
 
   return {
     type: FETCH_NAME_BY_ID,
-    payload: props
+    payload: request
   }
 }
