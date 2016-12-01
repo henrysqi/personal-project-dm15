@@ -33,6 +33,9 @@ class NewPost extends React.Component {
     event.preventDefault();
 
     this.props.createNewPost(this.state);
+    this.setState({
+      text_content: ''
+    })
   }
 
   render() {

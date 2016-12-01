@@ -65,7 +65,7 @@ export function createNewPost(props){
   }
 }
 
-export function fetchPosts(props){
+export function fetchPosts(){
   const request = axios({
     url: `${ROOT_URL}api/posts`,
     method: 'get'
@@ -73,9 +73,14 @@ export function fetchPosts(props){
 
   return {
     type: FETCH_POSTS,
-    payload: props
+    payload: request
   }
 }
+
+// createAction('FETCH_THING', async id => {
+//   const result = await somePromise;
+//   return result.someValue;
+// });
 
 export function fetchNameById(id){
   const request = axios({
