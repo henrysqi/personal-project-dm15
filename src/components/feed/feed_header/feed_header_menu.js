@@ -10,8 +10,7 @@ class FeedHeaderMenu extends React.Component {
       <div id="feed-header-menu">
         <div id="feed-header-menu-pic-name">
           <img src="https://cuteoverload.files.wordpress.com/2015/08/042815-fb-gudetama1.jpg" />
-          {/* <h3>{this.props.currentUser.user.firstname}</h3> */}
-          <h3>Firstname</h3>
+          <h3>{this.props.currentUser.user.firstname}</h3>
         </div>
         <div id="divider"></div>
         <div id="feed-header-menu-home">

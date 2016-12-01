@@ -7,7 +7,7 @@ class FeedMenu extends React.Component {
       <div id="feed-menu">
         <div className="feed-menu-item-container">
           <img className="feed-menu-icon" src="https://cuteoverload.files.wordpress.com/2015/08/042815-fb-gudetama1.jpg" />
-          <span>Firstname Lastname</span>
+          <span>{this.props.currentUser.user.firstname} {this.props.currentUser.user.lastname}</span>
         </div>
         <div className="feed-menu-item-container">
           <img className="feed-menu-icon" src="assets\images\pencil.png" />
@@ -121,20 +121,6 @@ class FeedMenu extends React.Component {
           <img className="feed-menu-icon" src="assets\images\calendar_plus-512.png" />
           <span>Create Event</span>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       </div>
     )

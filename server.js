@@ -131,7 +131,38 @@ app.get('/api/search', function(req,res){
   }
 })
 
+/* reusables ======================================================================*/
+app.post('/api/posts', function(req, res){
+  db.create_new_post([req.body.userid, req.body.text_content, req.body.pic_content, req.body.date], function(err, result){
+    if (err){
+      res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  })
+})
 
+app.get('/api/posts', function(req, res){
+  db.get_all_posts(function(err, result){
+    if (err){
+      res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  })
+})
+
+app.get('/api/name', function(req, res){
+  if (req.query.id){
+    db.get_user_name_by_id([req.query.id], function(err, result){
+      if (err){
+        res.status(500).send(err);
+      } else {
+        res.send(result);
+      }
+    })
+  }
+})
 
 /* ========================================================================*/
 
