@@ -785,6 +785,7 @@ ul li {
   background-color: salmon;
   border: 1px solid #D3D6DB;
   position: relative;
+  margin-bottom: 20px;
 }
 
 #profile-cover-photo {
@@ -868,5 +869,58 @@ ul li {
 }
 
 #profile-follow-button {
-  margin-left: 20px;  
+  margin-left: 20px;
+}
+
+#profile-left-panel {
+  width: 45%;
+  height: 500px;
+}
+
+.profile-left-panel-item {
+  padding: 10px;
+  background-color: white;
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid #DFE0E4;
+}
+
+.profile-left-panel-item img {
+  height: 24px;
+  width: 24px;
+  margin-right: 10px;
+  margin-top: 6px;
+}
+
+.profile-left-panel-item span {
+  font-size: 16px;
+  color: #1d2129;
+  position: absolute;
+  margin-top: 8px;
+}
+
+#profile-left-panel-item-languages {
+  width: 85%;
+  float: left;
+}
+
+#profile-left-panel-item-languages p{
+  font-size: 12px;
+  color: #365899;
+}
+
+#profile-left-panel-item-languages-add {
+  width: 15%;
+  float: left;
+}
+
+#profile-left-panel-item-languages-add button{
+  width: 34px;
+  height: 28px;
+  background-color: #F6F7F9;
+  border: 1px solid #DFE0E4;
+}
+
+#profile-lang {
+  height: 58px;
 }
