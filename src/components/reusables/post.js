@@ -15,7 +15,6 @@ class Posts extends React.Component {
       return;
     }
     this.props.fetchNameById(this.props.postinfo.userid).then((res) => {
-      console.log(res)
       this.setState({
         nameOfUser: res
       })
@@ -33,7 +32,6 @@ class Posts extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="post-container">
         <div id="post-user">

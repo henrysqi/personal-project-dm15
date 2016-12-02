@@ -29,7 +29,7 @@ class Posts extends React.Component {
       return (
         <Post key={elem.id} postinfo={elem} />
       )
-    })
+    }).reverse();
   }
 
   render() {
