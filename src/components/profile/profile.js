@@ -1,7 +1,34 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import FeedHeader from '../feed/feed_header/feed_header';
+import {fetchUserById} from '../../actions/index';
 
 class Profile extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+
+    }
+  }
+
+  componentWillMount(){
+    this.props.fetchUserById(this.props.params.id).then((res) => {
+      this.setState({
+        userinfo: res
+      })
+    })
+  }
+
+  renderName() {
+    if (!this.state.userinfo){
+      return;
+    }
+    return (
+      <h1>{this.state.userinfo.payload.data[0].firstname} {this.state.userinfo.payload.data[0].lastname}</h1>
+    )
+  }
+
   render(){
     return (
       <div>
@@ -25,7 +52,7 @@ class Profile extends React.Component {
                   <img src="https://cuteoverload.files.wordpress.com/2015/08/042815-fb-gudetama1.jpg" />
                 </div>
                 <div id="profile-name">
-                  <h1>Firstname Lastname</h1>
+                  {this.renderName()}
                 </div>
                 <div id="profile-hero-options">
                   <button>
@@ -77,4 +104,8 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+function  mapDispatchToProps(dispatch){
+  return bindActionCreators({fetchUserById}, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(Profile);

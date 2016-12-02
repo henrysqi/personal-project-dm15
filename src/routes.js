@@ -9,8 +9,7 @@ import Profile from './components/profile/profile';
 
 export default (
   <Route path='/' component={App}>
-    {/* <IndexRoute component={Auth} /> */}
-    <IndexRoute component={Profile} />
+    <IndexRoute component={Auth} />
     <Route path='feed' component={Feed} />
     <Route path='search' component={Search} />
     <Route path=':id' component={Profile}>

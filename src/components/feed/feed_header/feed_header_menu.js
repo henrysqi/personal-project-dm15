@@ -1,17 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
+import {Link} from 'react-router';
 
 class FeedHeaderMenu extends React.Component {
 
   render() {
-    // console.log(this.props)
+    console.log(this.props)
     return (
       <div id="feed-header-menu">
-        <div id="feed-header-menu-pic-name">
+        <Link to={`${this.props.currentUser.user.id}`}><div id="feed-header-menu-pic-name">
           <img src="https://cuteoverload.files.wordpress.com/2015/08/042815-fb-gudetama1.jpg" />
           <h3>{this.props.currentUser.user.firstname}</h3>
-        </div>
+        </div></Link>
         <div id="divider"></div>
         <div id="feed-header-menu-home">
           <h3>Home</h3>

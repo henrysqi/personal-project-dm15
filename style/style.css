@@ -513,7 +513,6 @@ ul li {
 }
 
 .feed-search-post-buttons {
-  background-color: yellow;
   position: absolute;
   right: 10px;
   top: 15px;
@@ -558,7 +557,6 @@ ul li {
 #search-mid {
   width: 50%;
   float: left;
-  background-color: brown;
   margin-right: 2%;
 }
 
@@ -782,7 +780,6 @@ ul li {
 #profile-hero {
   width: 100%;
   height: 358px;
-  background-color: salmon;
   border: 1px solid #D3D6DB;
   position: relative;
   margin-bottom: 20px;
@@ -791,7 +788,6 @@ ul li {
 #profile-cover-photo {
   height: 315px;
   width: 100%;
-  background-color: purple;
 }
 
 #profile-cover-photo img{

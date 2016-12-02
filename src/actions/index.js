@@ -6,6 +6,7 @@ export const FETCH_SEARCH = 'FETCH_SEARCH';
 export const CREATE_POST = 'CREATE_POST';
 export const FETCH_POSTS = 'FETCH_POSTS';
 export const FETCH_NAME_BY_ID = 'FETCH_NAME_BY_ID';
+export const FETCH_USER_BY_ID = 'FETCH_USER_BY_ID';
 
 const ROOT_URL = 'http://localhost:3000/';
 
@@ -90,6 +91,18 @@ export function fetchNameById(id){
 
   return {
     type: FETCH_NAME_BY_ID,
+    payload: request
+  }
+}
+
+export function fetchUserById(id){
+  const request = axios({
+    url: `${ROOT_URL}api/${id}`,
+    method: 'get'
+  })
+
+  return {
+    type: FETCH_USER_BY_ID,
     payload: request
   }
 }

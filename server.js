@@ -164,7 +164,28 @@ app.get('/api/name', function(req, res){
   }
 })
 
-/* ========================================================================*/
+/* profile ========================================================================*/
+app.get('/api/:id', function(req,res){
+  db.get_user_profile_by_id([req.params.id], function(err, result){
+    if (err){
+      res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  })
+})
+
+
+
+
+
+
+
+
+
+
+
+/* profile ========================================================================*/
 
 
 app.listen(port, function(){
