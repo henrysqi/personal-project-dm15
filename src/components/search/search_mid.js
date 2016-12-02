@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 
 class SearchMid extends React.Component {
   renderSearchResults(elem){
@@ -10,8 +11,8 @@ class SearchMid extends React.Component {
     }
     return (
       <div key={elem.id} className="feed-search-post-container">
-        <img src="assets\images\defprofpic.jpg" />
-        <h1>{elem.firstname} {elem.lastname}</h1>
+        <Link to={`${elem.id}`}><img src="assets\images\defprofpic.jpg" />
+        <h1>{elem.firstname} {elem.lastname}</h1></Link>
         <div className="feed-search-post-buttons">
           <button><img src="assets\images\add-user3-512.png" /><span>Add Friend</span></button>
           <select>
