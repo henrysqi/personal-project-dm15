@@ -2,20 +2,46 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import FeedHeader from '../feed/feed_header/feed_header';
-import {fetchUserById} from '../../actions/index';
+import {fetchUserById, friendRequest, fetchFriends} from '../../actions/index';
 
 class Profile extends React.Component {
   constructor(){
     super();
     this.state = {
-
+      friendButtonText: null
     }
+    this.makeFriendRequest = this.makeFriendRequest.bind(this);
   }
 
   componentWillMount(){
     this.props.fetchUserById(this.props.params.id).then((res) => {
       this.setState({
         userinfo: res
+      })
+      this.props.fetchFriends().then((res) => {
+        if (this.props.currentUser.user.id === Number(this.props.params.id)){
+          this.setState({friendButtonText: <span>Update Info</span>});
+          return;
+        } else {
+          let foundflag = false;
+          res.payload.data.forEach((elem) => {
+            if (elem.sender === this.props.currentUser.user.id && elem.receiver === this.state.userinfo.payload.data[0].id){
+              if (elem.resolved === false){
+                console.log("ran this")
+                this.setState({friendButtonText: <span>Request Pending</span>});
+                foundflag = true;
+                return;
+              } else {
+                this.setState({friendButtonText: <span>Friends</span>});
+                return;
+              }
+            }
+          });
+          if (!foundflag){
+            this.setState({friendButtonText: <span>Add Friends</span>});
+            return;
+          }
+        }
       })
     })
   }
@@ -29,10 +55,40 @@ class Profile extends React.Component {
     )
   }
 
+  makeFriendRequest(){
+    if (!this.state.userinfo){
+      return;
+    }
+
+
+    this.props.fetchFriends().then((res) => {
+      let foundflag = false;
+      res.payload.data.forEach((elem) => {
+        if ( (elem.sender === this.props.currentUser.user.id && elem.receiver === this.state.userinfo.payload.data[0].id) || (elem.receiver === this.props.currentUser.user.id && elem.sender === this.state.userinfo.payload.data[0].id) ){
+          foundflag = true;
+          if (elem.resolved){
+            this.setState({friendButtonText: <span>Friends</span>})
+          } else {
+            this.setState({friendButtonText: <span>Request Pending</span>})
+          }
+        }
+      })
+      if (!foundflag){
+        this.props.friendRequest({
+          sender: this.props.currentUser.user.id,
+          receiver: this.state.userinfo.payload.data[0].id
+        });
+        this.setState({friendButtonText: <span>Request Pending</span>});
+      }
+    })
+
+
+  }
+
   render(){
     return (
       <div>
-        {/* <FeedHeader /> */}
+        <FeedHeader />
         <div id="profile-container">
           <div id="profile-content-container">
 
@@ -55,9 +111,9 @@ class Profile extends React.Component {
                   {this.renderName()}
                 </div>
                 <div id="profile-hero-options">
-                  <button>
+                  <button onClick={this.makeFriendRequest}>
                     <img src="assets\images\add-user3-512.png" />
-                    <span>Add Friend</span>
+                    {this.state.friendButtonText}
                   </button>
                   <button id="profile-follow-button">
                     <img src="assets\images\wifi-logo-icon-87078.png" />
@@ -105,7 +161,13 @@ class Profile extends React.Component {
 }
 
 function  mapDispatchToProps(dispatch){
-  return bindActionCreators({fetchUserById}, dispatch);
+  return bindActionCreators({fetchUserById, friendRequest, fetchFriends}, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(Profile);
+function mapStateToProps(state){
+  return {
+    currentUser: state.currentUser
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

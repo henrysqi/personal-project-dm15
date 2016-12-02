@@ -34,7 +34,7 @@ class SignUp extends React.Component {
     this.onFemaleChange = this.onFemaleChange.bind(this);
     this.onMaleChange = this.onMaleChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
-    this.onBadInput = this.onBadInput.bind(this);
+    // this.onBadInput = this.onBadInput.bind(this);
   }
 
   onFirstnameChange(event){
@@ -121,9 +121,9 @@ class SignUp extends React.Component {
     return options;
   }
 
-  onBadInput(){
-    console.log("testing");
-  }
+  // onBadInput(){
+  //   console.log("testing");
+  // }
 
   static contextTypes = {
     // will search all parents till find property router (index.js)
@@ -170,7 +170,7 @@ class SignUp extends React.Component {
                 <input className={this.state.lastname === '' ? 'bad-input' : ''} value={this.state.lastname} onChange={this.onLastnameChange} id="auth-signup-lastname" placeholder="Last name" type="text" />
                 <input className={this.state.email === '' ? 'bad-input' : ''} value={this.state.email} onChange={this.onEmailChange} id="auth-signup-email" placeholder="Email" type="text" />
                 <input className={this.state.reenter !== this.state.email ? 'bad-input' : ''} value={this.state.reenter} onChange={this.onReenterChange} id="auth-signup-reenter-email" placeholder="Re-enter email" />
-                <input className={this.state.password === '' ? 'bad-input' : ''} value={this.state.passwordstar} onChange={this.onPasswordChange} id="auth-signup-password" placeholder="New Password" type="text" />
+                <input className={this.state.password === '' ? 'bad-input' : ''} value={this.state.passwordstar} onChange={this.onPasswordChange} id="auth-signup-password" placeholder="New Password" type="password" />
                 <h3>Birthday</h3>
                 <select className={this.state.bdaymonth === '' ? 'bad-input' : ''} value={this.state.bdaymonth} onChange={this.onMonthChange}>
                   <option selected disabled="disabled">Month</option>

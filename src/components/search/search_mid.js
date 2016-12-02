@@ -29,7 +29,6 @@ class SearchMid extends React.Component {
 
 
   render() {
-    console.log(this.props)
     return (
       <div id="search-mid">
         {this.props.searchResults.length === 0 ? this.renderSearchResults("na") : this.props.searchResults.map(this.renderSearchResults)}

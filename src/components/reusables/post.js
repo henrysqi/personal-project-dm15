@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-
+import {Link} from 'react-router';
 import {fetchNameById} from '../../actions/index';
 
 class Posts extends React.Component {
@@ -35,11 +35,11 @@ class Posts extends React.Component {
     return (
       <div className="post-container">
         <div id="post-user">
-          <div id="post-user-pic">
+          <Link to={`${this.props.postinfo.userid}`}><div id="post-user-pic">
             <img src="http://www.faithlineprotestants.org/wp-content/uploads/2010/12/facebook-default-no-profile-pic.jpg" />
-          </div>
+          </div></Link>
           <div id="post-user-info">
-            {this.renderName()}
+            <Link to={`${this.props.postinfo.userid}`}>{this.renderName()}</Link>
             <h3>time</h3>
           </div>
         </div>

@@ -175,7 +175,25 @@ app.get('/api/:id', function(req,res){
   })
 })
 
+app.post('/api/friends', function(req, res){
+  db.friend_request([req.body.sender, req.body.receiver, false], function(err, result){
+    if (err){
+      res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  })
+})
 
+app.get('/api/friends/all', function(req, res){
+  db.get_all_friends(function(err, result){
+    if (err){
+      res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  })
+})
 
 
 

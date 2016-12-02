@@ -7,6 +7,8 @@ export const CREATE_POST = 'CREATE_POST';
 export const FETCH_POSTS = 'FETCH_POSTS';
 export const FETCH_NAME_BY_ID = 'FETCH_NAME_BY_ID';
 export const FETCH_USER_BY_ID = 'FETCH_USER_BY_ID';
+export const FRIEND_REQUEST = 'FRIEND_REQUEST';
+export const FETCH_FRIENDS = 'FETCH_FRIENDS';
 
 const ROOT_URL = 'http://localhost:3000/';
 
@@ -37,7 +39,7 @@ export function loginUser(creds){
     payload: request
   }
 }
-///////////////////////////////////////////////////////////////////
+
 export function fetchSearchResults(term){
   if (term === undefined){
     term = "";
@@ -52,7 +54,7 @@ export function fetchSearchResults(term){
     payload: request
   }
 }
-///////////////////////////////////////////////////////////////////////////
+
 export function createNewPost(props){
   const request = axios({
     url: `${ROOT_URL}api/posts`,
@@ -78,11 +80,6 @@ export function fetchPosts(){
   }
 }
 
-// createAction('FETCH_THING', async id => {
-//   const result = await somePromise;
-//   return result.someValue;
-// });
-
 export function fetchNameById(id){
   const request = axios({
     url: `${ROOT_URL}api/name?id=${id}`,
@@ -103,6 +100,31 @@ export function fetchUserById(id){
 
   return {
     type: FETCH_USER_BY_ID,
+    payload: request
+  }
+}
+
+export function friendRequest(props){
+  const request = axios({
+    url: `${ROOT_URL}api/friends`,
+    method: 'post',
+    data: props
+  })
+
+  return {
+    type: FRIEND_REQUEST,
+    payload: request
+  }
+}
+
+export function fetchFriends(){
+  const request = axios({
+    url: `${ROOT_URL}api/friends/all`,
+    method: 'get'
+  })
+
+  return {
+    type: FETCH_FRIENDS,
     payload: request
   }
 }
