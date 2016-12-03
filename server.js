@@ -30,6 +30,26 @@ function verify(req, res, next) {
   })
 }
 
+// // socket
+// var server = require('http').createServer(app);
+// var io = require('socket.io')(server);
+// var fs = require('fs');
+//
+// io.on('connection', function(socket){
+//   socket.on('event', function(data){
+//     console.log(data)
+//
+//
+//     //emits to everyone but the sender
+//     socket.broadcast.emit('event', data)
+//   });
+//
+//   // client.on('disconnect', function(){});
+// });
+
+
+
+
 /* auth page ==========================================================================*/
 
 app.post('/api/users', function(req, res, next){
