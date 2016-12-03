@@ -305,7 +305,7 @@ ul li {
 }
 
 /* feed page header ======================================================================= */
-#feed-main {
+.content-main {
   padding-top: 42px;
   background-color: #E9EBEE;
 }
@@ -920,4 +920,103 @@ ul li {
 
 #profile-lang {
   height: 58px;
+}
+
+/* friend requests ============================= */
+#friend-requests-content-container {
+  width: 1000px;
+  margin-left: 19%;
+}
+
+#friend-requests-content {
+  width: 69%;
+  height: 600px;
+  background-color: white;
+  float: left;
+  margin-right: 2%;
+  padding: 20px 10px;
+}
+
+#friend-requests-title {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #E9EBEE;
+  padding-left: 13px;
+}
+
+#friend-requests-title h1 {
+  color: #1d2129;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#friend-requests-title h4 {
+  color: #365899;
+  font-size: 11px;
+}
+
+.friend-request-item {
+  width: 645px;
+  height: 100px;
+  margin: 0 auto;
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #E9EBEE;
+}
+
+#friend-request-info {
+  width: 50%;
+  float: left;
+  background-color: purple;
+}
+
+#friend-request-info img{
+  height: 75px;
+  width: 75px;
+  float: left;
+  margin-right: 5px;
+}
+
+#friend-request-info-text {
+  float: left;
+}
+
+#friend-request-info h2 {
+  color: #365899;
+  font-size: 13px;
+}
+
+#friend-request-info h3 {
+  color: #90949c;
+  font-size: 12px;
+}
+
+#friend-request-buttons {
+  background-color: pink;
+  width: 50%;
+  float: left;
+  display: flex;
+  align-items: center;
+  padding-left: 130px;
+}
+
+#friend-request-buttons-confirm {
+  background-color: #4267B2;
+  color: white;
+  font-size: 12px;
+  border: 1px solid #E3E6E9;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+#friend-request-buttons-delete {
+  font-size: 12px;
+  color: #1d2129;
+  background-color: #F6F7F9;
+  border: 1px solid #E3E6E9;
+  margin-left: 5px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 3px;
 }
