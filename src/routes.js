@@ -6,12 +6,10 @@ import Auth from './components/auth/auth';
 import Feed from './components/feed/feed';
 import Search from './components/search/search';
 import Profile from './components/profile/profile';
-import Chat from './components/reusables/chat';
 
 export default (
   <Route path='/' component={App}>
-    {/* <IndexRoute component={Auth} /> */}
-    <IndexRoute component={Chat} />
+    <IndexRoute component={Auth} />
     <Route path='feed' component={Feed} />
     <Route path='search' component={Search} />
     <Route path=':id' component={Profile}>
