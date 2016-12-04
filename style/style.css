@@ -508,9 +508,11 @@ ul li {
 
 .feed-search-post-container h1 {
   float: left;
+}
+
+.feed-search-post-container span {
   font-weight: bolder;
   font-size: 14px;
-  margin-top: 20px;
 }
 
 .feed-search-post-buttons {

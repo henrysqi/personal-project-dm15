@@ -160,14 +160,15 @@ class Profile extends React.Component {
   }
 }
 
-function  mapDispatchToProps(dispatch){
-  return bindActionCreators({fetchUserById, friendRequest, fetchFriends}, dispatch);
-}
 
 function mapStateToProps(state){
   return {
     currentUser: state.currentUser
   }
+}
+
+function  mapDispatchToProps(dispatch){
+  return bindActionCreators({fetchUserById, friendRequest, fetchFriends}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
