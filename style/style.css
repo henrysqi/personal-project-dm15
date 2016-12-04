@@ -522,16 +522,16 @@ ul li {
 }
 
 .feed-search-post-buttons button {
-  width: 95px;
   height: 25px;
   border: 1px solid #E3E6E9;
   background-color: #F6F7F9;
+  padding: 0 10px;
 }
 
 .feed-search-post-buttons button img{
   width: 15px;
   height: 15px;
-  margin: 1px 0 0 4px;
+  margin: 1px 5px 0 4px;
 }
 
 .feed-search-post-buttons button span{
@@ -545,6 +545,7 @@ ul li {
   height: 25px;
   border: 1px solid #E3E6E9;
   background-color: #F6F7F9;
+  padding-left: 10px;
 }
 
 #feed-ads {

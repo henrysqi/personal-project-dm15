@@ -60,7 +60,6 @@ class Profile extends React.Component {
       return;
     }
 
-
     this.props.fetchFriends().then((res) => {
       let foundflag = false;
       res.payload.data.forEach((elem) => {
@@ -81,7 +80,6 @@ class Profile extends React.Component {
         this.setState({friendButtonText: <span>Request Pending</span>});
       }
     })
-
 
   }
 
