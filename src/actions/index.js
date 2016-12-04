@@ -141,6 +141,6 @@ export function updateFriendsResolved(props){
 
   return {
     type: UPDATE_FRIENDS_RESOLVED,
-    payload: request
+    payload: props
   }
 }

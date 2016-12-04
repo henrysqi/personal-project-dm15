@@ -958,7 +958,6 @@ ul li {
   width: 645px;
   height: 100px;
   margin: 0 auto;
-  background-color: blue;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #E9EBEE;
@@ -967,7 +966,6 @@ ul li {
 #friend-request-info {
   width: 50%;
   float: left;
-  background-color: purple;
 }
 
 #friend-request-info img{
@@ -992,7 +990,6 @@ ul li {
 }
 
 #friend-request-buttons {
-  background-color: pink;
   width: 50%;
   float: left;
   display: flex;

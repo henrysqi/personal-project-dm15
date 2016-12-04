@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {fetchUserById, updateFriendsResolved} from '../../actions/index';
+import {fetchUserById} from '../../actions/index';
 
 
 class FriendRequestItem extends React.Component {
@@ -32,8 +32,8 @@ class FriendRequestItem extends React.Component {
           </div>
         </div>
         <div id="friend-request-buttons">
-          <button onClick={this.props.updateList} id="friend-request-buttons-confirm">Confirm</button>
-          <button id="friend-request-buttons-delete">Delete Request</button>
+          <button onClick={() => {this.props.acceptFriend(this.props.elem.sender, this.props.elem.receiver)} } id="friend-request-buttons-confirm">Confirm</button>
+          <button onClick={this.props.rejectFriend} id="friend-request-buttons-delete">Delete Request</button>
         </div>
       </div>
     )

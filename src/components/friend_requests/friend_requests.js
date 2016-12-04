@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import FriendRequestItem from './friend_request_item';
-import {fetchFriends} from '../../actions/index';
+import {fetchFriends, updateFriendsResolved} from '../../actions/index';
 
 class FriendRequests extends React.Component {
   constructor() {
@@ -13,24 +13,49 @@ class FriendRequests extends React.Component {
     this.state = {
 
     }
-  }
 
-  updateList(index) {
-    console.log("work pls")
+    this.acceptFriend = this.acceptFriend.bind(this);
+    this.rejectFriend = this.rejectFriend.bind(this);
   }
 
   componentWillMount(){
-    let updateListPointer = this.updateList;
-    updateListPointer();
+    this.renderList();
+  }
+
+  acceptFriend(sender, receiver) {
+    console.log(this.state)
+    this.props.updateFriendsResolved({
+      sender: sender,
+      receiver: receiver
+    });
+    // let currentList = [];
+    // this.state.friendRequests.forEach((elem) => {
+    //   if (elem.sender !== sender && elem.receiver !== receiver){
+    //     currentList.push(elem)
+    //   }
+    // })
+    setTimeout(() => {
+      this.renderList();
+    }, 500)
+  }
+
+  rejectFriend(index){
+    console.log("rejected lul")
+  }
+
+  renderList(){
+    let acceptFriendPointer = this.acceptFriend;
+    let rejectFriendPointer = this.rejectFriend;
 
     this.props.fetchFriends().then((res) => {
       let numOfRequests = 0;
       let friendRequests = [];
       res.payload.data.forEach((elem) => {
-        if (elem.receiver === this.props.currentUser.user.id && elem.sender !== this.props.currentUser.user.id){
+        if (elem.receiver === this.props.currentUser.user.id && elem.sender !== this.props.currentUser.user.id && elem.resolved === false){
           numOfRequests++;
           friendRequests.push(<FriendRequestItem
-            updateList={updateListPointer}
+            rejectFriend={rejectFriendPointer}
+            acceptFriend={acceptFriendPointer}
             elem={elem}
             key={elem.pair}
             currentid={this.props.currentUser.user.id}
@@ -73,7 +98,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({fetchFriends}, dispatch)
+  return bindActionCreators({fetchFriends, updateFriendsResolved}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FriendRequests);

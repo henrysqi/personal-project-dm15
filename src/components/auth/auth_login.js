@@ -37,8 +37,11 @@ class Login extends React.Component {
     event.preventDefault();
 
     this.props.loginUser(this.state).then((res) => {
-      // console.log(res);
-      this.context.router.push("feed")
+      if (res.payload.data === "wrong input"){
+        alert("wrong input")
+      } else {
+        this.context.router.push("feed")
+      }
     })
   }
 

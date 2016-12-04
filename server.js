@@ -77,6 +77,7 @@ app.post('/auth', function(req,res,next){
     if (err){
       res.status(500).send(err);
     } else {
+
       for (var i = 0; i < result.length; i++){
         if (req.body.email === result[i].email && req.body.password === result[i].password){
           flag = false;
@@ -99,9 +100,10 @@ app.post('/auth', function(req,res,next){
 
         }
       }
-      if (flag) {
-        console.log("wrong input")
+      if (flag){
+        res.send("wrong input")
       }
+
     }
   })
 })
