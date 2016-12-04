@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import FriendRequestItem from './friend_request_item';
-import {fetchFriends, updateFriendsResolved} from '../../actions/index';
+import {fetchFriends, updateFriendsResolved, deleteFriends} from '../../actions/index';
 
 class FriendRequests extends React.Component {
   constructor() {
@@ -23,7 +23,6 @@ class FriendRequests extends React.Component {
   }
 
   acceptFriend(sender, receiver) {
-    console.log(this.state)
     this.props.updateFriendsResolved({
       sender: sender,
       receiver: receiver
@@ -36,11 +35,17 @@ class FriendRequests extends React.Component {
     // })
     setTimeout(() => {
       this.renderList();
-    }, 500)
+    }, 200)
   }
 
-  rejectFriend(index){
-    console.log("rejected lul")
+  rejectFriend(pair){
+    this.props.deleteFriends({
+      pair: pair
+    });
+
+    setTimeout(() => {
+      this.renderList();
+    }, 200)
   }
 
   renderList(){
@@ -72,21 +77,24 @@ class FriendRequests extends React.Component {
 
   render() {
     return (
-      // <FeedHeader />
-      <div className="content-main">
-        <div id="friend-requests-content-container">
+      <div>
+        <FeedHeader />
+        <div className="content-main">
+          <div id="friend-requests-content-container">
 
-          <div id="friend-requests-content">
-            <div id="friend-requests-title">
-              <h1>Response to Your {this.state.numOfRequests} Friend Requests</h1>
-              <h4>View Sent Requests</h4>
+            <div id="friend-requests-content">
+              <div id="friend-requests-title">
+                <h1>Response to Your {this.state.numOfRequests} Friend Requests</h1>
+                <h4>View Sent Requests</h4>
+              </div>
+              {this.state.friendRequests}
             </div>
-            {this.state.friendRequests}
-          </div>
 
-          <FeedAds />
+            <FeedAds />
+          </div>
         </div>
       </div>
+
     )
   }
 }
@@ -98,7 +106,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({fetchFriends, updateFriendsResolved}, dispatch)
+  return bindActionCreators({fetchFriends, updateFriendsResolved, deleteFriends}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FriendRequests);

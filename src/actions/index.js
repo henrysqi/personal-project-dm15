@@ -10,7 +10,7 @@ export const FETCH_USER_BY_ID = 'FETCH_USER_BY_ID';
 export const FRIEND_REQUEST = 'FRIEND_REQUEST';
 export const FETCH_FRIENDS = 'FETCH_FRIENDS';
 export const UPDATE_FRIENDS_RESOLVED = 'UPDATE_FRIENDS_RESOLVED';
-
+export const DELETE_FRIENDS = 'DELETE_FRIENDS';
 
 
 const ROOT_URL = 'http://localhost:3000/';
@@ -142,5 +142,18 @@ export function updateFriendsResolved(props){
   return {
     type: UPDATE_FRIENDS_RESOLVED,
     payload: props
+  }
+}
+
+export function deleteFriends(pair){
+  const request = axios({
+    url: `${ROOT_URL}api/friends`,
+    method: 'delete',
+    data: pair
+  })
+
+  return {
+    type: DELETE_FRIENDS,
+    payload: request
   }
 }

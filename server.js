@@ -207,7 +207,15 @@ app.put('/api/friends', function(req, res){
   })
 })
 
-
+app.delete('/api/friends', function(req, res){
+  db.delete_friends([req.body.pair], function(err, result){
+    if (err){
+      res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  })
+})
 
 
 

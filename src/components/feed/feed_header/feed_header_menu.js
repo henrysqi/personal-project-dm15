@@ -16,7 +16,7 @@ class FeedHeaderMenu extends React.Component {
           <h3>Home</h3>
         </div>
         <div className="feed-header-menu-icon-container">
-          <Link to="friends/requests"><img src="assets/images/users-1.png" /></Link>
+          <Link to="friends/requests"><img src="assets\images\users-1.png" /></Link>
         </div>
         <div className="feed-header-menu-icon-container">
           <img src="assets/images/speech-bubble-2-xxl.png" />
