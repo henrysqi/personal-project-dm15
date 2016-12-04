@@ -10,11 +10,10 @@ import FriendRequests from './components/friend_requests/friend_requests';
 
 export default (
   <Route path='/' component={App}>
-    {/* <IndexRoute component={Auth} /> */}
-    <IndexRoute component={FriendRequests} />
+    <IndexRoute component={Auth} />
     <Route path='feed' component={Feed} />
     <Route path='search' component={Search} />
-    {/* <Route path='friends/requests' component={FriendRequests} /> */}
+    <Route path='friends/requests' component={FriendRequests} />
     <Route path=':id' component={Profile}>
       {/* <IndexRoute component={Timeline} />
       <Route path='/About' component={About} />

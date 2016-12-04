@@ -11,8 +11,8 @@ class Search extends React.Component {
     return (
       <div>
         <FeedHeader />
-        <div id="feed-main">
-          <div className="feed-main-content-container">
+        <div id="content-main">
+          <div className="feed-main-content-container" id="search-content-fix">
             <FeedMenu />
             <SearchMid />
             <FeedAds />

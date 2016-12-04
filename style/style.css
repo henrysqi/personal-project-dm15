@@ -551,14 +551,14 @@ ul li {
   background-color: orange;
 }
 
-.feed-ads-ad-container {
-
-}
-
 #search-mid {
   width: 50%;
   float: left;
   margin-right: 2%;
+}
+
+#search-content-fix {
+  padding-top: 59px;
 }
 
 #feed-menu h2 {

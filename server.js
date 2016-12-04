@@ -195,6 +195,15 @@ app.get('/api/friends/all', function(req, res){
   })
 })
 
+app.put('/api/friends', function(req, res){
+  db.update_friends_resolved([req.body.sender, req.body.receiver], function(err, result){
+    if (err){
+      res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  })
+})
 
 
 
@@ -202,8 +211,7 @@ app.get('/api/friends/all', function(req, res){
 
 
 
-
-/* profile ========================================================================*/
+/*  ========================================================================*/
 
 
 app.listen(port, function(){
