@@ -15,18 +15,26 @@ class FriendRequests extends React.Component {
     }
   }
 
-  updateList() {
+  updateList(index) {
     console.log("work pls")
   }
 
   componentWillMount(){
+    let updateListPointer = this.updateList;
+    updateListPointer();
+
     this.props.fetchFriends().then((res) => {
       let numOfRequests = 0;
       let friendRequests = [];
       res.payload.data.forEach((elem) => {
         if (elem.receiver === this.props.currentUser.user.id && elem.sender !== this.props.currentUser.user.id){
           numOfRequests++;
-          friendRequests.push(<FriendRequestItem key={elem.pair} currentid={this.props.currentUser.user.id} userid={elem.sender} />);
+          friendRequests.push(<FriendRequestItem
+            updateList={updateListPointer}
+            elem={elem}
+            key={elem.pair}
+            currentid={this.props.currentUser.user.id}
+            userid={elem.sender} />);
         }
       })
 

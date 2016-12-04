@@ -21,10 +21,6 @@ class FriendRequestItem extends React.Component {
     })
   }
 
-  accceptFriendRequest(){
-    
-  }
-
   render() {
     return (
       <div className="friend-request-item">
@@ -36,7 +32,7 @@ class FriendRequestItem extends React.Component {
           </div>
         </div>
         <div id="friend-request-buttons">
-          <button id="friend-request-buttons-confirm">Confirm</button>
+          <button onClick={this.props.updateList} id="friend-request-buttons-confirm">Confirm</button>
           <button id="friend-request-buttons-delete">Delete Request</button>
         </div>
       </div>
