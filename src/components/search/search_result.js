@@ -23,14 +23,17 @@ class SearchResult extends React.Component {
       } else {
         let foundflag = false;
         res.payload.data.forEach((elem2) => {
-          if (elem2.sender === this.props.currentUser.user.id && elem2.receiver === this.props.elem.id){
+          if ( (elem2.sender === this.props.currentUser.user.id && elem2.receiver === this.props.elem.id) || (elem2.sender === this.props.elem.id && elem2.receiver === this.props.currentUser.user.id) ) {
             if (elem2.resolved === false){
-              console.log("ran this")
+              console.log("ran request pending")
               this.setState({friendButtonText: <span>Request Pending</span>});
               foundflag = true;
               return;
             } else {
+              console.log("ran friends")
+              console.log(this.props.elem)
               this.setState({friendButtonText: <span>Friends</span>});
+              foundflag = true;
               return;
             }
           }
@@ -44,14 +47,14 @@ class SearchResult extends React.Component {
   }
 
   makeFriendRequest(){
-    if (!this.state.userinfo){
+    if (!this.props.elem){
       return;
     }
 
     this.props.fetchFriends().then((res) => {
       let foundflag = false;
       res.payload.data.forEach((elem) => {
-        if ( (elem.sender === this.props.currentUser.user.id && elem.receiver === this.state.userinfo.payload.data[0].id) || (elem.receiver === this.props.currentUser.user.id && elem.sender === this.state.userinfo.payload.data[0].id) ){
+        if ( (elem.sender === this.props.currentUser.user.id && elem.receiver === this.props.elem.id) || (elem.receiver === this.props.currentUser.user.id && elem.sender === this.props.elem.id) ){
           foundflag = true;
           if (elem.resolved){
             this.setState({friendButtonText: <span>Friends</span>})
@@ -63,7 +66,7 @@ class SearchResult extends React.Component {
       if (!foundflag){
         this.props.friendRequest({
           sender: this.props.currentUser.user.id,
-          receiver: this.state.userinfo.payload.data[0].id
+          receiver: this.props.elem.id
         });
         this.setState({friendButtonText: <span>Request Pending</span>});
       }
@@ -79,7 +82,7 @@ class SearchResult extends React.Component {
         <Link to={`${this.props.elem.id}`}><img src="assets\images\defprofpic.jpg" />
         <h1>{this.props.elem.firstname} {this.props.elem.lastname}</h1></Link>
         <div className="feed-search-post-buttons">
-          <button>
+          <button onClick={this.makeFriendRequest}>
             <img src="assets\images\add-user3-512.png" />
             <span>{this.state.friendButtonText}</span>
           </button>
