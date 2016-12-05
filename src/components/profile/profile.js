@@ -122,7 +122,7 @@ class Profile extends React.Component {
 
   onProfilePicSubmit(event){
     event.preventDefault();
-
+    console.log(this.state)
     let renderHeroPointer = this.renderHero;
     if (this.props.currentUser.user.id === Number(this.props.params.id)){
       this.props.updateProfilePic(this.props.currentUser.user.id, this.state).then(() => {
@@ -210,7 +210,7 @@ class Profile extends React.Component {
 
             <div id="profile-hero">
                 <div onClick={this.openModal} id="profile-cover-photo">
-                  {this.state.userinfo.payload.data[0].coverphoto ? <img src={this.state.userinfo.payload.data[0].coverphoto} /> : <img src="http://pre11.deviantart.net/4da2/th/pre/i/2013/083/4/0/random_landscape_02_by_lizterhann-d5z5x4h.jpg" /> }
+                  {this.state.userinfo ? <img src={this.state.userinfo.payload.data[0].cover_photo} /> : <img src="assets\images\default.jpg" /> }
                   {/* <img src="http://pre11.deviantart.net/4da2/th/pre/i/2013/083/4/0/random_landscape_02_by_lizterhann-d5z5x4h.jpg" /> */}
                 </div>
                 <div id="profile-hero-menu">
@@ -222,7 +222,7 @@ class Profile extends React.Component {
                 </div>
 
                 <div onClick={this.openModal} id="profile-profile-pic">
-                  <img src="https://cuteoverload.files.wordpress.com/2015/08/042815-fb-gudetama1.jpg" />
+                  {this.state.userinfo ? <img src={this.state.userinfo.payload.data[0].profile_pic} /> : <img src="assets\images\defprofpic.jpg" /> }
                 </div>
                 <div id="profile-name">
                   {this.renderName()}
