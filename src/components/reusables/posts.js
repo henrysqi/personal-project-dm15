@@ -26,11 +26,16 @@ class Posts extends React.Component {
         console.log(this.props.currentUser)
         res.payload.data.forEach((elem) => {
           res2.payload.data.forEach((elem2) => {
-            if ( (elem2.receiver === this.props.currentUser || elem2.sender === this.props.currentUser) && elem2.resolved === true ) {
-              if (elem.userid === elem2.receiver || elem.userid === elem2.sender){
-                filteredPosts.push(elem);
+            if (elem.userid === this.props.currentUser.user.id){
+              filteredPosts.push(elem)
+            } else {
+              if ( (elem2.receiver === this.props.currentUser.user.id || elem2.sender === this.props.currentUser.user.id) && elem2.resolved === true ) {
+                if (elem.userid === elem2.receiver || elem.userid === elem2.sender){
+                  filteredPosts.push(elem);
+                }
               }
             }
+
           })
         })
         this.setState({
@@ -45,7 +50,7 @@ class Posts extends React.Component {
     if (!this.state.posts){
       return;
     }
-    return this.state.posts.payload.data.map((elem) => {
+    return this.state.posts.map((elem) => {
       return (
         <Post key={elem.id} postinfo={elem} />
       )
