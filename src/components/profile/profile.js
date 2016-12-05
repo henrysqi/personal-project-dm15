@@ -8,13 +8,22 @@ import {Link} from 'react-router';
 import NewPost from '../reusables/new_post';
 import TimelinePosts from '../reusables/timeline_posts';
 
+import Modal from 'react-modal';
+
 class Profile extends React.Component {
   constructor(){
     super();
     this.state = {
-      friendButtonText: null
+      friendButtonText: null,
+      modalIsOpen: false,
+      profilePic: '',
+      coverPhoto: '',
     }
     this.makeFriendRequest = this.makeFriendRequest.bind(this);
+
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentWillMount(){
@@ -87,6 +96,25 @@ class Profile extends React.Component {
 
   }
 
+/* update profile pic / cover photo =============================== */
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    // this.refs.subtitle.style.color = '#f00';
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
+
+
+
+
+
+
   render(){
     return (
       <div>
@@ -94,8 +122,40 @@ class Profile extends React.Component {
         <div id="profile-container">
           <div id="profile-content-container">
 
+            <Modal
+              isOpen={this.state.modalIsOpen}
+              onAfterOpen={this.afterOpenModal}
+              onRequestClose={this.closeModal}
+              style={{
+                content : {
+                  top                   : '30%',
+                  left                  : '50%',
+                  right                 : 'auto',
+                  bottom                : 'auto',
+                  marginRight           : '-50%',
+                  transform             : 'translate(-50%, -50%)'
+                }
+              }}
+              contentLabel="Example Modal"
+            >
+
+              {/* <h2 ref="subtitle">Hello</h2> */}
+              <p>Update Profile Picture</p>
+              <form>
+                <input />
+                <span><button>Submit</button></span>
+              </form>
+              <p>Update Cover Photo</p>
+              <form>
+                <input />
+                <span><button>Submit</button></span>
+              </form>
+              <br></br>
+              <button onClick={this.closeModal}>close</button>
+            </Modal>
+
             <div id="profile-hero">
-                <div id="profile-cover-photo">
+                <div onClick={this.openModal} id="profile-cover-photo">
                   <img src="http://pre11.deviantart.net/4da2/th/pre/i/2013/083/4/0/random_landscape_02_by_lizterhann-d5z5x4h.jpg" />
                 </div>
                 <div id="profile-hero-menu">
@@ -106,7 +166,7 @@ class Profile extends React.Component {
                   <button>More</button>
                 </div>
 
-                <div id="profile-profile-pic">
+                <div onClick={this.openModal} id="profile-profile-pic">
                   <img src="https://cuteoverload.files.wordpress.com/2015/08/042815-fb-gudetama1.jpg" />
                 </div>
                 <div id="profile-name">
