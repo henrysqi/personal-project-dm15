@@ -40,7 +40,7 @@ class Posts extends React.Component {
           </div></Link>
           <div id="post-user-info">
             <Link to={`${this.props.postinfo.userid}`}>{this.renderName()}</Link>
-            <h3>time</h3>
+            <h3>{this.props.postinfo.date}</h3>
           </div>
         </div>
         <div id="post-content">

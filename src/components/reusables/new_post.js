@@ -32,10 +32,18 @@ class NewPost extends React.Component {
   onFormSubmit(event){
     event.preventDefault();
 
-    this.props.createNewPost(this.state);
     this.setState({
-      text_content: ''
+      date: new Date()
     })
+    setTimeout(() => {
+      this.props.createNewPost(this.state);
+      this.setState({
+        text_content: '',
+      })
+
+      this.props.renderPostsComponent();
+    }, 200)
+
   }
 
   render() {

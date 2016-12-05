@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {fetchPosts} from '../../actions/index';
+import {fetchPosts, fetchFriends} from '../../actions/index';
 import Post from './post';
 
 class Posts extends React.Component {
@@ -13,9 +13,30 @@ class Posts extends React.Component {
   }
 
   componentWillMount(){
+    this.updateState();
+  }
+
+  updateState(){
+    let filteredPosts = []
+    //show only posts of self and friends of self
     this.props.fetchPosts().then((res) => {
-      this.setState({
-        posts: res
+      this.props.fetchFriends().then((res2) => {
+        console.log(res) //posts
+        console.log(res2) //friends
+        console.log(this.props.currentUser)
+        res.payload.data.forEach((elem) => {
+          res2.payload.data.forEach((elem2) => {
+            if ( (elem2.receiver === this.props.currentUser || elem2.sender === this.props.currentUser) && elem2.resolved === true ) {
+              if (elem.userid === elem2.receiver || elem.userid === elem2.sender){
+                filteredPosts.push(elem);
+              }
+            }
+          })
+        })
+        this.setState({
+          posts: filteredPosts
+        })
+
       })
     })
   }
@@ -40,8 +61,14 @@ class Posts extends React.Component {
   }
 }
 
-function mapDispatchToProps(dispatch){
-    return bindActionCreators({fetchPosts}, dispatch)
+function mapStateToProps(state){
+  return {
+    currentUser: state.currentUser
+  }
 }
 
-export default connect(null, mapDispatchToProps)(Posts);
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({fetchPosts, fetchFriends}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);
