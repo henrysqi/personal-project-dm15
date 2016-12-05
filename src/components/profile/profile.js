@@ -17,13 +17,18 @@ class Profile extends React.Component {
       friendButtonText: null,
       modalIsOpen: false,
       profilePic: '',
-      coverPhoto: '',
+      coverPhoto: ''
     }
     this.makeFriendRequest = this.makeFriendRequest.bind(this);
 
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+
+    this.onProfilePicSubmit = this.onProfilePicSubmit.bind(this);
+    this.onCoverPhotoSubmit = this.onCoverPhotoSubmit.bind(this);
+    this.onProfilePicChange = this.onProfilePicChange.bind(this);
+    this.onCoverPhotoChange = this.onCoverPhotoChange.bind(this);
   }
 
   componentWillMount(){
@@ -110,7 +115,32 @@ class Profile extends React.Component {
     this.setState({modalIsOpen: false});
   }
 
+  onProfilePicSubmit(event){
+    event.preventDefault();
+    this.setState({
+      modalIsOpen: false
+    })
+  }
 
+  onCoverPhotoSubmit(event){
+    event.preventDefault();
+    console.log(this.state)
+    this.setState({
+      modalIsOpen: false
+    })
+  }
+
+  onProfilePicChange(event){
+    this.setState({
+      profilePic: event.target.value
+    })
+  }
+
+  onCoverPhotoChange(event){
+    this.setState({
+      coverPhoto: event.target.value
+    })
+  }
 
 
 
@@ -141,13 +171,13 @@ class Profile extends React.Component {
 
               {/* <h2 ref="subtitle">Hello</h2> */}
               <p>Update Profile Picture</p>
-              <form>
-                <input />
+              <form onSubmit={this.onProfilePicSubmit}>
+                <input value={this.state.profilePic} onChange={this.onProfilePicChange} />
                 <span><button>Submit</button></span>
               </form>
               <p>Update Cover Photo</p>
-              <form>
-                <input />
+              <form onSubmit={this.onCoverPhotoSubmit}>
+                <input value={this.state.coverPhoto} onChange={this.onCoverPhotoChange} />
                 <span><button>Submit</button></span>
               </form>
               <br></br>
