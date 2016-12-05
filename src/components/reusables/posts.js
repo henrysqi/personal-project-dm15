@@ -22,15 +22,21 @@ class Posts extends React.Component {
     this.props.fetchPosts().then((res) => {
       this.props.fetchFriends().then((res2) => {
         res.payload.data.forEach((elem) => {
+          let flag = false;
           res2.payload.data.forEach((elem2) => {
+
             if (elem.userid === this.props.currentUser.user.id){
-              filteredPosts.push(elem)
-              return;
+              if (!flag){
+                filteredPosts.push(elem)
+                flag = true;
+              }
             } else {
               if ( (elem2.receiver === this.props.currentUser.user.id || elem2.sender === this.props.currentUser.user.id) && elem2.resolved === true ) {
                 if (elem.userid === elem2.receiver || elem.userid === elem2.sender){
-                  filteredPosts.push(elem);
-                  return;
+                  if (!flag){
+                    filteredPosts.push(elem);
+                    flag = true;
+                  }
                 }
               }
             }
@@ -40,7 +46,6 @@ class Posts extends React.Component {
         this.setState({
           posts: filteredPosts
         })
-
       })
     })
   }
