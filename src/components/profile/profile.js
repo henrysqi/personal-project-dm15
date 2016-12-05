@@ -4,6 +4,9 @@ import {bindActionCreators} from 'redux';
 import FeedHeader from '../feed/feed_header/feed_header';
 import {fetchUserById, friendRequest, fetchFriends} from '../../actions/index';
 
+import NewPost from '../reusables/new_post';
+import TimelinePosts from '../reusables/timeline_posts';
+
 class Profile extends React.Component {
   constructor(){
     super();
@@ -151,7 +154,10 @@ class Profile extends React.Component {
             </div>
 
             <div id="profile-main-panel">
-              {this.props.children}
+              <div>
+                <NewPost />
+                <TimelinePosts profileid={this.props.params.id} />
+              </div>
             </div>
 
           </div>
