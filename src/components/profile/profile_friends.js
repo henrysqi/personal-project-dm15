@@ -90,6 +90,7 @@ class ProfileFriends extends React.Component {
 
   updateState(){
     let filteredFriends = []
+    let filteredFriendsObjects = []
     let fetchUserByIdPointer = this.props.fetchUserById;
       this.props.fetchFriends().then((res) => {
         res.payload.data.forEach((elem) => {
@@ -100,32 +101,37 @@ class ProfileFriends extends React.Component {
               filteredFriends.push(elem.sender)
             }
           }
-
-
       })
 
-
-      this.setState({
-        friends: filteredFriends
+      filteredFriends.forEach((elem) => {
+        this.props.fetchUserById(elem).then((res) => {
+          filteredFriendsObjects.push(res.payload.data[0])
+        })
       })
+
+      setTimeout(() => {
+        this.setState({
+          friends: filteredFriendsObjects
+        })
+      }, 400)
+
     })
   }
   renderFriends(){
     if (!this.state.friends){
       return;
     }
-    console.log(this.state.friends)
     return this.state.friends.map((elem) => {
       return (
         <div>
 
-          {/* <div className="profile-friends-friend">
+          <div className="profile-friends-friend">
             <img src="assets\images\defprofpic.jpg" />
             <div id="profile-friends-friend-info">
-              <h2>Firstname Lastname</h2>
+              <h2>{elem.firstname} {elem.lastname}</h2>
               <button>Relationship</button>
             </div>
-          </div> */}
+          </div>
 
         </div>
       )
