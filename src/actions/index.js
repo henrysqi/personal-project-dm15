@@ -11,6 +11,8 @@ export const FRIEND_REQUEST = 'FRIEND_REQUEST';
 export const FETCH_FRIENDS = 'FETCH_FRIENDS';
 export const UPDATE_FRIENDS_RESOLVED = 'UPDATE_FRIENDS_RESOLVED';
 export const DELETE_FRIENDS = 'DELETE_FRIENDS';
+export const UPDATE_PROFILE_PIC = 'UPDATE_PROFILE_PIC';
+export const UPDATE_COVER_PHOTO = 'UPDATE_COVER_PHOTO';
 
 
 const ROOT_URL = 'http://localhost:3000/';
@@ -154,6 +156,32 @@ export function deleteFriends(pair){
 
   return {
     type: DELETE_FRIENDS,
+    payload: request
+  }
+}
+
+export function updateProfilePic(props){
+  const request = axios({
+    url: `${ROOT_URL}api/profilepic`,
+    method: 'put',
+    data: props
+  })
+
+  return {
+    type: UPDATE_PROFILE_PIC,
+    payload: request
+  }
+}
+
+export function updateCoverPhoto(props){
+  const request = axios({
+    url: `${ROOT_URL}api/coverphoto`,
+    method: 'put',
+    data: props
+  })
+
+  return {
+    type: UPDATE_COVER_PHOTO,
     payload: request
   }
 }

@@ -217,7 +217,25 @@ app.delete('/api/friends', function(req, res){
   })
 })
 
+app.put('/api/profilepic', function(req, res){
+  db.update_profile_pic([req.body.id, req.body.profilepic], function(err, result) {
+    if (err){
+      res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  })
+})
 
+app.put('/api/coverphoto', function(req, res){
+  db.update_cover_photo([req.body.id, req.body.coverphoto], function(err, result){
+    if (err){
+      res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  })
+})
 
 
 

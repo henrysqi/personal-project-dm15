@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import FeedHeader from '../feed/feed_header/feed_header';
-import {fetchUserById, friendRequest, fetchFriends} from '../../actions/index';
+import {fetchUserById, friendRequest, fetchFriends, updateProfilePic, updateCoverPhoto} from '../../actions/index';
 import {Link} from 'react-router';
 
 import NewPost from '../reusables/new_post';
@@ -176,7 +176,7 @@ function mapStateToProps(state){
 }
 
 function  mapDispatchToProps(dispatch){
-  return bindActionCreators({fetchUserById, friendRequest, fetchFriends}, dispatch);
+  return bindActionCreators({fetchUserById, friendRequest, fetchFriends, updateProfilePic, updateCoverPhoto}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
