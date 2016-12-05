@@ -8,7 +8,6 @@ import Search from './components/search/search';
 import Profile from './components/profile/profile';
 import FriendRequests from './components/friend_requests/friend_requests';
 import ProfileTimeline from './components/profile/profile_timeline';
-import ProfileAbout from './components/profile/profile_about';
 
 export default (
   <Route path='/' component={App}>
@@ -18,8 +17,8 @@ export default (
     <Route path='friends/requests' component={FriendRequests} />
     <Route path=':id' component={Profile}>
       <IndexRoute component={ProfileTimeline} />
-      <Route path='about' component={ProfileAbout} />
-      {/* <Route path='/Friends' component={Friends} />
+      {/* <Route path='/About' component={About} />
+      <Route path='/Friends' component={Friends} />
       <Route path='/Photos' component={Photos} /> */}
     </Route>
   </Route>
