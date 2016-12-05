@@ -45,6 +45,7 @@ class Posts extends React.Component {
         </div>
         <div id="post-content">
           <p>{this.props.postinfo.text_content}</p>
+          <img src={`${this.props.postinfo.pic_content}`} />
         </div>
         <div id="post-like-comment">
           <img src="assets\images\like.png" />

@@ -698,6 +698,13 @@ ul li {
 #post-content p {
   font-size: 14px;
   color: #1d2129;
+  margin-bottom: 20px;
+}
+
+#post-content img {
+  max-width: 80%;
+  max-height: 300px;
+  margin: 0 auto;
 }
 
 #post-num-likes {
