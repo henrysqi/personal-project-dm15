@@ -4,6 +4,8 @@ import {bindActionCreators} from 'redux';
 
 import {createNewPost} from '../../actions/index';
 
+import Modal from 'react-modal';
+
 class NewPost extends React.Component {
   constructor(){
     super();
@@ -11,10 +13,16 @@ class NewPost extends React.Component {
       userid: '',
       text_content: '',
       pic_content: '',
-      date: ''
+      vid_content: '',
+      date: '',
+      modalIsOpen: false
     }
     this.onTextContentChange = this.onTextContentChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount(){
@@ -46,6 +54,38 @@ class NewPost extends React.Component {
 
   }
 
+// modal ==========================================================
+
+openModal() {
+  this.setState({modalIsOpen: true});
+}
+
+afterOpenModal() {
+  // references are now sync'd and can be accessed.
+  // this.refs.subtitle.style.color = '#f00';
+}
+
+closeModal() {
+  this.setState({modalIsOpen: false});
+}
+
+onPhotoSubmit(event){
+  event.preventDefault();
+
+}
+
+onVideoSubmit(event){
+  event.preventDefault();
+
+}
+
+
+
+
+
+
+
+
   render() {
     return (
       <div id="new-post">
@@ -54,7 +94,7 @@ class NewPost extends React.Component {
           <textarea value={this.state.text_content} onChange={this.onTextContentChange} placeholder="What's on your mind?"></textarea>
         </div>
         <div id="new-post-options">
-          <button>
+          <button onClick={this.openModal}>
             <img src="assets\images\photo.png" />
             <span>Photo/Video</span>
           </button>
@@ -66,6 +106,40 @@ class NewPost extends React.Component {
         <div id="new-post-post">
           <button onClick={this.onFormSubmit}>Post</button>
         </div>
+
+
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={{
+            content : {
+              top                   : '30%',
+              left                  : '50%',
+              right                 : 'auto',
+              bottom                : 'auto',
+              marginRight           : '-50%',
+              transform             : 'translate(-50%, -50%)'
+            }
+          }}
+          contentLabel="Example Modal"
+        >
+
+          {/* <h2 ref="subtitle">Hello</h2> */}
+          <p>Include a Photo</p>
+          <form onSubmit={this.onPhotoSubmit}>
+            <input />
+            <span><button>Submit</button></span>
+          </form>
+          <p>Include a Video</p>
+          <form onSubmit={this.onVideoSubmit}>
+            <input />
+            <span><button>Submit</button></span>
+          </form>
+          <br></br>
+          <button onClick={this.closeModal}>close</button>
+        </Modal>
+
       </div>
     )
   }

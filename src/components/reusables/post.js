@@ -46,6 +46,9 @@ class Posts extends React.Component {
         <div id="post-content">
           <p>{this.props.postinfo.text_content}</p>
           <img src={`${this.props.postinfo.pic_content}`} />
+          {/* <iframe width="420" height="315"
+          src="https://www.youtube.com/embed/kxopViU98Xo">
+          </iframe> */}
         </div>
         <div id="post-like-comment">
           <img src="assets\images\like.png" />
