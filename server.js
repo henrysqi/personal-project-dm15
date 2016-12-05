@@ -135,7 +135,7 @@ app.get('/api/search', function(req,res){
 
 /* reusables ======================================================================*/
 app.post('/api/posts', function(req, res){
-  db.create_new_post([req.body.userid, req.body.text_content, req.body.pic_content, req.body.date], function(err, result){
+  db.create_new_post([req.body.userid, req.body.text_content, req.body.pic_content, req.body.date, req.body.vid_content], function(err, result){
     if (err){
       res.status(500).send(err);
     } else {

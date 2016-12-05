@@ -27,6 +27,7 @@ class NewPost extends React.Component {
     this.onPicSubmit = this.onPicSubmit.bind(this);
     this.onVideoSubmit = this.onVideoSubmit.bind(this);
     this.onPicChange = this.onPicChange.bind(this);
+    this.onVidChange = this.onVidChange.bind(this);
   }
 
   componentDidMount(){
@@ -53,6 +54,7 @@ class NewPost extends React.Component {
         text_content: '',
         pic_content: '',
         vid_content: '',
+        vid_content_pre: '',
         date: '',
         modalIsOpen: false
       })
@@ -79,7 +81,6 @@ closeModal() {
 
 onPicSubmit(event){
   event.preventDefault();
-  console.log(this.state);
   this.setState({
     modalIsOpen: false
   })
@@ -87,23 +88,24 @@ onPicSubmit(event){
 
 onVideoSubmit(event){
   event.preventDefault();
-  console.log(this.state);
   this.setState({
     modalIsOpen: false
   })
 }
 
 onPicChange(event){
-  console.log(event.target.value)
   this.setState({
     pic_content: event.target.value
   })
 }
 
 onVidChange(event){
-  console.log(event.target.value)
+  //https://www.youtube.com/watch?v=kxopViU98Xo
+  let rootUrl = "https://www.youtube.com/embed/" + event.target.value.slice(event.target.value.indexOf("=") +1 );
+
   this.setState({
-    vid_content: event.target.value
+    vid_content_pre: event.target.value,
+    vid_content: rootUrl
   })
 }
 
@@ -119,7 +121,8 @@ onVidChange(event){
           <img id="new-post-input-profilepic" src="https://cuteoverload.files.wordpress.com/2015/08/042815-fb-gudetama1.jpg" />
           <textarea value={this.state.text_content} onChange={this.onTextContentChange} placeholder="What's on your mind?"></textarea>
           <br></br>
-          <img id="new-post-input-pic" src={this.state.pic_content? this.state.pic_content : ''} />
+          {this.state.pic_content ? <img className="new-post-input-pic" src={this.state.pic_content} /> : <span></span>  }
+          {this.state.vid_content ? <iframe className="new-post-input-pic" src={this.state.vid_content}></iframe> : <span></span> }
         </div>
         <div id="new-post-options">
           <button onClick={this.openModal}>
@@ -161,7 +164,7 @@ onVidChange(event){
           </form>
           <p>Include a video link</p>
           <form onSubmit={this.onVideoSubmit}>
-            <input />
+            <input value={this.state.vid_content_pre} onChange={this.onVidChange} />
             <span><button>Submit</button></span>
           </form>
           <br></br>
