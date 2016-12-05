@@ -87,7 +87,10 @@ onPicSubmit(event){
 
 onVideoSubmit(event){
   event.preventDefault();
-
+  console.log(this.state);
+  this.setState({
+    modalIsOpen: false
+  })
 }
 
 onPicChange(event){
@@ -97,7 +100,12 @@ onPicChange(event){
   })
 }
 
-
+onVidChange(event){
+  console.log(event.target.value)
+  this.setState({
+    vid_content: event.target.value
+  })
+}
 
 
 

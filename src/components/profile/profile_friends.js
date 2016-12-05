@@ -188,16 +188,7 @@ class ProfileFriends extends React.Component {
                 <h1>Friends</h1>
               </div>
               <div id="profile-friends-content-container">
-
-                {/* <div className="profile-friends-friend">
-                  <img src="assets\images\defprofpic.jpg" />
-                  <div id="profile-friends-friend-info">
-                    <h2>Firstname Lastname</h2>
-                    <button>Relationship</button>
-                  </div>
-                </div> */}
                 {this.renderFriends()}
-
               </div>
             </div>
 
