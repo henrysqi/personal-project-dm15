@@ -2,22 +2,37 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import FeedHeader from '../feed/feed_header/feed_header';
-import {fetchUserById, friendRequest, fetchFriends} from '../../actions/index';
+import {fetchUserById, friendRequest, fetchFriends, updateProfilePic, updateCoverPhoto} from '../../actions/index';
 import {Link} from 'react-router';
 
 import NewPost from '../reusables/new_post';
 import TimelinePosts from '../reusables/timeline_posts';
 
+import Modal from 'react-modal';
+
 class ProfileFriends extends React.Component {
   constructor(){
     super();
     this.state = {
-      friendButtonText: null
+      friendButtonText: null,
+      modalIsOpen: false,
+      profilepic: '',
+      coverphoto: '',
     }
     this.makeFriendRequest = this.makeFriendRequest.bind(this);
+    this.renderHero = this.renderHero.bind(this);
+
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+
+    this.onProfilePicSubmit = this.onProfilePicSubmit.bind(this);
+    this.onCoverPhotoSubmit = this.onCoverPhotoSubmit.bind(this);
+    this.onProfilePicChange = this.onProfilePicChange.bind(this);
+    this.onCoverPhotoChange = this.onCoverPhotoChange.bind(this);
   }
 
-  componentWillMount(){
+  renderHero(){
     this.props.fetchUserById(this.props.params.id).then((res) => {
       this.setState({
         userinfo: res
@@ -31,6 +46,7 @@ class ProfileFriends extends React.Component {
           res.payload.data.forEach((elem) => {
             if (elem.sender === this.props.currentUser.user.id && elem.receiver === this.state.userinfo.payload.data[0].id){
               if (elem.resolved === false){
+                console.log("ran this")
                 this.setState({friendButtonText: <span>Request Pending</span>});
                 foundflag = true;
                 return;
@@ -48,6 +64,10 @@ class ProfileFriends extends React.Component {
         }
       })
     })
+  }
+
+  componentWillMount(){
+    this.renderHero();
     this.updateState();
   }
 
@@ -139,6 +159,67 @@ class ProfileFriends extends React.Component {
     }).reverse();
   }
 
+  /* update profile pic / cover photo =============================== */
+    openModal() {
+      this.setState({modalIsOpen: true});
+    }
+
+    afterOpenModal() {
+      // references are now sync'd and can be accessed.
+      // this.refs.subtitle.style.color = '#f00';
+    }
+
+    closeModal() {
+      this.setState({modalIsOpen: false});
+    }
+
+    onProfilePicSubmit(event){
+      event.preventDefault();
+      console.log(this.state)
+      let renderHeroPointer = this.renderHero;
+      if (this.props.currentUser.user.id === Number(this.props.params.id)){
+        this.props.updateProfilePic(this.props.currentUser.user.id, this.state).then(() => {
+          renderHeroPointer();
+        })
+      }
+
+      this.setState({
+        modalIsOpen: false
+      })
+    }
+
+    onCoverPhotoSubmit(event){
+      event.preventDefault();
+
+      let renderHeroPointer = this.renderHero;
+      if (this.props.currentUser.user.id === Number(this.props.params.id)){
+        this.props.updateCoverPhoto(this.props.currentUser.user.id, this.state).then(() => {
+          renderHeroPointer();
+        })
+      }
+
+      this.setState({
+        modalIsOpen: false
+      })
+    }
+
+    onProfilePicChange(event){
+      this.setState({
+        profilepic: event.target.value
+      })
+
+
+    }
+
+    onCoverPhotoChange(event){
+      this.setState({
+        coverphoto: event.target.value
+      })
+    }
+
+  /* render profile/cover ====================================== */
+
+
   render(){
     return (
       <div>
@@ -146,20 +227,53 @@ class ProfileFriends extends React.Component {
         <div id="profile-container">
           <div id="profile-content-container">
 
+            <Modal
+              isOpen={this.state.modalIsOpen}
+              onAfterOpen={this.afterOpenModal}
+              onRequestClose={this.closeModal}
+              style={{
+                content : {
+                  top                   : '30%',
+                  left                  : '50%',
+                  right                 : 'auto',
+                  bottom                : 'auto',
+                  marginRight           : '-50%',
+                  transform             : 'translate(-50%, -50%)'
+                }
+              }}
+              contentLabel="Example Modal"
+            >
+
+              {/* <h2 ref="subtitle">Hello</h2> */}
+              <p>Update Profile Picture</p>
+              <form onSubmit={this.onProfilePicSubmit}>
+                <input value={this.state.profilepic} onChange={this.onProfilePicChange} />
+                <span><button>Submit</button></span>
+              </form>
+              <p>Update Cover Photo</p>
+              <form onSubmit={this.onCoverPhotoSubmit}>
+                <input value={this.state.coverphoto} onChange={this.onCoverPhotoChange} />
+                <span><button>Submit</button></span>
+              </form>
+              <br></br>
+              <button onClick={this.closeModal}>close</button>
+            </Modal>
+
             <div id="profile-hero">
-                <div id="profile-cover-photo">
-                  <img src="http://pre11.deviantart.net/4da2/th/pre/i/2013/083/4/0/random_landscape_02_by_lizterhann-d5z5x4h.jpg" />
+                <div onClick={this.openModal} id="profile-cover-photo">
+                  {this.state.userinfo ? <img src={this.state.userinfo.payload.data[0].cover_photo} /> : <img src="http://localhost:8080/assets/images/default.jpg" /> }
+                  {/* <img src="http://pre11.deviantart.net/4da2/th/pre/i/2013/083/4/0/random_landscape_02_by_lizterhann-d5z5x4h.jpg" /> */}
                 </div>
                 <div id="profile-hero-menu">
                   <Link to={`/${this.props.params.id}`}><button>Timeline</button></Link>
                   <Link to={`/${this.props.params.id}/about`}><button>About</button></Link>
-                  <button>Friends</button>
+                  <Link to={`/${this.props.params.id}/friends`}><button>Friends</button></Link>
                   <button>Photos</button>
                   <button>More</button>
                 </div>
 
-                <div id="profile-profile-pic">
-                  <img src="https://cuteoverload.files.wordpress.com/2015/08/042815-fb-gudetama1.jpg" />
+                <div onClick={this.openModal} id="profile-profile-pic">
+                  {this.state.userinfo ? <img src={this.state.userinfo.payload.data[0].profile_pic} /> : <img src="http://localhost:8080/assets/images/defprofpic.jpg" /> }
                 </div>
                 <div id="profile-name">
                   {this.renderName()}
@@ -208,7 +322,7 @@ function mapStateToProps(state){
 }
 
 function  mapDispatchToProps(dispatch){
-  return bindActionCreators({fetchUserById, friendRequest, fetchFriends}, dispatch);
+  return bindActionCreators({fetchUserById, friendRequest, fetchFriends, updateProfilePic, updateCoverPhoto}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileFriends);

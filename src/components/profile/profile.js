@@ -215,9 +215,9 @@ class Profile extends React.Component {
                   {/* <img src="http://pre11.deviantart.net/4da2/th/pre/i/2013/083/4/0/random_landscape_02_by_lizterhann-d5z5x4h.jpg" /> */}
                 </div>
                 <div id="profile-hero-menu">
-                  <button>Timeline</button>
-                  <Link to={`${this.props.params.id}/about`}><button>About</button></Link>
-                  <Link to={`${this.props.params.id}/friends`}><button>Friends</button></Link>
+                  <Link to={`/${this.props.params.id}`}><button>Timeline</button></Link>
+                  <Link to={`/${this.props.params.id}/about`}><button>About</button></Link>
+                  <Link to={`/${this.props.params.id}/friends`}><button>Friends</button></Link>
                   <button>Photos</button>
                   <button>More</button>
                 </div>
