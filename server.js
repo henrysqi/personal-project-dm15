@@ -217,8 +217,8 @@ app.delete('/api/friends', function(req, res){
   })
 })
 
-app.put('/api/profilepic', function(req, res){
-  db.update_profile_pic([req.body.id, req.body.profilepic], function(err, result) {
+app.put('/api/:id/profilepic', function(req, res){
+  db.update_profile_pic([req.params.id, req.body.profilepic], function(err, result) {
     if (err){
       res.status(500).send(err);
     } else {
@@ -227,8 +227,8 @@ app.put('/api/profilepic', function(req, res){
   })
 })
 
-app.put('/api/coverphoto', function(req, res){
-  db.update_cover_photo([req.body.id, req.body.coverphoto], function(err, result){
+app.put('/api/:id/coverphoto', function(req, res){
+  db.update_cover_photo([req.params.id, req.body.coverphoto], function(err, result){
     if (err){
       res.status(500).send(err);
     } else {

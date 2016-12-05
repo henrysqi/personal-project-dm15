@@ -160,9 +160,9 @@ export function deleteFriends(pair){
   }
 }
 
-export function updateProfilePic(props){
+export function updateProfilePic(id, props){
   const request = axios({
-    url: `${ROOT_URL}api/profilepic`,
+    url: `${ROOT_URL}api/${id}/profilepic`,
     method: 'put',
     data: props
   })
@@ -173,9 +173,9 @@ export function updateProfilePic(props){
   }
 }
 
-export function updateCoverPhoto(props){
+export function updateCoverPhoto(id, props){
   const request = axios({
-    url: `${ROOT_URL}api/coverphoto`,
+    url: `${ROOT_URL}api/${id}/coverphoto`,
     method: 'put',
     data: props
   })

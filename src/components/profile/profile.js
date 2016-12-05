@@ -16,8 +16,8 @@ class Profile extends React.Component {
     this.state = {
       friendButtonText: null,
       modalIsOpen: false,
-      profilePic: '',
-      coverPhoto: ''
+      profilepic: '',
+      coverphoto: ''
     }
     this.makeFriendRequest = this.makeFriendRequest.bind(this);
 
@@ -117,6 +117,11 @@ class Profile extends React.Component {
 
   onProfilePicSubmit(event){
     event.preventDefault();
+
+    if (this.props.currentUser.user.id === Number(this.props.params.id)){
+      this.props.updateProfilePic(this.props.currentUser.user.id, this.state);
+    }
+
     this.setState({
       modalIsOpen: false
     })
@@ -124,7 +129,11 @@ class Profile extends React.Component {
 
   onCoverPhotoSubmit(event){
     event.preventDefault();
-    console.log(this.state)
+
+    if (this.props.currentUser.user.id === Number(this.props.params.id)){
+      this.props.updateCoverPhoto(this.props.currentUser.user.id, this.state);
+    }
+
     this.setState({
       modalIsOpen: false
     })
@@ -132,13 +141,13 @@ class Profile extends React.Component {
 
   onProfilePicChange(event){
     this.setState({
-      profilePic: event.target.value
+      profilepic: event.target.value
     })
   }
 
   onCoverPhotoChange(event){
     this.setState({
-      coverPhoto: event.target.value
+      coverphoto: event.target.value
     })
   }
 
@@ -172,12 +181,12 @@ class Profile extends React.Component {
               {/* <h2 ref="subtitle">Hello</h2> */}
               <p>Update Profile Picture</p>
               <form onSubmit={this.onProfilePicSubmit}>
-                <input value={this.state.profilePic} onChange={this.onProfilePicChange} />
+                <input value={this.state.profilepic} onChange={this.onProfilePicChange} />
                 <span><button>Submit</button></span>
               </form>
               <p>Update Cover Photo</p>
               <form onSubmit={this.onCoverPhotoSubmit}>
-                <input value={this.state.coverPhoto} onChange={this.onCoverPhotoChange} />
+                <input value={this.state.coverphoto} onChange={this.onCoverPhotoChange} />
                 <span><button>Submit</button></span>
               </form>
               <br></br>
