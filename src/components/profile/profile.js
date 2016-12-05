@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import FeedHeader from '../feed/feed_header/feed_header';
 import {fetchUserById, friendRequest, fetchFriends} from '../../actions/index';
+import {Link} from 'react-router';
 
 class Profile extends React.Component {
   constructor(){
@@ -95,8 +96,8 @@ class Profile extends React.Component {
                   <img src="http://pre11.deviantart.net/4da2/th/pre/i/2013/083/4/0/random_landscape_02_by_lizterhann-d5z5x4h.jpg" />
                 </div>
                 <div id="profile-hero-menu">
-                  <button>Timeline</button>
-                  <button>About</button>
+                  <Link to={`${this.props.params.id}`}><button>Timeline</button></Link>
+                  <Link to={`${this.props.params.id}/about`}<button>About</button></Link>
                   <button>Friends</button>
                   <button>Photos</button>
                   <button>More</button>
@@ -127,32 +128,7 @@ class Profile extends React.Component {
                 </div>
             </div>
 
-            <div id="profile-left-panel">
-              <div className="profile-left-panel-item">
-                <img src="assets\images\Circle-icons-globe.svg.png" />
-                <span>Intro</span>
-              </div>
-              <div className="profile-left-panel-item">
-                <img src="assets\images\MetroUI-Apps-Windows8-Photos-icon.png" />
-                <span>Photos</span>
-              </div>
-              <div className="profile-left-panel-item">
-                <img src="assets\images\circle-friends.png" />
-                <span>Friends</span>
-              </div>
-              <div className="profile-left-panel-item" id="profile-lang">
-                <div id="profile-left-panel-item-languages">
-                  <p>English (US) · Español · Português (Brasil) · Français (France) · Deutsch</p>
-                </div>
-                <div id="profile-left-panel-item-languages-add">
-                  <button>+</button>
-                </div>
-              </div>
-            </div>
-
-            <div id="profile-main-panel">
-              {this.props.children}
-            </div>
+            {this.props.children}
 
           </div>
         </div>
