@@ -150,6 +150,9 @@ class Profile extends React.Component {
               </div>
             </div>
 
+            <div id="profile-main-panel">
+              {this.props.children}
+            </div>
 
           </div>
         </div>

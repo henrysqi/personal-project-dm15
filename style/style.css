@@ -872,8 +872,10 @@ ul li {
 }
 
 #profile-left-panel {
-  width: 45%;
+  width: 35%;
   height: 500px;
+  float: left;
+  margin-right: 5%;
 }
 
 .profile-left-panel-item {
@@ -923,6 +925,38 @@ ul li {
 #profile-lang {
   height: 58px;
 }
+
+#profile-main-panel {
+  background-color: cyan;
+  float: left;
+  width: 60%;
+  height: 500px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* friend requests ============================= */
 #friend-requests-content-container {

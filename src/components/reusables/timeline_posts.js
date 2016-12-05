@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import {fetchPosts, fetchFriends} from '../../actions/index';
 import Post from './post';
 
-class Posts extends React.Component {
+class TimelinePosts extends React.Component {
   constructor(){
     super();
     this.state = {
@@ -18,27 +18,15 @@ class Posts extends React.Component {
 
   updateState(){
     let filteredPosts = []
-    //show only posts of self and friends of self
+    //show only posts related to self
     this.props.fetchPosts().then((res) => {
-      this.props.fetchFriends().then((res2) => {
-        res.payload.data.forEach((elem) => {
-          res2.payload.data.forEach((elem2) => {
-            if (elem.userid === this.props.currentUser.user.id){
-              filteredPosts.push(elem)
-            } else {
-              if ( (elem2.receiver === this.props.currentUser.user.id || elem2.sender === this.props.currentUser.user.id) && elem2.resolved === true ) {
-                if (elem.userid === elem2.receiver || elem.userid === elem2.sender){
-                  filteredPosts.push(elem);
-                }
-              }
-            }
-
-          })
-        })
-        this.setState({
-          posts: filteredPosts
-        })
-
+      res.payload.data.forEach((elem) => {
+        if (elem.userid === Number(this.props.profileid) || elem.receiver === Number(this.props.profileid)){
+          filteredPosts.push(elem);
+        }
+      })
+      this.setState({
+        posts: filteredPosts
       })
     })
   }
@@ -74,4 +62,4 @@ function mapDispatchToProps(dispatch){
     return bindActionCreators({fetchPosts, fetchFriends}, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Posts);
+export default connect(mapStateToProps, mapDispatchToProps)(TimelinePosts);
