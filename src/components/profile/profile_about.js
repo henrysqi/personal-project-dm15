@@ -31,7 +31,6 @@ class ProfileAbout extends React.Component {
           res.payload.data.forEach((elem) => {
             if (elem.sender === this.props.currentUser.user.id && elem.receiver === this.state.userinfo.payload.data[0].id){
               if (elem.resolved === false){
-                console.log("ran this")
                 this.setState({friendButtonText: <span>Request Pending</span>});
                 foundflag = true;
                 return;
@@ -131,7 +130,6 @@ class ProfileAbout extends React.Component {
                 </div>
             </div>
 
-            {console.log(this.state.userinfo)}
             <div className="profile-section-container">
               <div className="profile-section-title">
                 <img src="assets\images\users-user-icon.png" />

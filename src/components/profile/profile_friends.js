@@ -31,7 +31,6 @@ class ProfileFriends extends React.Component {
           res.payload.data.forEach((elem) => {
             if (elem.sender === this.props.currentUser.user.id && elem.receiver === this.state.userinfo.payload.data[0].id){
               if (elem.resolved === false){
-                console.log("ran this")
                 this.setState({friendButtonText: <span>Request Pending</span>});
                 foundflag = true;
                 return;
@@ -48,6 +47,7 @@ class ProfileFriends extends React.Component {
         }
       })
     })
+    this.updateState();
   }
 
   renderName() {
@@ -85,6 +85,39 @@ class ProfileFriends extends React.Component {
       }
     })
 
+  }
+
+
+  updateState(){
+    let filteredFriends = []
+    let fetchUserByIdPointer = this.props.fetchUserById;
+      this.props.fetchFriends().then((res) => {
+        res.payload.data.forEach((elem) => {
+          if (elem.resolved === true ){
+            if (elem.sender === Number(this.props.params.id)){
+
+            } else if (elem.receiver === Number(this.props.params.id)){
+
+            }
+          }
+
+        this.setState({
+          friends: filteredFriends
+        })
+
+      })
+    })
+  }
+  renderPost(){
+    if (!this.state.posts){
+      return;
+    }
+    return this.state.posts.map((elem) => {
+      return (
+        //key with elem.id already used?
+        <Post postinfo={elem} />
+      )
+    }).reverse();
   }
 
   render(){
@@ -131,7 +164,6 @@ class ProfileFriends extends React.Component {
                 </div>
             </div>
 
-            {console.log(this.state)}
             <div className="profile-section-container">
               <div className="profile-section-title">
                 <img src="assets\images\users-user-icon.png" />
