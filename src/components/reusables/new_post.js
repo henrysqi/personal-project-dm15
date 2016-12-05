@@ -126,11 +126,11 @@ onVidChange(event){
         </div>
         <div id="new-post-options">
           <button onClick={this.openModal}>
-            <img src="assets\images\photo.png" />
+            <img src="http://localhost:8080/assets/images/photo.png" />
             <span>Photo/Video</span>
           </button>
           <button>
-            <img src="assets\images\book-bookmark-icon.png" />
+            <img src="http://localhost:8080/assets/images/book-bookmark-icon.png" />
             <span>Photo Album</span>
           </button>
         </div>

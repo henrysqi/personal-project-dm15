@@ -7,7 +7,7 @@ class FeedHeaderMenu extends React.Component {
   render() {
     return (
       <div id="feed-header-menu">
-        <Link to={`${this.props.currentUser.user.id}`}><div id="feed-header-menu-pic-name">
+        <Link to={`/${this.props.currentUser.user.id}`}><div id="feed-header-menu-pic-name">
           <img src="https://cuteoverload.files.wordpress.com/2015/08/042815-fb-gudetama1.jpg" />
           <h3>{this.props.currentUser.user.firstname}</h3>
         </div></Link>
@@ -16,20 +16,20 @@ class FeedHeaderMenu extends React.Component {
           <h3>Home</h3>
         </div>
         <div className="feed-header-menu-icon-container">
-          <Link to="friends/requests"><img src="assets\images\users-1.png" /></Link>
+          <Link to="/friends/requests"><img src="http://localhost:8080/assets/images/users-1.png" /></Link>
         </div>
         <div className="feed-header-menu-icon-container">
-          <img src="assets/images/speech-bubble-2-xxl.png" />
+          <img src="http://localhost:8080/assets/images/speech-bubble-2-xxl.png" />
         </div>
         <div className="feed-header-menu-icon-container">
-          <img src="assets/images/globe.png" />
+          <img src="http://localhost:8080/assets/images/globe.png" />
         </div>
         <div id="second-divider"></div>
         <div className="feed-header-menu-lock">
-          <img src="assets/images/lock.png" />
+          <img src="http://localhost:8080/assets/images/lock.png" />
         </div>
         <div className="feed-header-menu-arrow">
-          <img src="assets/images/triangle-down-arrow-icon-65007.png" />
+          <img src="http://localhost:8080/assets/images/triangle-down-arrow-icon-65007.png" />
         </div>
       </div>
     )

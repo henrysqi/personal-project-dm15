@@ -1086,6 +1086,7 @@ ul li {
   width: 30%;
   float: left;
   padding-left: 15px;
+  background-color: white;
 }
 
 #profile-about-filters-chosen {
@@ -1106,6 +1107,7 @@ ul li {
   float: left;
   padding-left: 15px;
   padding-top: 25px;
+  background-color: white;
 }
 
 #profile-about-content img {
@@ -1120,6 +1122,7 @@ ul li {
   font-size: 12px;
   margin-bottom: 20px;
   margin-bottom: 5px;
+  position: absolute;
 }
 
 #profile-friends-content-container {

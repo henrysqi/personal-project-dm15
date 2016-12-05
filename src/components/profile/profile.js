@@ -210,7 +210,7 @@ class Profile extends React.Component {
 
             <div id="profile-hero">
                 <div onClick={this.openModal} id="profile-cover-photo">
-                  {this.state.userinfo ? <img src={this.state.userinfo.payload.data[0].cover_photo} /> : <img src="assets\images\default.jpg" /> }
+                  {this.state.userinfo ? <img src={this.state.userinfo.payload.data[0].cover_photo} /> : <img src="http://localhost:8080/assets/images/default.jpg" /> }
                   {/* <img src="http://pre11.deviantart.net/4da2/th/pre/i/2013/083/4/0/random_landscape_02_by_lizterhann-d5z5x4h.jpg" /> */}
                 </div>
                 <div id="profile-hero-menu">
@@ -222,22 +222,22 @@ class Profile extends React.Component {
                 </div>
 
                 <div onClick={this.openModal} id="profile-profile-pic">
-                  {this.state.userinfo ? <img src={this.state.userinfo.payload.data[0].profile_pic} /> : <img src="assets\images\defprofpic.jpg" /> }
+                  {this.state.userinfo ? <img src={this.state.userinfo.payload.data[0].profile_pic} /> : <img src="http://localhost:8080/assets/images/defprofpic.jpg" /> }
                 </div>
                 <div id="profile-name">
                   {this.renderName()}
                 </div>
                 <div id="profile-hero-options">
                   <button onClick={this.makeFriendRequest}>
-                    <img src="assets\images\add-user3-512.png" />
+                    <img src="http://localhost:8080/assets/images/add-user3-512.png" />
                     {this.state.friendButtonText}
                   </button>
                   <button id="profile-follow-button">
-                    <img src="assets\images\wifi-logo-icon-87078.png" />
+                    <img src="http://localhost:8080/assets/images/wifi-logo-icon-87078.png" />
                     <span>Follow</span>
                   </button>
                   <button>
-                    <img src="assets\images\speech-bubble-2-xxl.png" />
+                    <img src="http://localhost:8080/assets/images/speech-bubble-2-xxl.png" />
                     <span>Message</span>
                   </button>
                   <button>
@@ -248,15 +248,15 @@ class Profile extends React.Component {
 
             <div id="profile-left-panel">
               <div className="profile-left-panel-item">
-                <img src="assets\images\Circle-icons-globe.svg.png" />
+                <img src="http://localhost:8080/assets/images/Circle-icons-globe.svg.png" />
                 <span>Intro</span>
               </div>
               <div className="profile-left-panel-item">
-                <img src="assets\images\MetroUI-Apps-Windows8-Photos-icon.png" />
+                <img src="http://localhost:8080/assets/images/MetroUI-Apps-Windows8-Photos-icon.png" />
                 <span>Photos</span>
               </div>
               <div className="profile-left-panel-item">
-                <img src="assets\images\circle-friends.png" />
+                <img src="http://localhost:8080/assets/images/circle-friends.png" />
                 <span>Friends</span>
               </div>
               <div className="profile-left-panel-item" id="profile-lang">

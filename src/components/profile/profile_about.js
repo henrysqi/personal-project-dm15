@@ -98,9 +98,9 @@ class ProfileAbout extends React.Component {
                   <img src="http://pre11.deviantart.net/4da2/th/pre/i/2013/083/4/0/random_landscape_02_by_lizterhann-d5z5x4h.jpg" />
                 </div>
                 <div id="profile-hero-menu">
-                  <Link to={`${this.props.params.id}`}><button>Timeline</button></Link>
+                  <Link to={`/${this.props.params.id}`}><button>Timeline</button></Link>
                   <button>About</button>
-                  <Link to={`${this.props.params.id}/friends`}><button>Friends</button></Link>
+                  <Link to={`/${this.props.params.id}/friends`}><button>Friends</button></Link>
                   <button>Photos</button>
                   <button>More</button>
                 </div>
@@ -113,15 +113,15 @@ class ProfileAbout extends React.Component {
                 </div>
                 <div id="profile-hero-options">
                   <button onClick={this.makeFriendRequest}>
-                    <img src="assets\images\add-user3-512.png" />
+                    <img src="http://localhost:8080/assets/images/add-user3-512.png" />
                     {this.state.friendButtonText}
                   </button>
                   <button id="profile-follow-button">
-                    <img src="assets\images\wifi-logo-icon-87078.png" />
+                    <img src="http://localhost:8080/assets/images/wifi-logo-icon-87078.png" />
                     <span>Follow</span>
                   </button>
                   <button>
-                    <img src="assets\images\speech-bubble-2-xxl.png" />
+                    <img src="http://localhost:8080/assets/images/speech-bubble-2-xxl.png" />
                     <span>Message</span>
                   </button>
                   <button>
@@ -132,7 +132,7 @@ class ProfileAbout extends React.Component {
 
             <div className="profile-section-container">
               <div className="profile-section-title">
-                <img src="assets\images\users-user-icon.png" />
+                <img src="http://localhost:8080/assets/images/users-user-icon.png" />
                 <h1>About</h1>
               </div>
               <div id="profile-about-filters">
@@ -145,13 +145,13 @@ class ProfileAbout extends React.Component {
                 <p className="profile-about-filters-item">Life Eventss</p>
               </div>
               <div id="profile-about-content">
-                <img src="assets\images\icon_email.png" />
+                <img src="http://localhost:8080/assets/images/icon_email.png" />
                 <span>{this.state.userinfo ? this.state.userinfo.payload.data[0].email : ''}</span>
                 <br></br>
-                <img src="assets\images\gender.jpg" />
+                <img src="http://localhost:8080/assets/images/gender.jpg" />
                 <span>{this.state.userinfo ? this.state.userinfo.payload.data[0].gender : ''}</span>
                 <br></br>
-                <img src="assets\images\birthday-cake-xxl.png" />
+                <img src="http://localhost:8080/assets/images/birthday-cake-xxl.png" />
                 <span>{this.state.userinfo ? this.state.userinfo.payload.data[0].month : ''} {this.state.userinfo ? this.state.userinfo.payload.data[0].day : ''}, {this.state.userinfo ? this.state.userinfo.payload.data[0].year : ''}</span>
               </div>
             </div>

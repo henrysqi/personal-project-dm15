@@ -126,7 +126,7 @@ class ProfileFriends extends React.Component {
         <div>
 
           <div className="profile-friends-friend">
-            <img src="assets\images\defprofpic.jpg" />
+            <img src="http://localhost:8080/assets/images/defprofpic.jpg" />
             <div id="profile-friends-friend-info">
               <h2>{elem.firstname} {elem.lastname}</h2>
               <button>Relationship</button>
@@ -150,8 +150,8 @@ class ProfileFriends extends React.Component {
                   <img src="http://pre11.deviantart.net/4da2/th/pre/i/2013/083/4/0/random_landscape_02_by_lizterhann-d5z5x4h.jpg" />
                 </div>
                 <div id="profile-hero-menu">
-                  <Link to={`${this.props.params.id}`}><button>Timeline</button></Link>
-                  <Link to={`${this.props.params.id}/about`}><button>About</button></Link>
+                  <Link to={`/${this.props.params.id}`}><button>Timeline</button></Link>
+                  <Link to={`/${this.props.params.id}/about`}><button>About</button></Link>
                   <button>Friends</button>
                   <button>Photos</button>
                   <button>More</button>
@@ -165,15 +165,15 @@ class ProfileFriends extends React.Component {
                 </div>
                 <div id="profile-hero-options">
                   <button onClick={this.makeFriendRequest}>
-                    <img src="assets\images\add-user3-512.png" />
+                    <img src="http://localhost:8080/assets/images/add-user3-512.png" />
                     {this.state.friendButtonText}
                   </button>
                   <button id="profile-follow-button">
-                    <img src="assets\images\wifi-logo-icon-87078.png" />
+                    <img src="http://localhost:8080/assets/images/wifi-logo-icon-87078.png" />
                     <span>Follow</span>
                   </button>
                   <button>
-                    <img src="assets\images\speech-bubble-2-xxl.png" />
+                    <img src="http://localhost:8080/assets/images/speech-bubble-2-xxl.png" />
                     <span>Message</span>
                   </button>
                   <button>
@@ -184,7 +184,7 @@ class ProfileFriends extends React.Component {
 
             <div className="profile-section-container">
               <div className="profile-section-title">
-                <img src="assets\images\users-user-icon.png" />
+                <img src="http://localhost:8080/assets/images/users-user-icon.png" />
                 <h1>Friends</h1>
               </div>
               <div id="profile-friends-content-container">

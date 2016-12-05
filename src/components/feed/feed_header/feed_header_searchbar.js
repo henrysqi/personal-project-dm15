@@ -38,7 +38,7 @@ class FeedHeaderSearchbar extends React.Component {
           <Link to={'/feed'}><i style={{color: 'white'}} className="fa fa-facebook-official" aria-hidden="true"></i></Link>
           <input value={this.state.term} onChange={this.onInputChange} placeholder="Search Facebook" type="text"></input>
           <button>
-            <img src="assets/images/magnify.png" />
+            <img src="http://localhost:8080/assets/images/magnify.png" />
           </button>
         </form>
       </div>
