@@ -17,9 +17,10 @@ class Profile extends React.Component {
       friendButtonText: null,
       modalIsOpen: false,
       profilepic: '',
-      coverphoto: ''
+      coverphoto: '',
     }
     this.makeFriendRequest = this.makeFriendRequest.bind(this);
+    this.renderHero = this.renderHero.bind(this);
 
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -31,7 +32,7 @@ class Profile extends React.Component {
     this.onCoverPhotoChange = this.onCoverPhotoChange.bind(this);
   }
 
-  componentWillMount(){
+  renderHero(){
     this.props.fetchUserById(this.props.params.id).then((res) => {
       this.setState({
         userinfo: res
@@ -62,6 +63,10 @@ class Profile extends React.Component {
         }
       })
     })
+  }
+
+  componentWillMount(){
+    this.renderHero();
   }
 
   renderName() {
@@ -118,8 +123,11 @@ class Profile extends React.Component {
   onProfilePicSubmit(event){
     event.preventDefault();
 
+    let renderHeroPointer = this.renderHero;
     if (this.props.currentUser.user.id === Number(this.props.params.id)){
-      this.props.updateProfilePic(this.props.currentUser.user.id, this.state);
+      this.props.updateProfilePic(this.props.currentUser.user.id, this.state).then(() => {
+        renderHeroPointer();
+      })
     }
 
     this.setState({
@@ -130,8 +138,11 @@ class Profile extends React.Component {
   onCoverPhotoSubmit(event){
     event.preventDefault();
 
+    let renderHeroPointer = this.renderHero;
     if (this.props.currentUser.user.id === Number(this.props.params.id)){
-      this.props.updateCoverPhoto(this.props.currentUser.user.id, this.state);
+      this.props.updateCoverPhoto(this.props.currentUser.user.id, this.state).then(() => {
+        renderHeroPointer();
+      })
     }
 
     this.setState({
@@ -143,6 +154,8 @@ class Profile extends React.Component {
     this.setState({
       profilepic: event.target.value
     })
+
+
   }
 
   onCoverPhotoChange(event){
@@ -150,6 +163,8 @@ class Profile extends React.Component {
       coverphoto: event.target.value
     })
   }
+
+/* render profile/cover ====================================== */
 
 
 
@@ -195,7 +210,8 @@ class Profile extends React.Component {
 
             <div id="profile-hero">
                 <div onClick={this.openModal} id="profile-cover-photo">
-                  <img src="http://pre11.deviantart.net/4da2/th/pre/i/2013/083/4/0/random_landscape_02_by_lizterhann-d5z5x4h.jpg" />
+                  {this.state.userinfo.payload.data[0].coverphoto ? <img src={this.state.userinfo.payload.data[0].coverphoto} /> : <img src="http://pre11.deviantart.net/4da2/th/pre/i/2013/083/4/0/random_landscape_02_by_lizterhann-d5z5x4h.jpg" /> }
+                  {/* <img src="http://pre11.deviantart.net/4da2/th/pre/i/2013/083/4/0/random_landscape_02_by_lizterhann-d5z5x4h.jpg" /> */}
                 </div>
                 <div id="profile-hero-menu">
                   <button>Timeline</button>
