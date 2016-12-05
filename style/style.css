@@ -768,6 +768,103 @@ ul li {
   border: 1px solid #BDC7D8;
 }
 
+/* friend requests ============================= */
+#friend-requests-content-container {
+  margin-top: 20px;
+  width: 1000px;
+  margin-left: 19%;
+}
+
+#friend-requests-content {
+  width: 69%;
+  height: 600px;
+  background-color: white;
+  float: left;
+  margin-right: 2%;
+  padding: 20px 10px;
+}
+
+#friend-requests-title {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #E9EBEE;
+  padding-left: 13px;
+}
+
+#friend-requests-title h1 {
+  color: #1d2129;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#friend-requests-title h4 {
+  color: #365899;
+  font-size: 11px;
+}
+
+.friend-request-item {
+  width: 645px;
+  height: 100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #E9EBEE;
+}
+
+#friend-request-info {
+  width: 50%;
+  float: left;
+}
+
+#friend-request-info img{
+  height: 75px;
+  width: 75px;
+  float: left;
+  margin-right: 5px;
+}
+
+#friend-request-info-text {
+  float: left;
+}
+
+#friend-request-info h2 {
+  color: #365899;
+  font-size: 13px;
+}
+
+#friend-request-info h3 {
+  color: #90949c;
+  font-size: 12px;
+}
+
+#friend-request-buttons {
+  width: 50%;
+  float: left;
+  display: flex;
+  align-items: center;
+  padding-left: 130px;
+}
+
+#friend-request-buttons-confirm {
+  background-color: #4267B2;
+  color: white;
+  font-size: 12px;
+  border: 1px solid #E3E6E9;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+#friend-request-buttons-delete {
+  font-size: 12px;
+  color: #1d2129;
+  background-color: #F6F7F9;
+  border: 1px solid #E3E6E9;
+  margin-left: 5px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
 /* profile ===========================================================*/
 #profile-container {
   width: 100%;
@@ -927,130 +1024,120 @@ ul li {
 }
 
 #profile-main-panel {
-  background-color: cyan;
   float: left;
   width: 60%;
   height: 500px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* friend requests ============================= */
-#friend-requests-content-container {
-  margin-top: 20px;
-  width: 1000px;
-  margin-left: 19%;
-}
-
-#friend-requests-content {
-  width: 69%;
-  height: 600px;
+.profile-section-container {
+  width: 100%;
+  border: 1px solid #CCCCCC;
   background-color: white;
-  float: left;
-  margin-right: 2%;
-  padding: 20px 10px;
 }
 
-#friend-requests-title {
-  padding-bottom: 15px;
-  border-bottom: 1px solid #E9EBEE;
-  padding-left: 13px;
-}
-
-#friend-requests-title h1 {
-  color: #1d2129;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-#friend-requests-title h4 {
-  color: #365899;
-  font-size: 11px;
-}
-
-.friend-request-item {
-  width: 645px;
-  height: 100px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #E9EBEE;
-}
-
-#friend-request-info {
-  width: 50%;
-  float: left;
-}
-
-#friend-request-info img{
-  height: 75px;
-  width: 75px;
-  float: left;
-  margin-right: 5px;
-}
-
-#friend-request-info-text {
-  float: left;
-}
-
-#friend-request-info h2 {
-  color: #365899;
-  font-size: 13px;
-}
-
-#friend-request-info h3 {
-  color: #90949c;
-  font-size: 12px;
-}
-
-#friend-request-buttons {
-  width: 50%;
-  float: left;
-  display: flex;
-  align-items: center;
-  padding-left: 130px;
-}
-
-#friend-request-buttons-confirm {
-  background-color: #4267B2;
-  color: white;
-  font-size: 12px;
-  border: 1px solid #E3E6E9;
-  font-weight: bold;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
-#friend-request-buttons-delete {
-  font-size: 12px;
-  color: #1d2129;
+.profile-section-title {
+  width: 100%;
+  height: 60px;
   background-color: #F6F7F9;
-  border: 1px solid #E3E6E9;
-  margin-left: 5px;
+  border: 1px solid #CCCCCC;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+}
+
+.profile-section-title img {
+  height: 25px;
+  width: 25px;
+  margin-right: 10px;
+}
+
+.profile-section-title h1 {
+  font-size: 20px;
+  color: #4b4f56
+}
+
+#profile-about-filters {
+  border: 1px solid #CCCCCC;
+  height: 350px;
+  width: 30%;
+  float: left;
+  padding-left: 15px;
+}
+
+#profile-about-filters-chosen {
+  color: black;
   font-weight: bold;
-  padding: 5px 10px;
-  border-radius: 3px;
+}
+
+.profile-about-filters-item {
+  color: #90949c;
+  font-size: 14px;
+  margin-top: 25px;
+}
+
+#profile-about-content {
+  border: 1px solid #CCCCCC;
+  height: 350px;
+  width: 70%;
+  float: left;
+  padding-left: 15px;
+  padding-top: 25px;
+}
+
+#profile-about-content img {
+  height: 16px;
+  width: 16px;
+  margin-right: 15px;
+  margin-bottom: 20px;
+}
+
+#profile-about-content span {
+  color: #4b4f56;
+  font-size: 12px;
+  margin-bottom: 20px;
+  margin-bottom: 5px;
+}
+
+#profile-friends-content-container {
+  background-color: white;
+}
+
+.profile-friends-friend {
+  height: 100px;
+  width: 47%;
+  float: left;
+  border: 1px solid #E9EBEE;
+  margin: 10px;
+}
+
+.profile-friends-friend img {
+  height: 100px;
+  width: 25%;
+  float: left;
+}
+
+#profile-friends-friend-info {
+  width: 75%;
+  height: 100px;
+  float: left;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+#profile-friends-friend-info h2{
+  font-size: 14px;
+  color: #365899;
+  font-weight: bold
+}
+
+#profile-friends-friend-info button{
+  width: 80px;
+  height: 25px;
+  background-color: #F6F7F9;
+  border: 1px solid #DFE0E4;
+  font-size: 12px;
+  color: #4b4f56;
+  position: absolute;
+  margin-left: 175px;
 }
