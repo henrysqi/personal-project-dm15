@@ -71,16 +71,7 @@ class SignUp extends React.Component {
       // passwordstar: this.getStars(event.target.value.length)
     })
   }
-  // test(){
-  //   function test1(){
-  //     console.log("1");
-  //   }
-  //   function test2(){
-  //     console.log("2")
-  //   }
-  //   test1();
-  //   test2();
-  // }
+
   onMonthChange(event){
     this.setState({
       bdaymonth: event.target.value
@@ -120,10 +111,6 @@ class SignUp extends React.Component {
     }
     return options;
   }
-
-  // onBadInput(){
-  //   console.log("testing");
-  // }
 
   static contextTypes = {
     // will search all parents till find property router (index.js)

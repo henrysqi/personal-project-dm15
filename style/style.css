@@ -436,22 +436,23 @@ ul li {
   margin-right: 20px;
 }
 
-.feed-header-menu-lock {
+.feed-header-menu-logout {
   float: left;
   margin-right: 5px;
 }
 
-.feed-header-menu-lock img {
-  height: 11px;
-  margin-top: 5px;
-}
+.feed-header-menu-logout button{
+  height: 50px;
+  height: 21px;
+  background-color: #3B5998;
+  padding: 1px 10px;
+  position: absolute;
 
-.feed-header-menu-arrow {
-  float: left;
-}
-
-.feed-header-menu-arrow img {
-  height: 18px;
+  color: white;
+  border-radius: 5px;
+  border: 1px solid black;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 /* feed menu =========================================*/

@@ -46,7 +46,6 @@ class ProfileAbout extends React.Component {
           res.payload.data.forEach((elem) => {
             if (elem.sender === this.props.currentUser.user.id && elem.receiver === this.state.userinfo.payload.data[0].id){
               if (elem.resolved === false){
-                console.log("ran this")
                 this.setState({friendButtonText: <span>Request Pending</span>});
                 foundflag = true;
                 return;
@@ -123,7 +122,6 @@ class ProfileAbout extends React.Component {
 
     onProfilePicSubmit(event){
       event.preventDefault();
-      console.log(this.state)
       let renderHeroPointer = this.renderHero;
       if (this.props.currentUser.user.id === Number(this.props.params.id)){
         this.props.updateProfilePic(this.props.currentUser.user.id, this.state).then(() => {

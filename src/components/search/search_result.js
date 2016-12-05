@@ -25,13 +25,10 @@ class SearchResult extends React.Component {
         res.payload.data.forEach((elem2) => {
           if ( (elem2.sender === this.props.currentUser.user.id && elem2.receiver === this.props.elem.id) || (elem2.sender === this.props.elem.id && elem2.receiver === this.props.currentUser.user.id) ) {
             if (elem2.resolved === false){
-              console.log("ran request pending")
               this.setState({friendButtonText: <span>Request Pending</span>});
               foundflag = true;
               return;
             } else {
-              console.log("ran friends")
-              console.log(this.props.elem)
               this.setState({friendButtonText: <span>Friends</span>});
               foundflag = true;
               return;

@@ -26,11 +26,8 @@ class FeedHeaderMenu extends React.Component {
           <img src="http://localhost:8080/assets/images/globe.png" />
         </div>
         <div id="second-divider"></div>
-        <div className="feed-header-menu-lock">
-          <img src="http://localhost:8080/assets/images/lock.png" />
-        </div>
-        <div className="feed-header-menu-arrow">
-          <img src="http://localhost:8080/assets/images/triangle-down-arrow-icon-65007.png" />
+        <div className="feed-header-menu-logout">
+          <Link to="/"><button>Log Out</button></Link>
         </div>
       </div>
     )
