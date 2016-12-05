@@ -36,6 +36,7 @@ class ProfileFriends extends React.Component {
                 return;
               } else {
                 this.setState({friendButtonText: <span>Friends</span>});
+                foundflag = true;
                 return;
               }
             }
