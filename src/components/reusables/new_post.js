@@ -23,6 +23,10 @@ class NewPost extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+
+    this.onPicSubmit = this.onPicSubmit.bind(this);
+    this.onVideoSubmit = this.onVideoSubmit.bind(this);
+    this.onPicChange = this.onPicChange.bind(this);
   }
 
   componentDidMount(){
@@ -47,6 +51,10 @@ class NewPost extends React.Component {
       this.props.createNewPost(this.state);
       this.setState({
         text_content: '',
+        pic_content: '',
+        vid_content: '',
+        date: '',
+        modalIsOpen: false
       })
 
       this.props.renderPostsComponent();
@@ -69,14 +77,24 @@ closeModal() {
   this.setState({modalIsOpen: false});
 }
 
-onPhotoSubmit(event){
+onPicSubmit(event){
   event.preventDefault();
-
+  console.log(this.state);
+  this.setState({
+    modalIsOpen: false
+  })
 }
 
 onVideoSubmit(event){
   event.preventDefault();
 
+}
+
+onPicChange(event){
+  console.log(event.target.value)
+  this.setState({
+    pic_content: event.target.value
+  })
 }
 
 
@@ -90,8 +108,10 @@ onVideoSubmit(event){
     return (
       <div id="new-post">
         <div id="new-post-input">
-          <img src="https://cuteoverload.files.wordpress.com/2015/08/042815-fb-gudetama1.jpg" />
+          <img id="new-post-input-profilepic" src="https://cuteoverload.files.wordpress.com/2015/08/042815-fb-gudetama1.jpg" />
           <textarea value={this.state.text_content} onChange={this.onTextContentChange} placeholder="What's on your mind?"></textarea>
+          <br></br>
+          <img id="new-post-input-pic" src={this.state.pic_content? this.state.pic_content : ''} />
         </div>
         <div id="new-post-options">
           <button onClick={this.openModal}>
@@ -126,12 +146,12 @@ onVideoSubmit(event){
         >
 
           {/* <h2 ref="subtitle">Hello</h2> */}
-          <p>Include a Photo</p>
-          <form onSubmit={this.onPhotoSubmit}>
-            <input />
+          <p>Include a photo link</p>
+          <form onSubmit={this.onPicSubmit}>
+            <input value={this.state.pic_content} onChange={this.onPicChange} />
             <span><button>Submit</button></span>
           </form>
-          <p>Include a Video</p>
+          <p>Include a video link</p>
           <form onSubmit={this.onVideoSubmit}>
             <input />
             <span><button>Submit</button></span>
