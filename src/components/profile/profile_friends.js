@@ -147,7 +147,7 @@ class ProfileFriends extends React.Component {
         <div>
 
           <div className="profile-friends-friend">
-            <img src="http://localhost:8080/assets/images/defprofpic.jpg" />
+            <img src={`${elem.profile_pic}`} />
             <div id="profile-friends-friend-info">
               <h2>{elem.firstname} {elem.lastname}</h2>
               <button>Relationship</button>

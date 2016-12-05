@@ -74,12 +74,10 @@ class SearchResult extends React.Component {
 
   }
 
-
-
   render() {
     return (
       <div className="feed-search-post-container">
-        <Link to={`${this.props.elem.id}`}><img src="assets\images\defprofpic.jpg" />
+        <Link to={`${this.props.elem.id}`}><img src={`${this.props.elem.profile_pic}`} />
         <h1>{this.props.elem.firstname} {this.props.elem.lastname}</h1></Link>
         <div className="feed-search-post-buttons">
           <button onClick={this.makeFriendRequest}>

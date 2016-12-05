@@ -6,7 +6,8 @@ class FeedMenu extends React.Component {
     return (
       <div id="feed-menu">
         <div className="feed-menu-item-container">
-          <img className="feed-menu-icon" src="https://cuteoverload.files.wordpress.com/2015/08/042815-fb-gudetama1.jpg" />
+          <img className="feed-menu-icon" src={`${this.props.currentUser.user.profile_pic}`} />
+          {/* <img className="feed-menu-icon" src="https://cuteoverload.files.wordpress.com/2015/08/042815-fb-gudetama1.jpg" /> */}
           <span>{this.props.currentUser.user.firstname} {this.props.currentUser.user.lastname}</span>
         </div>
         <div className="feed-menu-item-container">

@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
-import {fetchNameById} from '../../actions/index';
+import {fetchUserById} from '../../actions/index';
 
 class Posts extends React.Component {
   constructor(){
@@ -14,19 +14,19 @@ class Posts extends React.Component {
     if (!this.props.postinfo){
       return;
     }
-    this.props.fetchNameById(this.props.postinfo.userid).then((res) => {
+    this.props.fetchUserById(this.props.postinfo.userid).then((res) => {
       this.setState({
-        nameOfUser: res
+        userInfo: res
       })
     })
   }
 
   renderName(){
-    if (!this.state.nameOfUser){
+    if (!this.state.userInfo){
       return;
     } else {
       return (
-        <h1>{this.state.nameOfUser.payload.data[0].firstname} {this.state.nameOfUser.payload.data[0].lastname}</h1>
+        <h1>{this.state.userInfo.payload.data[0].firstname} {this.state.userInfo.payload.data[0].lastname}</h1>
       )
     }
   }
@@ -36,7 +36,8 @@ class Posts extends React.Component {
       <div className="post-container">
         <div id="post-user">
           <Link to={`${this.props.postinfo.userid}`}><div id="post-user-pic">
-            <img src="http://www.faithlineprotestants.org/wp-content/uploads/2010/12/facebook-default-no-profile-pic.jpg" />
+            { this.state.userInfo ? <img src={`${this.state.userInfo.payload.data[0].profile_pic}`} /> : <span></span> }
+            {/* <img src="http://www.faithlineprotestants.org/wp-content/uploads/2010/12/facebook-default-no-profile-pic.jpg" /> */}
           </div></Link>
           <div id="post-user-info">
             <Link to={`${this.props.postinfo.userid}`}>{this.renderName()}</Link>
@@ -71,7 +72,7 @@ class Posts extends React.Component {
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({fetchNameById}, dispatch)
+    return bindActionCreators({fetchUserById}, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(Posts);
