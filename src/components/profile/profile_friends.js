@@ -94,28 +94,40 @@ class ProfileFriends extends React.Component {
       this.props.fetchFriends().then((res) => {
         res.payload.data.forEach((elem) => {
           if (elem.resolved === true ){
-            if (elem.sender === Number(this.props.params.id)){
-
-            } else if (elem.receiver === Number(this.props.params.id)){
-
+            if (elem.sender === Number(this.props.params.id) && elem.receiver !== Number(this.props.params.id)){
+              filteredFriends.push(elem.receiver)
+            } else if (elem.receiver === Number(this.props.params.id) && elem.sender !== Number(this.props.params.id) ){
+              filteredFriends.push(elem.sender)
             }
           }
 
-        this.setState({
-          friends: filteredFriends
-        })
 
+      })
+
+
+      this.setState({
+        friends: filteredFriends
       })
     })
   }
-  renderPost(){
-    if (!this.state.posts){
+  renderFriends(){
+    if (!this.state.friends){
       return;
     }
-    return this.state.posts.map((elem) => {
+    console.log(this.state.friends)
+    return this.state.friends.map((elem) => {
       return (
-        //key with elem.id already used?
-        <Post postinfo={elem} />
+        <div>
+
+          {/* <div className="profile-friends-friend">
+            <img src="assets\images\defprofpic.jpg" />
+            <div id="profile-friends-friend-info">
+              <h2>Firstname Lastname</h2>
+              <button>Relationship</button>
+            </div>
+          </div> */}
+
+        </div>
       )
     }).reverse();
   }
@@ -171,14 +183,14 @@ class ProfileFriends extends React.Component {
               </div>
               <div id="profile-friends-content-container">
 
-                <div className="profile-friends-friend">
+                {/* <div className="profile-friends-friend">
                   <img src="assets\images\defprofpic.jpg" />
                   <div id="profile-friends-friend-info">
                     <h2>Firstname Lastname</h2>
-                    <button>relationship</button>
+                    <button>Relationship</button>
                   </div>
-                </div>
-
+                </div> */}
+                {this.renderFriends()}
 
               </div>
             </div>
