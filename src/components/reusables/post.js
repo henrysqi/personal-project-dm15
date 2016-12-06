@@ -7,7 +7,9 @@ import {fetchUserById, updateLikes, fetchPosts, createComment} from '../../actio
 class Posts extends React.Component {
   constructor(){
     super();
-    this.state = {}
+    this.state = {
+      comment: ''
+    }
     this.renderLikes = this.renderLikes.bind(this);
   }
 
@@ -47,6 +49,10 @@ class Posts extends React.Component {
     })
   }
 
+  onCommentChange(event) {
+
+  }
+
   render() {
     return (
       <div className="post-container">
@@ -83,8 +89,9 @@ class Posts extends React.Component {
         <div id="post-comments">
           <img src="http://www.faithlineprotestants.org/wp-content/uploads/2010/12/facebook-default-no-profile-pic.jpg" />
           <div id="post-comments-text">
-            <h1>Firstname Lastname</h1>
-            <p>text</p>
+            <span><h1>Firstname Lastname</h1></span>
+            <p>Lorem ipsum dolor sit amet, no nec nostrud tincidunt. Mei ut lobortis consequat, solet suscipit et sea, ex nulla aperiam definiebas eam. Sea accusata dignissim ne. Diam altera laoreet pri id, purto denique recteque nec ex, nec prima debet tantas ad. Zril ubique vulputate duo ne, cum no eius dictas nostrud. Cu eos postea referrentur.
+            </p>
           </div>
         </div>
 
@@ -93,12 +100,11 @@ class Posts extends React.Component {
 
 
 
-
-
-
         <div id="post-write-comment">
           <img src={this.props.currentUser.user.profile_pic} />
-          <textarea placeholder="write a comment..."></textarea>
+          <form>
+            <textarea placeholder="write a comment..."></textarea>
+          </form>
         </div>
       </div>
     )

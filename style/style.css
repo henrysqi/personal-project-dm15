@@ -788,12 +788,17 @@ ul li {
   background-color: #F6F7F9;
   padding: 7px;
   padding-left: 15px;
+
+  position: relative;
 }
 
 #post-write-comment img {
   height: 32px;
   width: 32px;
   margin-right: 5px;
+
+  position: absolute;
+  left: 10px;
 }
 
 #post-write-comment textarea {
@@ -802,12 +807,15 @@ ul li {
   background-color: white;
   resize: none;
   border: 1px solid #BDC7D8;
+
+  margin-left: 40px;
 }
 
 #post-comments {
   background-color: #F6F7F9;
   padding: 7px;
   padding-left: 15px;
+  min-height: 45px;
 }
 
 #post-comments img {
