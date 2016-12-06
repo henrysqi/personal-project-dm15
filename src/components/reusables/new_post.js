@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {createNewPost} from '../../actions/index';
+import {createNewPost, createPicture} from '../../actions/index';
 
 import Modal from 'react-modal';
 
@@ -81,6 +81,10 @@ closeModal() {
 
 onPicSubmit(event){
   event.preventDefault();
+  console.log(this.props.currentUser.user.id)
+  console.log(this.state.pic_content)
+  this.props.createPicture(this.props.currentUser.user.id, this.state);
+
   this.setState({
     modalIsOpen: false
   })
@@ -184,7 +188,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({createNewPost}, dispatch);
+  return bindActionCreators({createNewPost, createPicture}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewPost);

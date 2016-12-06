@@ -176,6 +176,16 @@ app.post('/api/:id/pictures', function(req, res){
   })
 })
 
+app.get('/api/pictures', function(req, res){
+  db.get_all_pictures(function(err, result){
+    if (err){
+      res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  })
+})
+
 /* profile ========================================================================*/
 app.get('/api/:id', function(req,res){
   db.get_user_profile_by_id([req.params.id], function(err, result){

@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import FeedHeader from '../feed/feed_header/feed_header';
-import {fetchUserById, friendRequest, fetchFriends, updateProfilePic, updateCoverPhoto, createPicture} from '../../actions/index';
+import {fetchUserById, friendRequest, fetchFriends, updateProfilePic, updateCoverPhoto, getPictures} from '../../actions/index';
 import {Link} from 'react-router';
 
 import NewPost from '../reusables/new_post';
@@ -67,6 +67,7 @@ class ProfilePhotos extends React.Component {
 
   componentWillMount(){
     this.renderHero();
+    this.updateState();
   }
 
   renderName() {
@@ -109,11 +110,36 @@ class ProfilePhotos extends React.Component {
 
   updateState(){
     let filteredPictures = [];
-    let createPicturePointer = this.props.createPicture;
-    
+    console.log(this.props.params.id)
+    this.props.getPictures().then((res) => {
+      res.payload.data.forEach((elem) => {
+        if (elem.userid === Number(this.props.params.id)){
+          filteredPictures.push(elem);
+        }
+      })
+    })
+
+    setTimeout(() => {
+      this.setState({
+        pictures: filteredPictures
+      })
+    }, 400)
   }
 
-
+  renderPictures(){
+    if (!this.state.pictures){
+      return;
+    }
+    return this.state.pictures.map((elem) => {
+      return (
+        <div>
+          <div className="profile-photos-photo">
+            <img src={`${elem.pic_content}`} />
+          </div>
+        </div>
+      )
+    }).reverse();
+  }
 
 
 
@@ -295,7 +321,7 @@ function mapStateToProps(state){
 }
 
 function  mapDispatchToProps(dispatch){
-  return bindActionCreators({fetchUserById, friendRequest, fetchFriends, updateProfilePic, updateCoverPhoto, createPicture}, dispatch);
+  return bindActionCreators({fetchUserById, friendRequest, fetchFriends, updateProfilePic, updateCoverPhoto, getPictures}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePhotos);
