@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
-import AuthReducer from './auth_reducer';
+import CurrentUserReducer from './current_user_reducer';
 import SearchReducer from './search_reducer';
 
 const rootReducer = combineReducers({
-  currentUser: AuthReducer,
+  currentUser: CurrentUserReducer,
   searchResults: SearchReducer
 });
 

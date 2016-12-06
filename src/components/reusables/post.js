@@ -2,12 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
-import {fetchUserById} from '../../actions/index';
+import {fetchUserById, updateLikes, fetchPosts} from '../../actions/index';
 
 class Posts extends React.Component {
   constructor(){
     super();
     this.state = {}
+    this.renderLikes = this.renderLikes.bind(this);
   }
 
   componentDidMount(){
@@ -31,13 +32,27 @@ class Posts extends React.Component {
     }
   }
 
+  renderLikes(){
+    this.props.updateLikes(this.props.postinfo.id).then(() => {
+      this.props.fetchPosts().then((res) => {
+        let arrayOfPosts = res.payload.data;
+        arrayOfPosts.forEach((elem) => {
+          if (elem.id === this.props.postinfo.id){
+            this.setState({
+              numLikes: elem.num_likes
+            })
+          }
+        })
+      })
+    })
+  }
+
   render() {
     return (
       <div className="post-container">
         <div id="post-user">
           <Link to={`${this.props.postinfo.userid}`}><div id="post-user-pic">
             { this.state.userInfo ? <img src={`${this.state.userInfo.payload.data[0].profile_pic}`} /> : <span></span> }
-            {/* <img src="http://www.faithlineprotestants.org/wp-content/uploads/2010/12/facebook-default-no-profile-pic.jpg" /> */}
           </div></Link>
           <div id="post-user-info">
             <Link to={`${this.props.postinfo.userid}`}>{this.renderName()}</Link>
@@ -50,14 +65,18 @@ class Posts extends React.Component {
           {this.props.postinfo.vid_content ? <iframe src={`${this.props.postinfo.vid_content}`}></iframe> : <span></span> }
         </div>
         <div id="post-like-comment">
-          <img src="assets\images\like.png" />
-          <span>Like</span>
-          <img src="assets\images\grayspeech.png" />
-          <span>Comment</span>
+          <div id="post-like" onClick={this.renderLikes}>
+            <img src="assets\images\like.png" />
+            <span>Like</span>
+          </div>
+          <div id="post-comment">
+            <img src="assets\images\grayspeech.png" />
+            <span>Comment</span>
+          </div>
         </div>
         <div id="post-num-likes">
           <img src="assets\images\thumbsup_blue.png" />
-          <span>num</span>
+          { this.state.numLikes ? <span>{this.state.numLikes}</span> : <span>{this.props.postinfo.num_likes}</span> }
         </div>
         <div id="post-comments">
           {/* Replies component here */}
@@ -72,7 +91,7 @@ class Posts extends React.Component {
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({fetchUserById}, dispatch)
+    return bindActionCreators({fetchUserById, updateLikes, fetchPosts}, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(Posts);

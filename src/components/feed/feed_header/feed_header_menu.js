@@ -5,13 +5,10 @@ import {Link} from 'react-router';
 class FeedHeaderMenu extends React.Component {
 
   render() {
-    console.log("from feed header")
-    console.log(this.props.currentUser)
     return (
       <div id="feed-header-menu">
         <Link to={`/${this.props.currentUser.user.id}`}><div id="feed-header-menu-pic-name">
           <img src={`${this.props.currentUser.user.profile_pic}`} />
-          {/* <img src="https://cuteoverload.files.wordpress.com/2015/08/042815-fb-gudetama1.jpg" /> */}
           <h3>{this.props.currentUser.user.firstname}</h3>
         </div></Link>
         <div id="divider"></div>

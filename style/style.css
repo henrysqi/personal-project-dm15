@@ -751,6 +751,17 @@ ul li {
 
 }
 
+#post-like {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+#post-comment {
+  display: flex;
+  align-items: center;
+}
+
 #post-like-comment img {
   height: 14px;
   width: 14px;
@@ -913,6 +924,7 @@ ul li {
 #profile-cover-photo {
   height: 315px;
   width: 100%;
+  cursor: pointer;
 }
 
 #profile-cover-photo img{
@@ -925,6 +937,7 @@ ul li {
   width: 100%;
   background-color: white;
   padding-left: 200px;
+  cursor: pointer;
 }
 
 #profile-hero-menu button {
@@ -945,6 +958,7 @@ ul li {
   position: absolute;
   bottom: 17px;
   left: 17px;
+  cursor: pointer;
 }
 
 #profile-profile-pic img {

@@ -123,7 +123,6 @@ onVidChange(event){
       <div id="new-post">
         <div id="new-post-input">
           <img id="new-post-input-profilepic" src={`${this.props.currentUser.user.profile_pic}`} />
-          {/* <img id="new-post-input-profilepic" src="https://cuteoverload.files.wordpress.com/2015/08/042815-fb-gudetama1.jpg" /> */}
           <textarea value={this.state.text_content} onChange={this.onTextContentChange} placeholder="What's on your mind?"></textarea>
           <br></br>
           {this.state.pic_content ? <img className="new-post-input-pic" src={this.state.pic_content} /> : <span></span>  }

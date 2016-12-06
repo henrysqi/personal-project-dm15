@@ -15,6 +15,7 @@ export const UPDATE_PROFILE_PIC = 'UPDATE_PROFILE_PIC';
 export const UPDATE_COVER_PHOTO = 'UPDATE_COVER_PHOTO';
 export const CREATE_PICTURE = 'CREATE_PICTURE';
 export const FETCH_PICTURES = 'FETCH_PICTURES';
+export const UPDATE_LIKES = 'UPDATE_LIKES';
 
 
 const ROOT_URL = 'http://localhost:3000/';
@@ -205,6 +206,18 @@ export function getPictures(){
   const request = axios({
     url: `${ROOT_URL}api/pictures`,
     method: 'get'
+  })
+
+  return {
+    type: FETCH_PICTURES,
+    payload: request
+  }
+}
+
+export function updateLikes(postid){
+  const request = axios({
+    url: `${ROOT_URL}api/${postid}/likes`,
+    method: 'put'
   })
 
   return {
