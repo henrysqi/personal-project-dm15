@@ -266,7 +266,7 @@ class ProfileFriends extends React.Component {
                   <Link to={`/${this.props.params.id}`}><button>Timeline</button></Link>
                   <Link to={`/${this.props.params.id}/about`}><button>About</button></Link>
                   <Link to={`/${this.props.params.id}/friends`}><button>Friends</button></Link>
-                  <button>Photos</button>
+                  <Link to={`/${this.props.params.id}/photos`}><button>Photos</button></Link>
                   <button>More</button>
                 </div>
 

@@ -9,6 +9,7 @@ import Profile from './components/profile/profile';
 import FriendRequests from './components/friend_requests/friend_requests';
 import ProfileAbout from './components/profile/profile_about';
 import ProfileFriends from './components/profile/profile_friends';
+import ProfilePhotos from './components/profile/profile_photos';
 
 export default (
   <Route path='/' component={App}>
@@ -19,5 +20,6 @@ export default (
     <Route path=':id' component={Profile} />
     <Route path=':id/about' component={ProfileAbout} />
     <Route path=':id/friends' component={ProfileFriends} />
+    <Route path=':id/photos' component={ProfilePhotos} />
   </Route>
 )

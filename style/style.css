@@ -1172,3 +1172,18 @@ ul li {
   position: absolute;
   margin-left: 175px;
 }
+
+#profile-photos-content-container {
+  background-color: white;
+  width: 100%;
+  min-height: 100px;
+  overflow: hidden;
+}
+
+/*.profile-friends-friend {
+  height: 100px;
+  width: 47%;
+  float: left;
+  border: 1px solid #E9EBEE;
+  margin: 10px;
+}*/

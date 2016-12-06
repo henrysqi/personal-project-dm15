@@ -13,6 +13,7 @@ export const UPDATE_FRIENDS_RESOLVED = 'UPDATE_FRIENDS_RESOLVED';
 export const DELETE_FRIENDS = 'DELETE_FRIENDS';
 export const UPDATE_PROFILE_PIC = 'UPDATE_PROFILE_PIC';
 export const UPDATE_COVER_PHOTO = 'UPDATE_COVER_PHOTO';
+export const CREATE_PICTURE = 'CREATE_PICTURE';
 
 
 const ROOT_URL = 'http://localhost:3000/';
@@ -182,6 +183,19 @@ export function updateCoverPhoto(id, props){
 
   return {
     type: UPDATE_COVER_PHOTO,
+    payload: request
+  }
+}
+
+export function createPicture(id, props) {
+  const request = axios({
+    url: `${ROOT_URL}api/${id}/pictures`,
+    method: 'post',
+    data: props
+  })
+
+  return {
+    type: CREATE_PICTURE,
     payload: request
   }
 }
