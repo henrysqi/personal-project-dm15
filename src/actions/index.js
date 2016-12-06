@@ -171,7 +171,7 @@ export function updateProfilePic(id, props){
 
   return {
     type: UPDATE_PROFILE_PIC,
-    payload: request
+    payload: props
   }
 }
 

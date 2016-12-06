@@ -124,9 +124,10 @@ class Profile extends React.Component {
     event.preventDefault();
     let renderHeroPointer = this.renderHero;
     if (this.props.currentUser.user.id === Number(this.props.params.id)){
-      this.props.updateProfilePic(this.props.currentUser.user.id, this.state).then(() => {
+      this.props.updateProfilePic(this.props.currentUser.user.id, this.state);
+      setTimeout(() => {
         renderHeroPointer();
-      })
+      }, 400)
     }
 
     this.setState({

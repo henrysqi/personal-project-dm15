@@ -5,6 +5,8 @@ import {Link} from 'react-router';
 class FeedHeaderMenu extends React.Component {
 
   render() {
+    console.log("from feed header")
+    console.log(this.props.currentUser)
     return (
       <div id="feed-header-menu">
         <Link to={`/${this.props.currentUser.user.id}`}><div id="feed-header-menu-pic-name">
