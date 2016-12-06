@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
-import {fetchUserById, updateLikes, fetchPosts} from '../../actions/index';
+import {fetchUserById, updateLikes, fetchPosts, createComment} from '../../actions/index';
 
 class Posts extends React.Component {
   constructor(){
@@ -112,7 +112,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({fetchUserById, updateLikes, fetchPosts}, dispatch)
+    return bindActionCreators({fetchUserById, updateLikes, fetchPosts, createComment}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

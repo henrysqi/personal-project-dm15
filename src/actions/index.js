@@ -16,7 +16,7 @@ export const UPDATE_COVER_PHOTO = 'UPDATE_COVER_PHOTO';
 export const CREATE_PICTURE = 'CREATE_PICTURE';
 export const FETCH_PICTURES = 'FETCH_PICTURES';
 export const UPDATE_LIKES = 'UPDATE_LIKES';
-
+export const CREATE_COMMENT = 'CREATE_COMMENT';
 
 const ROOT_URL = 'http://localhost:3000/';
 
@@ -222,6 +222,19 @@ export function updateLikes(postid){
 
   return {
     type: FETCH_PICTURES,
+    payload: request
+  }
+}
+
+export function createComment(props) {
+  const request = axios({
+    url: `${ROOT_URL}api/comments`,
+    method: 'post',
+    data: props
+  })
+
+  return {
+    type: CREATE_COMMENT,
     payload: request
   }
 }

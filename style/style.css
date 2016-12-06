@@ -808,7 +808,6 @@ ul li {
   background-color: #F6F7F9;
   padding: 7px;
   padding-left: 15px;
-  background-color: coral;
 }
 
 #post-comments img {
@@ -820,9 +819,7 @@ ul li {
 
 #post-comments-text {
   width: 97%;
-  background-color: blue;
   resize: none;
-  border: 1px solid #BDC7D8;
 }
 
 #post-comments-text h1 {

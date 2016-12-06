@@ -196,6 +196,16 @@ app.put('/api/:postid/likes', function(req, res){
   })
 })
 
+app.post('/api/comments', function(req, res){
+  db.create_new_comment([req.body.postid, req.body.userid, req.body.text_content], function(err, result){
+    if (err){
+      res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  })
+})
+
 /* profile ========================================================================*/
 app.get('/api/:id', function(req,res){
   db.get_user_profile_by_id([req.params.id], function(err, result){
