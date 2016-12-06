@@ -5,16 +5,14 @@ import Posts from '../../reusables/posts';
 class FeedNews extends React.Component {
 
   renderPostsComponent(){
-    return (
-      <Posts />
-    )
+    Posts.forceUpdate();
   }
 
   render() {
     return (
       <div id="feed-news">
         <NewPost renderPostsComponent={this.renderPostsComponent} />
-        {this.renderPostsComponent()}
+        <Posts />
       </div>
     )
   }
