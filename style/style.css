@@ -801,7 +801,7 @@ ul li {
   left: 10px;
 }
 
-#post-write-comment textarea {
+#post-write-comment input {
   width: 85%;
   height: 30px;
   background-color: white;

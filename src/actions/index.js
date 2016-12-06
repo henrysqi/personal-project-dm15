@@ -17,6 +17,7 @@ export const CREATE_PICTURE = 'CREATE_PICTURE';
 export const FETCH_PICTURES = 'FETCH_PICTURES';
 export const UPDATE_LIKES = 'UPDATE_LIKES';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
+export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 
 const ROOT_URL = 'http://localhost:3000/';
 
@@ -235,6 +236,18 @@ export function createComment(props) {
 
   return {
     type: CREATE_COMMENT,
+    payload: request
+  }
+}
+
+export function getComments(){
+  const request = axios({
+    url: `${ROOT_URL}api/comments`,
+    method: 'get'
+  })
+
+  return {
+    type: FETCH_COMMENTS,
     payload: request
   }
 }
