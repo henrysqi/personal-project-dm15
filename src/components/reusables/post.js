@@ -78,11 +78,26 @@ class Posts extends React.Component {
           <img src="assets\images\thumbsup_blue.png" />
           { this.state.numLikes ? <span>{this.state.numLikes}</span> : <span>{this.props.postinfo.num_likes}</span> }
         </div>
+
+
         <div id="post-comments">
-          {/* Replies component here */}
-        </div>
-        <div id="post-write-comment">
           <img src="http://www.faithlineprotestants.org/wp-content/uploads/2010/12/facebook-default-no-profile-pic.jpg" />
+          <div id="post-comments-text">
+            <h1>Firstname Lastname</h1>
+            <p>text</p>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div id="post-write-comment">
+          <img src={this.props.currentUser.user.profile_pic} />
           <textarea placeholder="write a comment..."></textarea>
         </div>
       </div>
@@ -90,8 +105,14 @@ class Posts extends React.Component {
   }
 }
 
+function mapStateToProps(state){
+  return {
+    currentUser: state.currentUser
+  }
+}
+
 function mapDispatchToProps(dispatch){
     return bindActionCreators({fetchUserById, updateLikes, fetchPosts}, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(Posts);
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);
