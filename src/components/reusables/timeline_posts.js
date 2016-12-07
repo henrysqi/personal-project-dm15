@@ -13,7 +13,6 @@ class TimelinePosts extends React.Component {
   }
 
   componentWillMount(){
-    this.updateState();
   }
 
   updateState(){
@@ -44,6 +43,7 @@ class TimelinePosts extends React.Component {
   }
 
   render() {
+    this.updateState();
     return (
       <div>
         {this.renderPost()}

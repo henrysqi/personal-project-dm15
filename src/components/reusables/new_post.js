@@ -61,7 +61,6 @@ class NewPost extends React.Component {
         this.props.forceRender();
       })
 
-      this.props.renderPostsComponent();
     }, 200)
 
   }
