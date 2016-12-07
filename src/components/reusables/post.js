@@ -102,12 +102,12 @@ class Posts extends React.Component {
       })
 
       setTimeout(() => {
-        console.log("from after map")
-        console.log(listOfJsx)
+        // console.log("from after map")
+        // console.log(listOfJsx)
         this.setState({
           comment: '',
           listOfComments: listOfJsx
-        }, () => {console.log("from callback",this.state.listOfComments)})
+        })
       }, 400)
 
     })

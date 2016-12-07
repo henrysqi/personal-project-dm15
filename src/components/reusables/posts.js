@@ -13,7 +13,7 @@ class Posts extends React.Component {
   }
 
   componentWillMount(){
-    this.updateState();
+
   }
 
   updateState(){
@@ -63,6 +63,7 @@ class Posts extends React.Component {
   }
 
   render() {
+    this.updateState();
     return (
       <div>
         {this.renderPost()}

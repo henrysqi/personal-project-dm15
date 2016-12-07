@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {createNewPost, createPicture} from '../../actions/index';
+import {createNewPost, createPicture, forceRender} from '../../actions/index';
 
 import Modal from 'react-modal';
 
@@ -57,6 +57,8 @@ class NewPost extends React.Component {
         vid_content_pre: '',
         date: '',
         modalIsOpen: false
+      }, () => {
+        this.props.forceRender();
       })
 
       this.props.renderPostsComponent();
@@ -187,7 +189,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({createNewPost, createPicture}, dispatch);
+  return bindActionCreators({createNewPost, createPicture, forceRender}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewPost);

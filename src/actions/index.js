@@ -18,6 +18,7 @@ export const FETCH_PICTURES = 'FETCH_PICTURES';
 export const UPDATE_LIKES = 'UPDATE_LIKES';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const FETCH_COMMENTS = 'FETCH_COMMENTS';
+export const FORCE_RENDER = 'FORCE_RENDER';
 
 const ROOT_URL = 'http://localhost:3000/';
 
@@ -249,5 +250,12 @@ export function getComments(){
   return {
     type: FETCH_COMMENTS,
     payload: request
+  }
+}
+
+export function forceRender() {
+  return {
+    type: FORCE_RENDER,
+    payload: 'Render!'
   }
 }
