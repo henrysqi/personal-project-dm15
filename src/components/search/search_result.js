@@ -36,7 +36,7 @@ class SearchResult extends React.Component {
           }
         });
         if (!foundflag){
-          this.setState({friendButtonText: <span>Add Friends</span>});
+          this.setState({friendButtonText: <span>Add Friend</span>});
           return;
         }
       }

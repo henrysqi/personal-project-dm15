@@ -44,7 +44,7 @@ class ProfileAbout extends React.Component {
         } else {
           let foundflag = false;
           res.payload.data.forEach((elem) => {
-            if (elem.sender === this.props.currentUser.user.id && elem.receiver === this.state.userinfo.payload.data[0].id){
+            if ( (elem.sender === this.props.currentUser.user.id && elem.receiver === this.state.userinfo.payload.data[0].id) || (elem.receiver === this.props.currentUser.user.id && elem.sender === this.state.userinfo.payload.data[0].id) ){
               if (elem.resolved === false){
                 this.setState({friendButtonText: <span>Request Pending</span>});
                 foundflag = true;
