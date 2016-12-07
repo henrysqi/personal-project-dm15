@@ -4,6 +4,8 @@ import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
 import {fetchUserById, updateLikes, fetchPosts, createComment, getComments} from '../../actions/index';
 
+import Comment from './comment';
+
 class Posts extends React.Component {
   constructor(){
     super();
@@ -13,6 +15,10 @@ class Posts extends React.Component {
     this.renderLikes = this.renderLikes.bind(this);
     this.onCommentChange = this.onCommentChange.bind(this);
     this.onCommentSubmit = this.onCommentSubmit.bind(this);
+  }
+
+  componentWillMount(){
+    this.getListOfComments()
   }
 
   componentDidMount(){
@@ -25,7 +31,6 @@ class Posts extends React.Component {
       })
     })
 
-    this.getListOfComments()
   }
 
   renderName(){
@@ -84,29 +89,26 @@ class Posts extends React.Component {
         }
       })
 
-      filteredComments.map((elem) => {
+      let listOfJsx = [];
+
+      filteredComments.forEach((elem) => {
         this.props.fetchUserById(elem.userid).then((res) => {
-          console.log(elem)
-          console.log(res)
-          return (
-            <div id="post-comments">
-              <img src={res.payload.data[0].profile_pic} />
-              <div id="post-comments-text">
-                <span><h1>{res.payload.data[0].firstname} {res.payload.data[0].lastname}</h1></span>
-                <p>{elem.text_content}</p>
-              </div>
-            </div>
+          // console.log(elem)
+          // console.log(res)
+          listOfJsx.push(
+            <Comment elem={elem} res={res} />
           )
         })
       })
 
       setTimeout(() => {
-        console.log(filteredComments)
+        console.log("from after map")
+        console.log(listOfJsx)
         this.setState({
           comment: '',
-          listOfComments: filteredComments
-        })
-      }, 1000)
+          listOfComments: listOfJsx
+        }, () => {console.log("from callback",this.state.listOfComments)})
+      }, 400)
 
     })
   }
