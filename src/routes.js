@@ -11,13 +11,9 @@ import ProfileAbout from './components/profile/profile_about';
 import ProfileFriends from './components/profile/profile_friends';
 import ProfilePhotos from './components/profile/profile_photos';
 
-import SocketTest from './socket_test';
-
 export default (
   <Route path='/' component={App}>
-    {/* <IndexRoute component={Auth} /> */}
-    <IndexRoute component={SocketTest} />
-
+    <IndexRoute component={Auth} />
     <Route path='feed' component={Feed} />
     <Route path='search' component={Search} />
     <Route path='friends/requests' component={FriendRequests} />
