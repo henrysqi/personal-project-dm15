@@ -1293,6 +1293,7 @@ ul li {
   height: 640px;
   width: 100%;
   background-color: orange;
+  overflow: auto;
 }
 
 #messages-box-input-container {

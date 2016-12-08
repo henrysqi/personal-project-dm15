@@ -40,10 +40,7 @@ http.listen(3001, function(){
 
 io.on('connection', function(socket){
   console.log("connected")
-  socket.on('message', function(body){
-    console.log("from server", body)
-    socket.emit('message', body)
-  })
+  
 
   socket.on('disconnect', function(){
 
