@@ -54,9 +54,6 @@ class MessagesBox extends React.Component {
 
   renderMessages(messages){
     let messagesJsx = [];
-    console.log(messages)
-    console.log(this.props.currentUser.user)
-    console.log(this.props.currentConversation)
     let current = this.props.currentUser.user;
     let other = this.props.currentConversation;
 
