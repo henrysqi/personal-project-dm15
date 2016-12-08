@@ -1,10 +1,9 @@
 import {CHANGE_CONVERSATION} from '../actions/index';
 
-export default function(state = null, action){
+export default function(state = {}, action){
   switch (action.type){
     case CHANGE_CONVERSATION:
-      console.log(action);
-      return action.payload
+      return action.payload.data[0]
     default:
       return state;
   }

@@ -262,8 +262,13 @@ export function forceRender() {
 }
 
 export function changeConversation(userid) {
+  const request = axios({
+    url: `${ROOT_URL}api/${userid}`,
+    method: 'get'
+  })
+
   return {
     type: CHANGE_CONVERSATION,
-    payload: userid
+    payload: request
   }
 }

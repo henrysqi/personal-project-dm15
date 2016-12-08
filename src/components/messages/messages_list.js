@@ -63,10 +63,13 @@ class MessagesList extends React.Component {
     return (
       <div id="messages-list-container">
         <div id="messages-list-title">
-
+          <h3>Recent</h3>
+          <h4>Message Requests</h4>
+          <h5>More</h5>
         </div>
         <div id="messages-list-search">
-
+          <input />
+          <img src="http://localhost:8080/assets/images/magnify.png" />
         </div>
         <div id="messages-list-list">
           {this.state.friends ? this.state.friends : <span></span>}
