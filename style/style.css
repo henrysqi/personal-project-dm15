@@ -421,7 +421,7 @@ ul li {
 
 .feed-header-menu-icon-container img{
   height: 22px;
-  margin-right: 10px;
+  margin-right: 15px;
 }
 
 #second-divider {
@@ -442,7 +442,7 @@ ul li {
 }
 
 .feed-header-menu-logout button{
-  height: 50px;
+  width: 80px;
   height: 21px;
   background-color: #3B5998;
   padding: 1px 10px;

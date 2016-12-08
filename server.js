@@ -50,7 +50,8 @@ io.on('connection', function(socket){
 
 /* messages ========================================================================*/
 app.post('/api/messages', function(req, res){
-  db.create_new_message([req.body.sender, req.body.sender, req.body.text_content], function(err, result){
+  var rb = req.body;
+  db.create_new_message([rb.sender, rb.receiver, rb.text_content, rb.sender_firstname, rb.sender_lastname, rb.receiver_firstname, rb.receiver_lastname, rb.sender_profile_pic, rb.receiver_profile_pic], function(err, result){
     if (err){
       res.status(500).send(err);
     } else {
