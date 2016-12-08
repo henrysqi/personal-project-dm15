@@ -5,38 +5,45 @@ import {} from '../../actions/index';
 
 import io from 'socket.io-client'
 
+const socket = io('http://localhost:3001')
+socket.on('message', message => {
+  this.setState({ messages: [message, ...this.state.messages] })
+})
 
 class MessagesBox extends React.Component {
   constructor(){
     super();
 
     this.state = { messages: [] }
-
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount () {
-    this.socket = io('/')
-    this.socket.on('message', message => {
-      this.setState({ messages: [message, ...this.state.messages] })
-    })
   }
 
   handleSubmit = event => {
+    event.preventDefault();
+
     const body = event.target.value
+    console.log(body)
+    console.log(event.keyCode)
     if (event.keyCode === 13 && body) {
       const message = {
         body,
         from: 'Me'
       }
       this.setState({ messages: [message, ...this.state.messages] })
-      this.socket.emit('message', body)
+      socket.emit('message', body)
       event.target.value = ''
     }
   }
 
 
   render() {
-
+    const messages = this.state.messages.map((message, index) => {
+      const img = message.img ? <img src={message.img} width='200px' /> : null
+      return <li key={index}><b>{message.from}:</b>{message.body} {img}</li>
+    })
 
     return (
       <div id="messages-box-container">
@@ -46,9 +53,8 @@ class MessagesBox extends React.Component {
         <div id="messages-box-chat">
         </div>
         <div id="messages-box-input-container">
-          <form>
-            <input />
-          </form>
+            <input placeholder='Enter a message...' onKeyUp={this.handleSubmit}/>
+            {messages}
         </div>
       </div>
     )

@@ -34,6 +34,10 @@ function verify(req, res, next) {
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+http.listen(3001, function(){
+  console.log('listening on 3001')
+})
+
 io.on('connection', function(socket){
   console.log("connected")
   socket.on('message', function(body){
@@ -44,10 +48,6 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
 
   })
-
-
-
-
 })
 
 
