@@ -30,6 +30,33 @@ function verify(req, res, next) {
   })
 }
 
+/* socketio =================================================================== */
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+io.on('connection', function(socket){
+  console.log("connected")
+  socket.on('message', function(body){
+    console.log("from server", body)
+    socket.emit('message', body)
+  })
+
+  socket.on('disconnect', function(){
+
+  })
+
+
+
+
+})
+
+
+
+
+
+
+
+
 /* auth page ==========================================================================*/
 
 app.post('/api/users', function(req, res, next){

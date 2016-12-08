@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {fetchUserById, fetchFriends} from '../../actions/index';
+import {fetchUserById, fetchFriends, changeConversation} from '../../actions/index';
 import {Link} from 'react-router';
 
 class MessagesList extends React.Component {
@@ -31,7 +31,6 @@ class MessagesList extends React.Component {
           }
         }
       });
-      console.log(friendIds)
       let fetchUserByIdPointer = this.props.fetchUserById;
       friendIds.forEach((elem) => {
         fetchUserByIdPointer(elem).then((res) => {
@@ -40,10 +39,11 @@ class MessagesList extends React.Component {
       })
     })
 
+
     setTimeout(() => {
       let friendInfosJSX = friendInfos.map((elem) => {
         return (
-          <div id="messages-list-friend">
+          <div onClick={this.changeConversationPointer.bind(this, elem.id)} id="messages-list-friend">
             <img src={elem.profile_pic} />
             <h2>{elem.firstname} {elem.lastname}</h2>
           </div>
@@ -55,8 +55,11 @@ class MessagesList extends React.Component {
     }, 400)
   }
 
+  changeConversationPointer(id) {
+    this.props.changeConversation(id)
+  }
+
   render() {
-    console.log(this.props.currentUser)
     return (
       <div id="messages-list-container">
         <div id="messages-list-title">
@@ -80,7 +83,7 @@ function mapStateToProps(state){
 }
 
 function  mapDispatchToProps(dispatch){
-  return bindActionCreators({fetchUserById, fetchFriends}, dispatch);
+  return bindActionCreators({fetchUserById, fetchFriends, changeConversation}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessagesList);

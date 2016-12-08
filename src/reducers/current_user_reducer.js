@@ -1,4 +1,4 @@
-import {SIGN_UP_USER, LOGIN_USER, UPDATE_PROFILE_PIC, FORCE_RENDER} from '../actions/index.js';
+import {SIGN_UP_USER, LOGIN_USER, UPDATE_PROFILE_PIC, FORCE_RENDER} from '../actions/index';
 
 export default function(state = {}, action){
   switch (action.type){

@@ -19,9 +19,10 @@ export const UPDATE_LIKES = 'UPDATE_LIKES';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const FORCE_RENDER = 'FORCE_RENDER';
+export const CHANGE_CONVERSATION = 'CHANGE_CONVERSATION';
+
 
 const ROOT_URL = 'http://localhost:3000/';
-
 
 
 export function signUpUser(props){
@@ -257,5 +258,12 @@ export function forceRender() {
   return {
     type: FORCE_RENDER,
     payload: 'Render!'
+  }
+}
+
+export function changeConversation(userid) {
+  return {
+    type: CHANGE_CONVERSATION,
+    payload: userid
   }
 }

@@ -19,7 +19,7 @@ class FeedHeaderMenu extends React.Component {
           <Link to="/friends/requests"><img src="http://localhost:8080/assets/images/users-1.png" /></Link>
         </div>
         <div className="feed-header-menu-icon-container">
-          <Link to='messages/0'><img src="http://localhost:8080/assets/images/speech-bubble-2-xxl.png" /></Link>
+          <Link to='/messages/0'><img src="http://localhost:8080/assets/images/speech-bubble-2-xxl.png" /></Link>
         </div>
         <div className="feed-header-menu-icon-container">
           <img src="http://localhost:8080/assets/images/globe.png" />
