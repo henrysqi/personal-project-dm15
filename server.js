@@ -40,7 +40,7 @@ http.listen(3001, function(){
 
 io.on('connection', function(socket){
   console.log("connected")
-  
+
 
   socket.on('disconnect', function(){
 
@@ -48,8 +48,26 @@ io.on('connection', function(socket){
 })
 
 
+/* messages ========================================================================*/
+app.post('/api/messages', function(req, res){
+  db.create_new_message([req.body.sender, req.body.sender, req.body.text_content], function(err, result){
+    if (err){
+      res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  })
+})
 
-
+app.get('/api/messages', function(req, res){
+  db.get_all_messages(function(err, result){
+    if (err){
+      res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  })
+})
 
 
 

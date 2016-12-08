@@ -20,6 +20,8 @@ export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const FORCE_RENDER = 'FORCE_RENDER';
 export const CHANGE_CONVERSATION = 'CHANGE_CONVERSATION';
+export const CREATE_NEW_MESSAGE = 'CREATE_NEW_MESSAGE';
+export const FETCH_MESSAGES = 'FETCH_MESSAGES';
 
 
 const ROOT_URL = 'http://localhost:3000/';
@@ -269,6 +271,31 @@ export function changeConversation(userid) {
 
   return {
     type: CHANGE_CONVERSATION,
+    payload: request
+  }
+}
+
+export function createMessage(props){
+  const request = axios({
+    url: `${ROOT_URL}api/messages`,
+    method: 'post',
+    data: props
+  })
+
+  return {
+    type: CREATE_NEW_MESSAGE,
+    payload: request
+  }
+}
+
+export function getMessages(){
+  const request = axios({
+    url: `${ROOT_URL}api/messages`,
+    method: 'get'
+  })
+
+  return {
+    type: FETCH_MESSAGES,
     payload: request
   }
 }

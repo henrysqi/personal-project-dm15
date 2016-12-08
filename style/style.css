@@ -1345,10 +1345,16 @@ ul li {
 }
 
 #messages-box-title h1{
-  font-weight: bold;
+  font-weight: bolder;
   font-size: 16px;
   color: #333333;
   margin-left: 20px;
+}
+
+#messages-box-title span{
+  font-weight: bolder;
+  font-size: 16px;
+  color: #333333;
 }
 
 #messages-box-chat {
@@ -1371,6 +1377,8 @@ ul li {
 #messages-box-input-container input {
   height: 95px;
   width: 470px;
+  resize: none;
+  padding-bottom: 65px;
 }
 
 #messages-list-friend {

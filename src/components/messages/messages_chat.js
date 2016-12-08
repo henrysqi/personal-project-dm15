@@ -11,20 +11,33 @@ class MessagesBox extends React.Component {
   constructor(){
     super();
     this.state ={
-
+      message: ''
     }
+    this.onMessageSubmit = this.onMessageSubmit.bind(this);
+    this.onMessageChange = this.onMessageChange.bind(this);
   }
 
+  onMessageSubmit(event){
+    event.preventDefault();
+    console.log(this.state.message);
+  }
+
+  onMessageChange(event){
+    event.preventDefault();
+    this.setState({
+      message: event.target.value
+    })
+  }
 
   render() {
+
     return (
       <div id="messages-box-container">
         <div id="messages-box-title">
-          <h1>{this.props.currentConversation ? this.props.currentConversation.firstname : ''} {this.props.currentConversation ? this.props.currentConversation.lastname : ''}</h1>
+          {this.props.currentConversation.firstname ? <h1>{this.props.currentConversation.firstname} {this.props.currentConversation.lastname}</h1> : <h1>Please Select a Friend</h1>}
         </div>
 
         <div id="messages-box-chat">
-
 
           <div id="messages-box-chat-message">
             <img src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg" />
@@ -38,7 +51,9 @@ class MessagesBox extends React.Component {
         </div>
 
         <div id="messages-box-input-container">
-            <input placeholder='Enter a message...' />
+          <form onSubmit={this.onMessageSubmit}>
+            <input value={this.state.message} onChange={this.onMessageChange} placeholder='Enter a message...' />
+          </form>
         </div>
       </div>
     )
