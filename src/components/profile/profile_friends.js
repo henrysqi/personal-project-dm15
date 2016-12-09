@@ -137,6 +137,7 @@ class ProfileFriends extends React.Component {
 
     })
   }
+
   renderFriends(){
     if (!this.state.friends){
       return;
@@ -149,13 +150,25 @@ class ProfileFriends extends React.Component {
             <img src={`${elem.profile_pic}`} />
             <div id="profile-friends-friend-info">
               <h2>{elem.firstname} {elem.lastname}</h2>
-              <button>Relationship</button>
+              {this.unfriend()}
             </div>
           </div>
 
         </div>
       )
     }).reverse();
+  }
+
+  unfriend(){
+    if (Number(this.props.params.id) === this.props.currentUser.user.id){
+      return (
+        <button>Unfriend</button>
+      )
+    } else {
+      return (
+        <span></span>
+      )
+    }
   }
 
   /* update profile pic / cover photo =============================== */

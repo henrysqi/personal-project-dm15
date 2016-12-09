@@ -46,6 +46,7 @@ var users = {};
 //   '4': socket,
 //   '11': socket
 // }
+
 var roomId = "";
 
 io.on('connection', function(socket){
@@ -88,12 +89,13 @@ io.on('connection', function(socket){
   socket.on('newMessage', function(body){
     console.log("event triggered")
     console.log(body)
-    console.log(roomId) 
+    console.log(roomId)
     console.log("after room id")
+    io.emit(body.roomId, body);
 
-    io.to(roomId).emit('newMessageBack', body, roomId)
-    // socket.emit('newMessageBack', body)
-    // io.emit('newMessageBack', "from line 94")
+    io.to(roomId).emit('newMessageBack', body)
+
+    // io.emit('newMessageBack', "from line 94")  workss
 
   })
 

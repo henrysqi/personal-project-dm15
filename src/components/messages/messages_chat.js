@@ -7,9 +7,9 @@ import io from 'socket.io-client'
 
 const socket = io('http://localhost:3001')
 
-// socket.on('newMessageBack', (body) => {
-//   console.log(body);
-// })
+socket.on('4.11', (body) => {
+  console.log(body);
+})
 
 
 class MessagesBox extends React.Component {
@@ -33,9 +33,9 @@ class MessagesBox extends React.Component {
 
   componentDidMount(){
     console.log("from componentDidMount")
-    socket.on('newMessageBack', (body) => {
-      console.log(body);
-    })
+    // socket.on('newMessageBack', (body) => {
+    //   console.log(body);
+    // })
 
     // socket.on('newMessageBack', (body) => {
     //   console.log(body)
@@ -71,7 +71,8 @@ class MessagesBox extends React.Component {
         receiver_firstname: this.props.currentConversation.firstname,
         receiver_lastname: this.props.currentConversation.lastname,
         sender_profile_pic: this.props.currentUser.user.profile_pic,
-        receiver_profile_pic: this.props.currentConversation.profile_pic
+        receiver_profile_pic: this.props.currentConversation.profile_pic,
+        roomId: '4.11'
       }
       this.props.createMessage(propsToSend).then(() => {
         this.props.getMessages().then((res) => {
