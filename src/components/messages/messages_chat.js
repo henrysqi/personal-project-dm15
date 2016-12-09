@@ -9,14 +9,12 @@ const socket = io('http://localhost:3001')
 
 
 
-
 class MessagesBox extends React.Component {
   constructor(){
     super();
     this.state ={
       message: '',
       messages: [],
-      namespaceid: ''
     }
     this.onMessageSubmit = this.onMessageSubmit.bind(this);
     this.onMessageChange = this.onMessageChange.bind(this);
@@ -28,37 +26,30 @@ class MessagesBox extends React.Component {
     this.props.getMessages().then((res) => {
       renderMessagesPointer(res.payload.data)
     })
+
+    setTimeout(() => {
+      socket.on(this.props.currentNamespace, (body) => {
+
+        let history = this.state.messages.slice()
+        history.push(
+          <div id="messages-box-chat-message">
+            <img src={body.sender_profile_pic} />
+            <div id="messages-box-chat-message-text">
+              <h2>{body.sender_firstname} {body.sender_lastname}</h2>
+              <p>{body.text_content}</p>
+            </div>
+          </div>
+        )
+        this.setState({
+          messages: history
+        })
+
+      })
+    }, 200)
+
   }
 
-  componentDidMount(){
-    console.log("from componentDidMount")
 
-    socket.on('4.11', (body) => {
-      console.log(body);
-    })
-    // socket.on('newMessageBack', (body) => {
-    //   console.log(body);
-    // })
-
-    // socket.on('newMessageBack', (body) => {
-    //   console.log(body)
-    //
-    //   let history = this.state.messages.slice()
-    //   history.push(
-    //     <div id="messages-box-chat-message">
-    //       <img src={body.sender_profile_pic} />
-    //       <div id="messages-box-chat-message-text">
-    //         <h2>{body.sender_firstname} {body.sender_lastname}</h2>
-    //         <p>{body.text_content}</p>
-    //       </div>
-    //     </div>
-    //   )
-    //   this.setState({
-    //     messages: history
-    //   })
-    //
-    // })
-  }
 
   onMessageSubmit(event){
     event.preventDefault();

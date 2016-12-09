@@ -74,7 +74,6 @@ class MessagesList extends React.Component {
 
 
       this.props.changeNamespace(namespaceid);
-      console.log(this.props.currentNamespace)
 
     }, 200)
 

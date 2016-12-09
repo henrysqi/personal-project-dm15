@@ -45,8 +45,7 @@ io.on('connection', function(socket){
   console.log(usersCount + " connected")
 
   socket.on('newMessage', function(body){
-    console.log("event triggered")
-    console.log(body)
+    
 
     io.emit(body.namespaceid, body);
   })
