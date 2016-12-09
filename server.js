@@ -117,6 +117,26 @@ io.on('connection', function(socket){
 })
 
 
+/* twitter api ==================================================*/
+var Twit = require('twit');
+
+var T = new Twit({
+  consumer_key:         config.consumer_key,
+  consumer_secret:      config.consumer_secret,
+  access_token:         config.access_token,
+  access_token_secret:  config.access_token_secret,
+  timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
+})
+
+// T.get('trends/place', {id: 1}, function(err, data, response){
+//   console.log(data)
+// })
+
+app.get('/api/twitter/trending', function(req, res){
+  T.get('trends/place', {id: 1}, function(err, data, response){
+    res.send(data)
+  })
+})
 
 /* messages ========================================================================*/
 app.post('/api/messages', function(req, res){
