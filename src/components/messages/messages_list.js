@@ -63,19 +63,12 @@ class MessagesList extends React.Component {
   changeConversationPointer(id) {
     this.props.changeConversation(id)
     setTimeout(() => {
-      console.log(this.props.currentUser);
-      console.log(this.props.currentConversation);
       let userIds = {
         currentUser: this.props.currentUser.user.id,
         otherUser: this.props.currentConversation.id
       }
 
       socket.emit('createRoom', userIds);
-      // socket.on('roomCreated', (body) => {
-      //   console.log(body)
-      // another event that emits the roomid
-      // socket.emit('joinRoom', body)
-      // })
 
 
 

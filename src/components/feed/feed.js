@@ -5,8 +5,17 @@ import FeedMenu from './feed_menu/feed_menu';
 import FeedNews from './feed_news/feed_news';
 import FeedAds from './feed_ads/feed_ads';
 
+import {connect} from 'react-redux';
+
+import io from 'socket.io-client';
+const socket = io('http://localhost:3001');
 
 class Feed extends React.Component {
+
+  componentDidMount(){
+    socket.emit('newUser', this.props.currentUser.user)
+  }
+
   render() {
     return (
       <div>
@@ -23,4 +32,10 @@ class Feed extends React.Component {
   }
 }
 
-export default Feed;
+function mapStateToProps(state){
+  return {
+    currentUser: state.currentUser
+  }
+}
+
+export default connect(mapStateToProps)(Feed);

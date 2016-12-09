@@ -39,22 +39,26 @@ http.listen(3001, function(){
 })
 
 var usersCount = 0;
-var existingRooms = []
-// Math.floor((Math.random() * 100) + 1);
-
-function generateRandom(){
-  return Math.floor((Math.random() * 1000) + 1)
-}
 
 // array of users objects with their id and socket
+var users = {};
+// users = {
+//   '4': socket,
+//   '11': socket
+// }
 
 io.on('connection', function(socket){
   usersCount++;
   console.log(usersCount + " connected")
 
-  // var hasCreatedRoom = false;
-  var roomId = ""
+  // add logged in user to the users object @@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  socket.on('newUser', function(body){
+    users[body.id] = socket;
+    console.log(Object.keys(users))
+  })
 
+  // create a new room when user clicks on friend in message list @@@@@@@@@@@@@@@@@@@@@@@
+  var roomId = ""
   socket.on('createRoom', function(body){
     console.log(body);
 
@@ -64,55 +68,32 @@ io.on('connection', function(socket){
       roomId = body.otherUser + "." + body.currentUser;
     }
     console.log(roomId)
-    // io.to(roomId).emit('roomCreated', roomId);
 
-    // loop thru array of users, find users, join both sockets to that room id
-    // emit that room was joined.
+    //find users, join both sockets to that room id @@@@@@@@@@@@@@@@@@@@@@@@@@
 
-    socket.emit('roomCreated', roomId)
+    users[body.currentUser].join(roomId);
+    // users[body.otherUser].join(roomId);
+
+    // undefined if only log in as asd. what is users {} doesnt have otheruser?
+    // logged in user only joins the room himself?
 
   })
 
 
+  socket.on('newMessage', function(body){
+    console.log("event triggered")
+    console.log(body)
+    // io.to(roomId).emit('newMessageBack', this should be the message);
+    io.to(roomId).emit('newMessageBack', body)
 
 
-  // socket.on('joinRoom', function(body){
-  //  pcSocket.join(roomID);
-  // clientSocket.join(roomID);
-  //})
+  })
 
 
-    socket.on('newMessage', function(body){
-      console.log("event triggered")
-      console.log(body)
-      // io.to(roomId).emit('newMessageBack', this should be the message);
-
-  // emit message only to
-
-      // var roomId = generateRandom();
-      //
-      // function createRoom(flag, roomId){
-      //   if (!flag){
-      //     if (!existingRooms.includes(roomId)){
-      //       hasCreatedRoom = true;
-      //       console.log(flag, roomId)
-      //     } else {
-      //       createRoom(flag, generateRandom());
-      //     }
-      //   }
-      // }
-      //
-      // createRoom(hasCreatedRoom, roomId);
-
-
-
-    })
-
-
-    socket.on('disconnect', function(){
-      usersCount--;
-      console.log(usersCount + " connected")
-    })
+  socket.on('disconnect', function(){
+    usersCount--;
+    console.log(usersCount + " connected")
+  })
 
 })
 
@@ -127,10 +108,6 @@ var T = new Twit({
   access_token_secret:  config.access_token_secret,
   timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
 })
-
-// T.get('trends/place', {id: 1}, function(err, data, response){
-//   console.log(data)
-// })
 
 app.get('/api/twitter/trending', function(req, res){
   T.get('trends/place', {id: 1}, function(err, data, response){

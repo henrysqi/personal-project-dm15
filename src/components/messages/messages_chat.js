@@ -26,6 +26,13 @@ class MessagesBox extends React.Component {
     })
   }
 
+  componentDidMount(){
+    console.log("from componentDidMount")
+    socket.on('newMessageBack', (body) => {
+      console.log(body)
+    })
+  }
+
   onMessageSubmit(event){
     event.preventDefault();
     let renderMessagesPointer = this.renderMessages;
