@@ -8,6 +8,7 @@ import io from 'socket.io-client'
 const socket = io('http://localhost:3001')
 
 
+var sockethistory = [{text_content: "327158249"}]
 
 class MessagesBox extends React.Component {
   constructor(){
@@ -30,19 +31,25 @@ class MessagesBox extends React.Component {
     setTimeout(() => {
       socket.on(this.props.currentNamespace, (body) => {
 
-        let history = this.state.messages.slice()
-        history.push(
-          <div id="messages-box-chat-message">
-            <img src={body.sender_profile_pic} />
-            <div id="messages-box-chat-message-text">
-              <h2>{body.sender_firstname} {body.sender_lastname}</h2>
-              <p>{body.text_content}</p>
+        let history = this.state.messages.slice();
+
+        console.log(history)
+
+        if (body.text_content !== sockethistory[sockethistory.length-1].text_content){
+          history.push(
+            <div id="messages-box-chat-message">
+              <img src={body.sender_profile_pic} />
+              <div id="messages-box-chat-message-text">
+                <h2>{body.sender_firstname} {body.sender_lastname}</h2>
+                <p>{body.text_content}</p>
+              </div>
             </div>
-          </div>
-        )
-        this.setState({
-          messages: history
-        })
+          )
+          sockethistory.push(body)
+          this.setState({
+            messages: history
+          })
+        }
 
       })
     }, 200)
