@@ -16,7 +16,7 @@ class MessagesBox extends React.Component {
     this.state ={
       message: '',
       messages: [],
-      roomId: ''
+      namespaceid: ''
     }
     this.onMessageSubmit = this.onMessageSubmit.bind(this);
     this.onMessageChange = this.onMessageChange.bind(this);
@@ -64,20 +64,6 @@ class MessagesBox extends React.Component {
     event.preventDefault();
     let renderMessagesPointer = this.renderMessages;
 
-    let roomId = "";
-
-    if (this.props.currentUser.user.id < this.props.currentConversation.id){
-      roomId = this.props.currentUser.user.id + "." + this.props.currentConversation.id;
-    } else {
-      roomId = this.props.currentConversation.id + "." + this.props.currentUser.user.id;
-    }
-    console.log(roomId)
-
-    this.setState({
-      roomId: roomId
-    })
-
-
     if (this.props.currentConversation.firstname && this.state.message){
       let propsToSend = {
         sender: this.props.currentUser.user.id,
@@ -89,7 +75,7 @@ class MessagesBox extends React.Component {
         receiver_lastname: this.props.currentConversation.lastname,
         sender_profile_pic: this.props.currentUser.user.profile_pic,
         receiver_profile_pic: this.props.currentConversation.profile_pic,
-        roomId: roomId
+        namespaceid: this.props.currentNamespace
       }
       this.props.createMessage(propsToSend).then(() => {
         this.props.getMessages().then((res) => {
@@ -178,7 +164,8 @@ class MessagesBox extends React.Component {
 function mapStateToProps(state){
   return {
     currentUser: state.currentUser,
-    currentConversation: state.currentConversation
+    currentConversation: state.currentConversation,
+    currentNamespace: state.currentNamespace
   }
 }
 

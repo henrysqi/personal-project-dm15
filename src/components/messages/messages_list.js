@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {fetchUserById, fetchFriends, changeConversation} from '../../actions/index';
+import {fetchUserById, fetchFriends, changeConversation, changeNamespace} from '../../actions/index';
 import {Link} from 'react-router';
 
 import io from 'socket.io-client'
@@ -63,15 +63,18 @@ class MessagesList extends React.Component {
   changeConversationPointer(id) {
     this.props.changeConversation(id)
     setTimeout(() => {
-      let userIds = {
-        currentUser: this.props.currentUser.user.id,
-        otherUser: this.props.currentConversation.id
+
+      let namespaceid = "";
+
+      if (this.props.currentUser.user.id < this.props.currentConversation.id){
+        namespaceid = this.props.currentUser.user.id + "." + this.props.currentConversation.id;
+      } else {
+        namespaceid = this.props.currentConversation.id + "." + this.props.currentUser.user.id;
       }
 
-      socket.emit('createRoom', userIds);
 
-
-
+      this.props.changeNamespace(namespaceid);
+      console.log(this.props.currentNamespace)
 
     }, 200)
 
@@ -102,12 +105,13 @@ class MessagesList extends React.Component {
 function mapStateToProps(state){
   return {
     currentUser: state.currentUser,
-    currentConversation: state.currentConversation
+    currentConversation: state.currentConversation,
+    currentNamespace: state.currentNamespace
   }
 }
 
 function  mapDispatchToProps(dispatch){
-  return bindActionCreators({fetchUserById, fetchFriends, changeConversation}, dispatch);
+  return bindActionCreators({fetchUserById, fetchFriends, changeConversation, changeNamespace}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessagesList);

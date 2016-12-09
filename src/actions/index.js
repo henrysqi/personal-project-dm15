@@ -22,6 +22,7 @@ export const FORCE_RENDER = 'FORCE_RENDER';
 export const CHANGE_CONVERSATION = 'CHANGE_CONVERSATION';
 export const CREATE_NEW_MESSAGE = 'CREATE_NEW_MESSAGE';
 export const FETCH_MESSAGES = 'FETCH_MESSAGES';
+export const CHANGE_NAMESPACE = 'CHANGE_NAMESPACE';
 
 
 const ROOT_URL = 'http://localhost:3000/';
@@ -297,5 +298,12 @@ export function getMessages(){
   return {
     type: FETCH_MESSAGES,
     payload: request
+  }
+}
+
+export function changeNamespace(namespaceid){
+  return {
+    type: CHANGE_NAMESPACE,
+    payload: namespaceid
   }
 }
