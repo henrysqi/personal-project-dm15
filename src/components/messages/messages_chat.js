@@ -7,6 +7,11 @@ import io from 'socket.io-client'
 
 const socket = io('http://localhost:3001')
 
+// socket.on('newMessageBack', (body) => {
+//   console.log(body);
+// })
+
+
 class MessagesBox extends React.Component {
   constructor(){
     super();
@@ -29,8 +34,27 @@ class MessagesBox extends React.Component {
   componentDidMount(){
     console.log("from componentDidMount")
     socket.on('newMessageBack', (body) => {
-      console.log(body)
+      console.log(body);
     })
+
+    // socket.on('newMessageBack', (body) => {
+    //   console.log(body)
+    //
+    //   let history = this.state.messages.slice()
+    //   history.push(
+    //     <div id="messages-box-chat-message">
+    //       <img src={body.sender_profile_pic} />
+    //       <div id="messages-box-chat-message-text">
+    //         <h2>{body.sender_firstname} {body.sender_lastname}</h2>
+    //         <p>{body.text_content}</p>
+    //       </div>
+    //     </div>
+    //   )
+    //   this.setState({
+    //     messages: history
+    //   })
+    //
+    // })
   }
 
   onMessageSubmit(event){
@@ -55,10 +79,6 @@ class MessagesBox extends React.Component {
         })
 
         socket.emit('newMessage', propsToSend)
-
-        // socket.on('newMessageBack', function(body) {
-          // push it to this.state.messages
-          // })
 
       })
 

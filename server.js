@@ -46,10 +46,15 @@ var users = {};
 //   '4': socket,
 //   '11': socket
 // }
+var roomId = "";
 
 io.on('connection', function(socket){
+  // io.emit('newMessageBack', "from line 51")
+
   usersCount++;
   console.log(usersCount + " connected")
+
+
 
   // add logged in user to the users object @@@@@@@@@@@@@@@@@@@@@@@@@@@@
   socket.on('newUser', function(body){
@@ -58,7 +63,7 @@ io.on('connection', function(socket){
   })
 
   // create a new room when user clicks on friend in message list @@@@@@@@@@@@@@@@@@@@@@@
-  var roomId = ""
+  // var roomId = ""
   socket.on('createRoom', function(body){
     console.log(body);
 
@@ -74,7 +79,7 @@ io.on('connection', function(socket){
     users[body.currentUser].join(roomId);
     // users[body.otherUser].join(roomId);
 
-    // undefined if only log in as asd. what is users {} doesnt have otheruser?
+    // undefined if only log in as asd. what if users {} doesnt have otheruser?
     // logged in user only joins the room himself?
 
   })
@@ -83,9 +88,12 @@ io.on('connection', function(socket){
   socket.on('newMessage', function(body){
     console.log("event triggered")
     console.log(body)
-    // io.to(roomId).emit('newMessageBack', this should be the message);
-    io.to(roomId).emit('newMessageBack', body)
+    console.log(roomId) 
+    console.log("after room id")
 
+    io.to(roomId).emit('newMessageBack', body, roomId)
+    // socket.emit('newMessageBack', body)
+    // io.emit('newMessageBack', "from line 94")
 
   })
 
