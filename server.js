@@ -38,14 +38,84 @@ http.listen(3001, function(){
   console.log('listening on 3001')
 })
 
+var usersCount = 0;
+var existingRooms = []
+// Math.floor((Math.random() * 100) + 1);
+
+function generateRandom(){
+  return Math.floor((Math.random() * 1000) + 1)
+}
+
+// array of users objects with their id and socket
+
 io.on('connection', function(socket){
-  console.log("connected")
+  usersCount++;
+  console.log(usersCount + " connected")
 
+  // var hasCreatedRoom = false;
+  var roomId = ""
 
-  socket.on('disconnect', function(){
+  socket.on('createRoom', function(body){
+    console.log(body);
+
+    if (body.currentUser < body.otherUser){
+      roomId = body.currentUser + "." + body.otherUser;
+    } else {
+      roomId = body.otherUser + "." + body.currentUser;
+    }
+    console.log(roomId)
+    // io.to(roomId).emit('roomCreated', roomId);
+
+    // loop thru array of users, find users, join both sockets to that room id
+    // emit that room was joined.
+
+    socket.emit('roomCreated', roomId)
 
   })
+
+
+
+
+  // socket.on('joinRoom', function(body){
+  //  pcSocket.join(roomID);
+  // clientSocket.join(roomID);
+  //})
+
+
+    socket.on('newMessage', function(body){
+      console.log("event triggered")
+      console.log(body)
+      // io.to(roomId).emit('newMessageBack', this should be the message);
+
+  // emit message only to
+
+      // var roomId = generateRandom();
+      //
+      // function createRoom(flag, roomId){
+      //   if (!flag){
+      //     if (!existingRooms.includes(roomId)){
+      //       hasCreatedRoom = true;
+      //       console.log(flag, roomId)
+      //     } else {
+      //       createRoom(flag, generateRandom());
+      //     }
+      //   }
+      // }
+      //
+      // createRoom(hasCreatedRoom, roomId);
+
+
+
+    })
+
+
+    socket.on('disconnect', function(){
+      usersCount--;
+      console.log(usersCount + " connected")
+    })
+
 })
+
 
 
 /* messages ========================================================================*/
@@ -96,7 +166,7 @@ app.post('/api/users', function(req, res, next){
                   res.status(500).send(err)
                 }
                 else {
-                  console.log('Returning to client')
+                  // console.log('Returning to client')
                   res.send({
                     token: token,
                     msg: 'ok',

@@ -4,6 +4,11 @@ import {bindActionCreators} from 'redux';
 import {fetchUserById, fetchFriends, changeConversation} from '../../actions/index';
 import {Link} from 'react-router';
 
+import io from 'socket.io-client'
+
+const socket = io('http://localhost:3001')
+
+
 class MessagesList extends React.Component {
   constructor(){
     super();
@@ -57,9 +62,31 @@ class MessagesList extends React.Component {
 
   changeConversationPointer(id) {
     this.props.changeConversation(id)
+    setTimeout(() => {
+      console.log(this.props.currentUser);
+      console.log(this.props.currentConversation);
+      let userIds = {
+        currentUser: this.props.currentUser.user.id,
+        otherUser: this.props.currentConversation.id
+      }
+
+      socket.emit('createRoom', userIds);
+      // socket.on('roomCreated', (body) => {
+      //   console.log(body)
+      // another event that emits the roomid
+      // socket.emit('joinRoom', body)
+      // })
+
+
+
+
+    }, 200)
+
   }
 
   render() {
+
+
     return (
       <div id="messages-list-container">
         <div id="messages-list-title">
@@ -81,7 +108,8 @@ class MessagesList extends React.Component {
 
 function mapStateToProps(state){
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    currentConversation: state.currentConversation
   }
 }
 

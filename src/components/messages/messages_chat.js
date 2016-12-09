@@ -12,6 +12,7 @@ class MessagesBox extends React.Component {
     super();
     this.state ={
       message: '',
+      messages: []
     }
     this.onMessageSubmit = this.onMessageSubmit.bind(this);
     this.onMessageChange = this.onMessageChange.bind(this);
@@ -45,7 +46,15 @@ class MessagesBox extends React.Component {
         this.props.getMessages().then((res) => {
           renderMessagesPointer(res.payload.data)
         })
+
+        socket.emit('newMessage', propsToSend)
+
+        // socket.on('newMessageBack', function(body) {
+          // push it to this.state.messages
+          // })
+
       })
+
       this.setState({
         message: ''
       })
@@ -107,7 +116,7 @@ class MessagesBox extends React.Component {
             </div>
           </div> */}
 
-          {this.state.messages ? this.state.messages : <span></span>}
+          {this.state.messages.length !== 0 ? this.state.messages : <span></span>}
 
         </div>
 
