@@ -7,9 +7,7 @@ import io from 'socket.io-client'
 
 const socket = io('http://localhost:3001')
 
-socket.on('4.11', (body) => {
-  console.log(body);
-})
+
 
 
 class MessagesBox extends React.Component {
@@ -17,7 +15,8 @@ class MessagesBox extends React.Component {
     super();
     this.state ={
       message: '',
-      messages: []
+      messages: [],
+      roomId: ''
     }
     this.onMessageSubmit = this.onMessageSubmit.bind(this);
     this.onMessageChange = this.onMessageChange.bind(this);
@@ -33,6 +32,10 @@ class MessagesBox extends React.Component {
 
   componentDidMount(){
     console.log("from componentDidMount")
+
+    socket.on('4.11', (body) => {
+      console.log(body);
+    })
     // socket.on('newMessageBack', (body) => {
     //   console.log(body);
     // })
@@ -61,6 +64,20 @@ class MessagesBox extends React.Component {
     event.preventDefault();
     let renderMessagesPointer = this.renderMessages;
 
+    let roomId = "";
+
+    if (this.props.currentUser.user.id < this.props.currentConversation.id){
+      roomId = this.props.currentUser.user.id + "." + this.props.currentConversation.id;
+    } else {
+      roomId = this.props.currentConversation.id + "." + this.props.currentUser.user.id;
+    }
+    console.log(roomId)
+
+    this.setState({
+      roomId: roomId
+    })
+
+
     if (this.props.currentConversation.firstname && this.state.message){
       let propsToSend = {
         sender: this.props.currentUser.user.id,
@@ -72,7 +89,7 @@ class MessagesBox extends React.Component {
         receiver_lastname: this.props.currentConversation.lastname,
         sender_profile_pic: this.props.currentUser.user.profile_pic,
         receiver_profile_pic: this.props.currentConversation.profile_pic,
-        roomId: '4.11'
+        roomId: roomId
       }
       this.props.createMessage(propsToSend).then(() => {
         this.props.getMessages().then((res) => {

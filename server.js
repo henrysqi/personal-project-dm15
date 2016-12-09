@@ -47,7 +47,7 @@ var users = {};
 //   '11': socket
 // }
 
-var roomId = "";
+// var roomId = "";
 
 io.on('connection', function(socket){
   // io.emit('newMessageBack', "from line 51")
@@ -65,35 +65,37 @@ io.on('connection', function(socket){
 
   // create a new room when user clicks on friend in message list @@@@@@@@@@@@@@@@@@@@@@@
   // var roomId = ""
-  socket.on('createRoom', function(body){
-    console.log(body);
-
-    if (body.currentUser < body.otherUser){
-      roomId = body.currentUser + "." + body.otherUser;
-    } else {
-      roomId = body.otherUser + "." + body.currentUser;
-    }
-    console.log(roomId)
+  // socket.on('createRoom', function(body){
+  //   console.log(body);
+  //
+  //   var roomId = "";
+  //
+  //   if (body.currentUser < body.otherUser){
+  //     roomId = body.currentUser + "." + body.otherUser;
+  //   } else {
+  //     roomId = body.otherUser + "." + body.currentUser;
+  //   }
+  //   console.log(roomId)
 
     //find users, join both sockets to that room id @@@@@@@@@@@@@@@@@@@@@@@@@@
 
-    users[body.currentUser].join(roomId);
+    // users[body.currentUser].join(roomId);
     // users[body.otherUser].join(roomId);
 
     // undefined if only log in as asd. what if users {} doesnt have otheruser?
     // logged in user only joins the room himself?
 
-  })
+  // })
 
 
   socket.on('newMessage', function(body){
     console.log("event triggered")
     console.log(body)
-    console.log(roomId)
-    console.log("after room id")
+    // console.log(roomId)
+    // console.log("after room id")
     io.emit(body.roomId, body);
 
-    io.to(roomId).emit('newMessageBack', body)
+    // io.to(roomId).emit('newMessageBack', body)
 
     // io.emit('newMessageBack', "from line 94")  workss
 
