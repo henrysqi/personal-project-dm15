@@ -1444,3 +1444,16 @@ ul li {
   color: #1d2129;
   font-style: italic;
 }
+
+/* modal ===========================*/
+.modal-p {
+  color: white;
+}
+
+.modal-button {
+  background-color: inherit;
+  border: 2px solid white;
+  color: white;
+  padding: 2px 5px;
+  margin-left: 10px;
+}
