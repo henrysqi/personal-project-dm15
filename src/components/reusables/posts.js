@@ -54,10 +54,11 @@ class Posts extends React.Component {
     if (!this.state.posts){
       return;
     }
-    return this.state.posts.map((elem) => {
-      console.log(elem)
+
+    let orderedPosts = this.state.posts.sort(function(a,b) {return (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0);} );
+
+    return orderedPosts.map((elem) => {
       return (
-        //key with elem.id already used?
         <Post postinfo={elem} />
       )
     }).reverse();

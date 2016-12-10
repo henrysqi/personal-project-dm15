@@ -6,11 +6,13 @@ import {fetchUserById, updateLikes, fetchPosts, createComment, getComments} from
 
 import Comment from './comment';
 
+
 class Post extends React.Component {
   constructor(){
     super();
     this.state = {
-      comment: ''
+      comment: '',
+      likeflag: false
     }
     this.renderLikes = this.renderLikes.bind(this);
     this.onCommentChange = this.onCommentChange.bind(this);
@@ -44,7 +46,13 @@ class Post extends React.Component {
   }
 
   renderLikes(){
-    this.props.updateLikes(this.props.postinfo.id)
+    if (!this.state.likeflag){
+      this.props.updateLikes(this.props.postinfo.id)
+      this.setState({
+        likeflag: true
+      })
+    }
+    // this.props.updateLikes(this.props.postinfo.id)
   }
 
   onCommentChange(event) {
