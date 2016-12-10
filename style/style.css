@@ -843,6 +843,12 @@ ul li {
   color: #1d2129;
 }
 
+#delete-post-button {
+  height: 10px;
+  width: 10px;
+  cursor: pointer;
+  margin-left: 250px;
+}
 
 /* friend requests ============================= */
 #friend-requests-content-container {

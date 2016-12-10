@@ -281,6 +281,16 @@ app.get('/api/comments', function(req, res){
   })
 })
 
+app.delete('/api/posts/:postid', function(req, res){
+  db.delete_post([req.params.postid], function(err, result){
+    if (err){
+      res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  })
+})
+
 /* profile ========================================================================*/
 app.get('/api/:id', function(req,res){
   db.get_user_profile_by_id([req.params.id], function(err, result){

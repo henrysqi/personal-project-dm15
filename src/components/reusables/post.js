@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
-import {fetchUserById, updateLikes, fetchPosts, createComment, getComments} from '../../actions/index';
+import {fetchUserById, updateLikes, fetchPosts, createComment, getComments, deletePost} from '../../actions/index';
 
 import Comment from './comment';
 
@@ -17,6 +17,7 @@ class Post extends React.Component {
     this.renderLikes = this.renderLikes.bind(this);
     this.onCommentChange = this.onCommentChange.bind(this);
     this.onCommentSubmit = this.onCommentSubmit.bind(this);
+    this.removePost = this.removePost.bind(this);
   }
 
   componentWillMount(){
@@ -103,10 +104,17 @@ class Post extends React.Component {
     })
   }
 
+  removePost(postinfo){
+    if (postinfo.userid === this.props.currentUser.user.id){
+      this.props.deletePost(postinfo.id)
+    }
+  }
+
   render() {
     return (
       <div className="post-container">
         <div id="post-user">
+          <img onClick={() => {this.removePost(this.props.postinfo)}} id="delete-post-button" src="assets\images\button_close-128.png" />
           <Link to={`${this.props.postinfo.userid}`}><div id="post-user-pic">
             { this.state.userInfo ? <img src={`${this.state.userInfo.payload.data[0].profile_pic}`} /> : <span></span> }
           </div></Link>
@@ -168,7 +176,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({fetchUserById, updateLikes, fetchPosts, createComment, getComments}, dispatch)
+    return bindActionCreators({fetchUserById, updateLikes, fetchPosts, createComment, getComments, deletePost}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

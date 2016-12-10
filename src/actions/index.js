@@ -24,6 +24,7 @@ export const CREATE_NEW_MESSAGE = 'CREATE_NEW_MESSAGE';
 export const FETCH_MESSAGES = 'FETCH_MESSAGES';
 export const CHANGE_NAMESPACE = 'CHANGE_NAMESPACE';
 export const DELETE_FRIENDS_BY_ID = 'DELETE_FRIENDS_BY_ID';
+export const DELETE_POST = 'DELETE_POST';
 
 
 const ROOT_URL = 'http://localhost:3000/';
@@ -318,6 +319,18 @@ export function deleteFriendsById(props){
 
   return {
     type: DELETE_FRIENDS_BY_ID,
+    payload: request
+  }
+}
+
+export function deletePost(postid){
+  const request = axios({
+    url: `${ROOT_URL}api/posts/${postid}`,
+    method: 'delete'
+  })
+
+  return {
+    type: DELETE_POST,
     payload: request
   }
 }
