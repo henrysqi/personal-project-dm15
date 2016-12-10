@@ -228,7 +228,7 @@ export function updateLikes(postid){
   })
 
   return {
-    type: FETCH_PICTURES,
+    type: UPDATE_LIKES,
     payload: request
   }
 }

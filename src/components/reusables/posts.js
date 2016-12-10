@@ -55,6 +55,7 @@ class Posts extends React.Component {
       return;
     }
     return this.state.posts.map((elem) => {
+      console.log(elem)
       return (
         //key with elem.id already used?
         <Post postinfo={elem} />

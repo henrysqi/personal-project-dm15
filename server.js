@@ -158,7 +158,7 @@ app.post('/auth', function(req,res,next){
               res.status(500).send(err)
             }
             else {
-              console.log('Returning to client')
+              // console.log('Returning to client')
               res.send({
                 token: token,
                 msg: 'ok',

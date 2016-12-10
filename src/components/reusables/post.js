@@ -6,7 +6,7 @@ import {fetchUserById, updateLikes, fetchPosts, createComment, getComments} from
 
 import Comment from './comment';
 
-class Posts extends React.Component {
+class Post extends React.Component {
   constructor(){
     super();
     this.state = {
@@ -44,18 +44,7 @@ class Posts extends React.Component {
   }
 
   renderLikes(){
-    this.props.updateLikes(this.props.postinfo.id).then(() => {
-      this.props.fetchPosts().then((res) => {
-        let arrayOfPosts = res.payload.data;
-        arrayOfPosts.forEach((elem) => {
-          if (elem.id === this.props.postinfo.id){
-            this.setState({
-              numLikes: elem.num_likes
-            })
-          }
-        })
-      })
-    })
+    this.props.updateLikes(this.props.postinfo.id)
   }
 
   onCommentChange(event) {
@@ -67,9 +56,6 @@ class Posts extends React.Component {
 
   onCommentSubmit(event){
     event.preventDefault();
-    // console.log(this.props.currentUser.user)
-    // console.log(this.props.postinfo.id)
-    // console.log(this.state.comment)
     let commentProps = {
       postid: this.props.postinfo.id,
       userid: this.props.currentUser.user.id,
@@ -93,8 +79,6 @@ class Posts extends React.Component {
 
       filteredComments.forEach((elem) => {
         this.props.fetchUserById(elem.userid).then((res) => {
-          // console.log(elem)
-          // console.log(res)
           listOfJsx.push(
             <Comment elem={elem} res={res} />
           )
@@ -102,8 +86,6 @@ class Posts extends React.Component {
       })
 
       setTimeout(() => {
-        // console.log("from after map")
-        // console.log(listOfJsx)
         this.setState({
           comment: '',
           listOfComments: listOfJsx
@@ -114,7 +96,6 @@ class Posts extends React.Component {
   }
 
   render() {
-    // console.log(this.state)
     return (
       <div className="post-container">
         <div id="post-user">
@@ -132,7 +113,7 @@ class Posts extends React.Component {
           {this.props.postinfo.vid_content ? <iframe src={`${this.props.postinfo.vid_content}`}></iframe> : <span></span> }
         </div>
         <div id="post-like-comment">
-          <div id="post-like" onClick={this.renderLikes}>
+          <div id="post-like" onClick={() => {this.renderLikes()}}>
             <img src="assets\images\like.png" />
             <span>Like</span>
           </div>
@@ -182,4 +163,4 @@ function mapDispatchToProps(dispatch){
     return bindActionCreators({fetchUserById, updateLikes, fetchPosts, createComment, getComments}, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Posts);
+export default connect(mapStateToProps, mapDispatchToProps)(Post);
