@@ -29,13 +29,16 @@ class MessagesBox extends React.Component {
     })
 
     setTimeout(() => {
+      console.log(this.props.currentNamespace)
       socket.on(this.props.currentNamespace, (body) => {
+        console.log("listening at componentWillReceiveProps")
 
         let history = this.state.messages.slice();
-
-        console.log(history)
+        console.log(body.text_content);
+        console.log(sockethistory[sockethistory.length-1].text_content)
 
         if (body.text_content !== sockethistory[sockethistory.length-1].text_content){
+          console.log("pushing")
           history.push(
             <div id="messages-box-chat-message">
               <img src={body.sender_profile_pic} />
@@ -52,7 +55,7 @@ class MessagesBox extends React.Component {
         }
 
       })
-    }, 200)
+    }, 400)
 
   }
 
