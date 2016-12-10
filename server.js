@@ -45,7 +45,7 @@ io.on('connection', function(socket){
   console.log(usersCount + " connected")
 
   socket.on('newMessage', function(body){
-    
+
 
     io.emit(body.namespaceid, body);
   })
@@ -176,10 +176,6 @@ app.post('/auth', function(req,res,next){
     }
   })
 })
-
-/* feed page ========================================================================*/
-
-
 
 /* search page ========================================================================*/
 app.get('/api/search', function(req,res){
@@ -356,7 +352,15 @@ app.put('/api/:id/coverphoto', function(req, res){
   })
 })
 
-
+app.delete('/api/friends/profile', function(req, res){
+  db.delete_friends_by_id([req.body.sender, req.body.receiver], function(err, result){
+    if (err){
+      res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  })
+})
 
 /*  ========================================================================*/
 

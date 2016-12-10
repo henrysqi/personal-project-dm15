@@ -23,6 +23,7 @@ export const CHANGE_CONVERSATION = 'CHANGE_CONVERSATION';
 export const CREATE_NEW_MESSAGE = 'CREATE_NEW_MESSAGE';
 export const FETCH_MESSAGES = 'FETCH_MESSAGES';
 export const CHANGE_NAMESPACE = 'CHANGE_NAMESPACE';
+export const DELETE_FRIENDS_BY_ID = 'DELETE_FRIENDS_BY_ID';
 
 
 const ROOT_URL = 'http://localhost:3000/';
@@ -305,5 +306,18 @@ export function changeNamespace(namespaceid){
   return {
     type: CHANGE_NAMESPACE,
     payload: namespaceid
+  }
+}
+
+export function deleteFriendsById(props){
+  const request = axios({
+    url: `${ROOT_URL}api/friends/profile`,
+    method: 'delete',
+    data: props
+  })
+
+  return {
+    type: DELETE_FRIENDS_BY_ID,
+    payload: request
   }
 }
