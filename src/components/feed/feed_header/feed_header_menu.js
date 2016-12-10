@@ -13,7 +13,7 @@ class FeedHeaderMenu extends React.Component {
         </div></Link>
         <div id="divider"></div>
         <div id="feed-header-menu-home">
-          <h3>Home</h3>
+          <Link to={'/feed'}><h3>Home</h3></Link>
         </div>
         <div className="feed-header-menu-icon-container">
           <Link to="/friends/requests"><img src="http://localhost:8080/assets/images/users-1.png" /></Link>

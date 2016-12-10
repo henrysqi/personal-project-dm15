@@ -26,7 +26,7 @@ class FriendRequestItem extends React.Component {
     return (
       <div className="friend-request-item">
         <div id="friend-request-info">
-          <img src="http://www.hayy.net/Content/img/custom/default-avatar.png" />
+          <img src={ this.state.userinfo ? this.state.userinfo.profile_pic : 'https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg'} />
           <div id="friend-request-info-text">
             <Link to={this.state.userinfo ? `${this.state.userinfo.id}` : ''}>
               <h2>

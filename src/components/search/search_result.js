@@ -78,7 +78,7 @@ class SearchResult extends React.Component {
         <h1>{this.props.elem.firstname} {this.props.elem.lastname}</h1></Link>
         <div className="feed-search-post-buttons">
           <button onClick={this.makeFriendRequest}>
-            <img src="assets\images\add-user3-512.png" />
+            <img src="http://localhost:8080/assets/images/add-user3-512.png" />
             <span>{this.state.friendButtonText}</span>
           </button>
           <select>

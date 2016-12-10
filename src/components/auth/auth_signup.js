@@ -142,7 +142,7 @@ class SignUp extends React.Component {
         <div className="auth-content-container" id="auth-main-content">
 
           <div id="auth-main-image-container">
-              <img src="/assets/images/auth-page.png" />
+              <img src="http://localhost:8080/assets/images/auth-page.png" />
               <h2>Thanks for stopping by!</h2>
               <h3>This is Henry's attempt at cloning Facebook.</h3>
           </div>

@@ -130,16 +130,16 @@ class Post extends React.Component {
         </div>
         <div id="post-like-comment">
           <div id="post-like" onClick={() => {this.renderLikes()}}>
-            <img src="assets\images\like.png" />
+            <img src="http://localhost:8080/assets/images/like.png" />
             <span>Like</span>
           </div>
           <div id="post-comment">
-            <img src="assets\images\grayspeech.png" />
+            <img src="http://localhost:8080/assets/images/grayspeech.png" />
             <span>Comment</span>
           </div>
         </div>
         <div id="post-num-likes">
-          <img src="assets\images\thumbsup_blue.png" />
+          <img src="http://localhost:8080/assets/images/thumbsup_blue.png" />
           { this.state.numLikes ? <span>{this.state.numLikes}</span> : <span>{this.props.postinfo.num_likes}</span> }
         </div>
 
