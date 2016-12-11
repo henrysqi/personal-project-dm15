@@ -110,7 +110,6 @@ class ProfilePhotos extends React.Component {
 
   updateState(){
     let filteredPictures = [];
-    console.log(this.props.params.id)
     this.props.getPictures().then((res) => {
       res.payload.data.forEach((elem) => {
         if (elem.userid === Number(this.props.params.id)){

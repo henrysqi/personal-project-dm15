@@ -34,8 +34,6 @@ class MessagesBox extends React.Component {
         console.log("listening at componentWillReceiveProps")
 
         let history = this.state.messages.slice();
-        console.log(body.text_content);
-        console.log(sockethistory[sockethistory.length-1].text_content)
 
         if (body.text_content !== sockethistory[sockethistory.length-1].text_content){
           console.log("pushing")

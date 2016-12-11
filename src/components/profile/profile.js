@@ -73,7 +73,6 @@ class Profile extends React.Component {
 
   getPhotos(){
     let filteredPictures = [];
-    console.log(this.props.params.id)
     this.props.getPictures().then((res) => {
       res.payload.data.forEach((elem) => {
         if (elem.userid === Number(this.props.params.id)){
@@ -241,7 +240,6 @@ class Profile extends React.Component {
 
 
   render(){
-    console.log(this.state.pictures)
     return (
       <div>
         <FeedHeader />

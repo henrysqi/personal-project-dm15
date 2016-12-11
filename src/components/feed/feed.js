@@ -4,6 +4,7 @@ import FeedHeader from './feed_header/feed_header';
 import FeedMenu from './feed_menu/feed_menu';
 import FeedNews from './feed_news/feed_news';
 import FeedAds from './feed_ads/feed_ads';
+import FixedFriends from '../reusables/fixedfriends'
 
 import {connect} from 'react-redux';
 
@@ -27,6 +28,7 @@ class Feed extends React.Component {
             <FeedAds />
           </div>
         </div>
+        <FixedFriends />
       </div>
     )
   }

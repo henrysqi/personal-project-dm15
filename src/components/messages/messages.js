@@ -2,6 +2,7 @@ import React from 'react';
 import MessagesList from './messages_list';
 import MessagesChat from './messages_chat';
 import FeedHeader from '../feed/feed_header/feed_header';
+import FixedFriends from '../reusables/fixedfriends';
 
 
 class Messages extends React.Component {
@@ -15,6 +16,7 @@ class Messages extends React.Component {
             <MessagesChat />
           </div>
         </div>
+        <FixedFriends />
       </div>
     )
   }

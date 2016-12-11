@@ -172,8 +172,6 @@ class ProfileFriends extends React.Component {
   }
 
   deleteFriend(personToDelete){
-    console.log(personToDelete)
-    console.log(this.props.params.id)
     var friends = {
       sender: this.props.currentUser.user.id,
       receiver: personToDelete.id

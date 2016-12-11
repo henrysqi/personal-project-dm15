@@ -6,6 +6,8 @@ import {bindActionCreators} from 'redux';
 
 import FriendRequestItem from './friend_request_item';
 import {fetchFriends, updateFriendsResolved, deleteFriends} from '../../actions/index';
+import FixedFriends from '../reusables/fixedfriends'
+
 
 class FriendRequests extends React.Component {
   constructor() {
@@ -93,6 +95,7 @@ class FriendRequests extends React.Component {
             <FeedAds />
           </div>
         </div>
+        <FixedFriends />
       </div>
 
     )

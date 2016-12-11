@@ -82,8 +82,6 @@ closeModal() {
 
 onPicSubmit(event){
   event.preventDefault();
-  console.log(this.props.currentUser.user.id)
-  console.log(this.state.pic_content)
   this.props.createPicture(this.props.currentUser.user.id, this.state);
 
   this.setState({
