@@ -67,6 +67,48 @@ class Profile extends React.Component {
 
   componentWillMount(){
     this.renderHero();
+    this.getFriends();
+  }
+
+  getFriends() {
+    let filteredFriends = []
+    let filteredFriendsObjects = []
+    let fetchUserByIdPointer = this.props.fetchUserById;
+      this.props.fetchFriends().then((res) => {
+        res.payload.data.forEach((elem) => {
+          if (elem.resolved === true ){
+            if (elem.sender === Number(this.props.params.id) && elem.receiver !== Number(this.props.params.id)){
+              filteredFriends.push(elem.receiver)
+            } else if (elem.receiver === Number(this.props.params.id) && elem.sender !== Number(this.props.params.id) ){
+              filteredFriends.push(elem.sender)
+            }
+          }
+      })
+
+      filteredFriends.forEach((elem) => {
+        this.props.fetchUserById(elem).then((res) => {
+          filteredFriendsObjects.push(res.payload.data[0])
+        })
+      })
+
+      setTimeout(() => {
+        this.setState({
+          friends: filteredFriendsObjects
+        })
+      }, 400)
+
+    })
+  }
+
+  renderFriends(){
+    return this.state.friends.map((elem) => {
+      return (
+        <div className="timeline-friends-friend">
+          <img src={elem.profile_pic} />
+          <h2>{elem.firstname} {elem.lastname}</h2>
+        </div>
+      )
+    })
   }
 
   renderName() {
@@ -170,6 +212,7 @@ class Profile extends React.Component {
 
 
   render(){
+    console.log(this.state.friends)
     return (
       <div>
         <FeedHeader />
@@ -259,6 +302,12 @@ class Profile extends React.Component {
               <div className="profile-left-panel-item">
                 <img src="http://localhost:8080/assets/images/circle-friends.png" />
                 <span>Friends</span>
+                <div className="timeline-friends">
+                  {/* <div className="timeline-friends-friend">
+
+                  </div> */}
+                  {this.state.friends ? this.renderFriends() : <span></span>}
+                </div>
               </div>
               <div className="profile-left-panel-item" id="profile-lang">
                 <div id="profile-left-panel-item-languages">
