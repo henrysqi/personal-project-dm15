@@ -25,7 +25,7 @@ export const FETCH_MESSAGES = 'FETCH_MESSAGES';
 export const CHANGE_NAMESPACE = 'CHANGE_NAMESPACE';
 export const DELETE_FRIENDS_BY_ID = 'DELETE_FRIENDS_BY_ID';
 export const DELETE_POST = 'DELETE_POST';
-
+export const FETCH_TRENDS = 'FETCH_TRENDS';
 
 const ROOT_URL = 'http://localhost:3000/';
 
@@ -331,6 +331,18 @@ export function deletePost(postid){
 
   return {
     type: DELETE_POST,
+    payload: request
+  }
+}
+
+export function getTrends(){
+  const request = axios({
+    url: `${ROOT_URL}api/twitter/trending`,
+    method: 'get'
+  })
+
+  return {
+    type: FETCH_TRENDS,
     payload: request
   }
 }
