@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import FeedHeader from '../feed/feed_header/feed_header';
-import {fetchUserById, friendRequest, fetchFriends, updateProfilePic, updateCoverPhoto} from '../../actions/index';
+import {fetchUserById, friendRequest, fetchFriends, updateProfilePic, updateCoverPhoto, getPictures} from '../../actions/index';
 import {Link} from 'react-router';
 
 import NewPost from '../reusables/new_post';
@@ -68,6 +68,35 @@ class Profile extends React.Component {
   componentWillMount(){
     this.renderHero();
     this.getFriends();
+    this.getPhotos();
+  }
+
+  getPhotos(){
+    let filteredPictures = [];
+    console.log(this.props.params.id)
+    this.props.getPictures().then((res) => {
+      res.payload.data.forEach((elem) => {
+        if (elem.userid === Number(this.props.params.id)){
+          filteredPictures.push(elem);
+        }
+      })
+    })
+
+    setTimeout(() => {
+      this.setState({
+        pictures: filteredPictures
+      })
+    }, 400)
+  }
+
+  renderPhotos(){
+    return this.state.pictures.map((elem) => {
+      return (
+        <div className="timeline-friends-friend">
+          <img src={elem.pic_content} />
+        </div>
+      )
+    })
   }
 
   getFriends() {
@@ -212,7 +241,7 @@ class Profile extends React.Component {
 
 
   render(){
-    console.log(this.state.friends)
+    console.log(this.state.pictures)
     return (
       <div>
         <FeedHeader />
@@ -298,6 +327,12 @@ class Profile extends React.Component {
               <div className="profile-left-panel-item">
                 <img src="http://localhost:8080/assets/images/MetroUI-Apps-Windows8-Photos-icon.png" />
                 <span>Photos</span>
+                <div className="timeline-friends">
+                  {/* <div className="timeline-friends-friend">
+
+                  </div> */}
+                  {this.state.pictures ? this.renderPhotos() : <span></span>}
+                </div>
               </div>
               <div className="profile-left-panel-item">
                 <img src="http://localhost:8080/assets/images/circle-friends.png" />
@@ -341,7 +376,7 @@ function mapStateToProps(state){
 }
 
 function  mapDispatchToProps(dispatch){
-  return bindActionCreators({fetchUserById, friendRequest, fetchFriends, updateProfilePic, updateCoverPhoto}, dispatch);
+  return bindActionCreators({fetchUserById, friendRequest, fetchFriends, updateProfilePic, updateCoverPhoto, getPictures}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

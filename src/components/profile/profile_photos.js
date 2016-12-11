@@ -237,25 +237,26 @@ class ProfilePhotos extends React.Component {
                   right                 : 'auto',
                   bottom                : 'auto',
                   marginRight           : '-50%',
-                  transform             : 'translate(-50%, -50%)'
+                  transform             : 'translate(-50%, -50%)',
+                  background            : '#3B5998'
                 }
               }}
               contentLabel="Example Modal"
             >
 
               {/* <h2 ref="subtitle">Hello</h2> */}
-              <p>Update Profile Picture</p>
+              <p className="modal-p">Update Profile Picture</p>
               <form onSubmit={this.onProfilePicSubmit}>
                 <input value={this.state.profilepic} onChange={this.onProfilePicChange} />
-                <span><button>Submit</button></span>
+                <span><button className="modal-button">Submit</button></span>
               </form>
-              <p>Update Cover Photo</p>
+              <p className="modal-p">Update Cover Photo</p>
               <form onSubmit={this.onCoverPhotoSubmit}>
                 <input value={this.state.coverphoto} onChange={this.onCoverPhotoChange} />
-                <span><button>Submit</button></span>
+                <span><button className="modal-button">Submit</button></span>
               </form>
               <br></br>
-              <button onClick={this.closeModal}>close</button>
+              <button className="modal-button" onClick={this.closeModal}>close</button>
             </Modal>
 
             <div id="profile-hero">

@@ -180,7 +180,7 @@ class SignUp extends React.Component {
                 </select>
                 <select className={this.state.bdayyear === '' ? 'bad-input' : ''} value={this.state.bdayyear} onChange={this.onYearChange}>
                   <option selected="selected" disabled="disabled">Year</option>
-                  {this.renderRange(2016,31)}
+                  {this.renderRange(2016,1900)}
                 </select>
                 <br></br>
                 <input className={this.state.gender === '' ? 'bad-input' : ''} value={this.state.gender} onChange={this.onFemaleChange} className="auth-signup-radio" type="radio" name="gender" /><span>Female</span>
