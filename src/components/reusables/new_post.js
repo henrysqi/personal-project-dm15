@@ -153,25 +153,26 @@ onVidChange(event){
               right                 : 'auto',
               bottom                : 'auto',
               marginRight           : '-50%',
-              transform             : 'translate(-50%, -50%)'
+              transform             : 'translate(-50%, -50%)',
+              background            : '#3B5998'
             }
           }}
           contentLabel="Example Modal"
         >
 
           {/* <h2 ref="subtitle">Hello</h2> */}
-          <p>Include a photo link</p>
+          <p className="modal-p">Include a photo link</p>
           <form onSubmit={this.onPicSubmit}>
             <input value={this.state.pic_content} onChange={this.onPicChange} />
-            <span><button>Submit</button></span>
+            <span><button className="modal-button">Submit</button></span>
           </form>
-          <p>Include a video link</p>
+          <p className="modal-p">Include a video link</p>
           <form onSubmit={this.onVideoSubmit}>
             <input value={this.state.vid_content_pre} onChange={this.onVidChange} />
-            <span><button>Submit</button></span>
+            <span><button className="modal-button">Submit</button></span>
           </form>
           <br></br>
-          <button onClick={this.closeModal}>close</button>
+          <button className="modal-button" onClick={this.closeModal}>close</button>
         </Modal>
 
       </div>
