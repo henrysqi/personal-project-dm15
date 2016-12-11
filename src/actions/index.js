@@ -26,6 +26,7 @@ export const CHANGE_NAMESPACE = 'CHANGE_NAMESPACE';
 export const DELETE_FRIENDS_BY_ID = 'DELETE_FRIENDS_BY_ID';
 export const DELETE_POST = 'DELETE_POST';
 export const FETCH_TRENDS = 'FETCH_TRENDS';
+export const DELETE_COMMENT = 'DELETE_COMMENT'
 
 const ROOT_URL = 'http://localhost:3000/';
 

@@ -295,7 +295,16 @@ app.delete('/api/posts/:postid', function(req, res){
       })
     }
   })
+})
 
+app.delete('/api/comments/:id', function(req, res){
+  db.delete_comments([req.params.id], function(err, result){
+    if (err){
+      res.status(500).send(err);
+    } else {
+      res.send(result);
+    }
+  })
 })
 
 /* profile ========================================================================*/
