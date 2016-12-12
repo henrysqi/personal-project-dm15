@@ -1180,6 +1180,14 @@ ul li {
   position: absolute;
 }
 
+#bday-day {
+  margin-left: 27px;
+}
+
+#bday-year {
+  margin-left: 50px;
+}
+
 #profile-friends-content-container {
   background-color: white;
   width: 100%;
@@ -1477,6 +1485,10 @@ ul li {
   position: absolute;
   bottom: 0px;
   left: 5px;
+}
+
+#friends-firstname {
+  bottom: 20px;
 }
 
 /* fixed friends =====================*/

@@ -265,7 +265,9 @@ class ProfileAbout extends React.Component {
                 <span>{this.state.userinfo ? this.state.userinfo.payload.data[0].gender : ''}</span>
                 <br></br>
                 <img src="http://localhost:8080/assets/images/birthday-cake-xxl.png" />
-                <span>{this.state.userinfo ? this.state.userinfo.payload.data[0].month : ''} {this.state.userinfo ? this.state.userinfo.payload.data[0].day : ''}, {this.state.userinfo ? this.state.userinfo.payload.data[0].year : ''}</span>
+                <span>{this.state.userinfo ? this.state.userinfo.payload.data[0].bdaymonth : ''} </span>
+                <span id="bday-day">{this.state.userinfo ? this.state.userinfo.payload.data[0].bdayday : ''} </span>
+                <span id="bday-year">{this.state.userinfo ? this.state.userinfo.payload.data[0].bdayyear : ''} </span>
               </div>
             </div>
 

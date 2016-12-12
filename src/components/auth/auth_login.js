@@ -50,7 +50,7 @@ class Login extends React.Component {
       <div id="auth-header" className="header-gradient">
         <div className="auth-content-container">
           <div id="auth-logo">
-            facebook
+            fauxbook
           </div>
           <div id="auth-login-form">
             <form onSubmit={this.onFormSubmit}>

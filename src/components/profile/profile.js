@@ -133,7 +133,8 @@ class Profile extends React.Component {
       return (
         <div className="timeline-friends-friend">
           <img src={elem.profile_pic} />
-          <h2>{elem.firstname} {elem.lastname}</h2>
+          <span id="friends-firstname">{elem.firstname}</span>
+          <span>{elem.lastname}</span>
         </div>
       )
     })
