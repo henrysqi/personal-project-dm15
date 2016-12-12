@@ -1496,7 +1496,7 @@ ul li {
   height: 90%;
   width: 230px;
   position: fixed;
-  top: 200px;
+  bottom: 0;
   right: 0;
   display: flex;
   flex-direction: column-reverse;
