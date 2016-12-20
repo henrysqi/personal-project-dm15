@@ -1,0 +1,5 @@
+bugs: 
+cant receive messages after leaving messages component
+making post in feed shows wrong poster temporarily
+posting with existing posts doesnt display currentuser.
+comments travel temporarily after deleting post with comment

@@ -1,0 +1,60 @@
+create table users (
+    id serial primary key,
+    firstname text,
+    lastname text,
+    email text,
+    password text,
+    gender text,
+    bdaymonth text,
+    bdayday text,
+    bdayyear text,
+    profile_pic text,
+    cover_photo text,
+    intro text
+)
+
+create table posts (
+    id serial primary key,
+    userid int references users(id),
+    text_content text,
+    pic_content text,
+    date text,
+    num_likes int,
+    num_comments int,
+    receiver int references users(id),
+    vid_content text
+)
+
+create table pictures (
+    id serial primary key,
+    userid int references users(id),
+    receiver int references users(id),
+    pic_content text
+)
+
+create table messages (
+    id serial primary key,
+    sender int references users(id),
+    receiver int references users(id),
+    text_content text,
+    sender_firstname text,
+    sender_lastname text,
+    receiver_firstname text,
+    receiver_lastname text,
+    sender_profile_pic text,
+    sender_profile_pic text
+)
+
+create table friends (
+    pair serial primary key,
+    sender int references users(id),
+    receiver int references users(id),
+    resolved boolean
+)
+
+create table comments (
+    id serial primary key,
+    postid int references posts(id),
+    userid int references users(id),
+    text_content text
+)
